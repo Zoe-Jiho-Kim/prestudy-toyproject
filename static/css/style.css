@@ -14,10 +14,11 @@
     url(https://image.zdnet.co.kr/2020/03/06/hjan_EWKpagLviyCwJNQ.jpg);
   background-position: center;
   background-size: cover;
+  margin: 0 !important;
 }
 
 .banner h1,
-p {
+.banner p {
   color: #fff;
 }
 
