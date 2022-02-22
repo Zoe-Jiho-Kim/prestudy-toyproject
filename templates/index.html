@@ -30,7 +30,7 @@
     <script src="{{ url_for('static', filename='main.js') }}" defer></script> -->
   </head>
   <body>
-    <!-- 헤더 -->
+    <!-- Header -->
     <div class="container">
       <header
         class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"
@@ -52,7 +52,7 @@
         </div>
       </header>
     </div>
-    <!-- 메인 배너 -->
+    <!-- Banner -->
     <div class="banner px-4 py-5 my-5 text-center border-bottom">
       <h1 class="display-6 fw-bold">간략소개</h1>
       <div class="col-lg-6 mx-auto">
@@ -72,7 +72,7 @@
           />
         </form>
         <div
-          class="button__wrapper d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"
+          class="button__wrap d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"
         >
           <button type="button" class="btn btn-success btn-lg px-4 me-sm-3">
             장르별 보기
@@ -84,8 +84,8 @@
       </div>
     </div>
     <!-- Thumnail -->
-    <main>
-      <div class="album py-5 bg-light">
+    <main class="bg-light">
+      <div class="album py-5">
         <div class="container">
           <div class="row row-cols-3 row-cols-sm-3 row-cols-md-5 row-cols-lg-6 g-3">
             <div class="col">
@@ -425,6 +425,13 @@
               </div>
             </div>
       </div>
+
+      <!-- footer -->
     </main>
+    <div class="footer__wrap">
+      <footer class="py-4">
+        <p class="text-center">© 2022 TEAM, XD</p>
+      </footer>
+    </div>
   </body>
 </html>
