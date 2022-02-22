@@ -15,6 +15,10 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>COMMENTOON</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../static/css/style.css" />
     <script src="../static/js/main.js"></script>
     <!-- flask로 구동시 아래 코드를 사용해야 동작합니다 -->
@@ -26,21 +30,58 @@
     <script src="{{ url_for('static', filename='main.js') }}" defer></script> -->
   </head>
   <body>
-    <div class="mypic">
-      <h1>TEST</h1>
-  </div>
-  <div class="mypost">
-      <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="name" placeholder="url">
-          <label for="floatingInput">FORM TEST</label>
+    <!-- 헤더 -->
+    <div class="container">
+      <header
+        class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"
+      >
+        <a
+          href="#"
+          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
+        >
+          <span class="header__logo">COMMENTOON</span>
+        </a>
+        <ul
+          class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"
+        ></ul>
+        <div class="col-md-3 text-end">
+          <button type="button" class="btn btn-outline-success me-2">
+            Login
+          </button>
+          <button type="button" class="btn btn-success">Sign-up</button>
+        </div>
+      </header>
+    </div>
+    <!-- 메인 배너 -->
+    <div class="banner px-4 py-5 my-5 text-center border-bottom">
+      <h1 class="display-6 fw-bold">간략소개</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries
+        </p>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input
+            type="search"
+            class="form-control"
+            placeholder="Search..."
+            aria-label="Search"
+          />
+        </form>
+        <div
+          class="button__wrapper d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"
+        >
+          <button type="button" class="btn btn-success btn-lg px-4 me-sm-3">
+            장르별 보기
+          </button>
+          <button type="button" class="btn btn-outline-success btn-lg px-4">
+            인기순 보기
+          </button>
+        </div>
       </div>
-      <div class="form-floating">
-  <textarea class="form-control" placeholder="Leave a comment here" id="comment"
-            style="height: 100px"></textarea>
-          <label for="floatingTextarea2">FORM TEST2</label>
-      </div>
-      <button onclick="save_comment()" type="button" class="btn btn-dark">TEST BUTTON</button>
-  </div>
-  <div class="mycards" id="comment-list">
+    </div>
   </body>
 </html>
