@@ -1,22 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
-  <html lang="ko-KR">
-    <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-      />
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <title>COMMENTOON</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/css/signup.css" />
+    <script defer src="../static/js/signup.js"></script>
+    <!-- flask로 구동시 아래 코드를 사용해야 동작합니다 -->
+    <!--
       <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-        crossorigin="anonymous"
-      />
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <title>COMMENTOON</title>
-    </head>
-    <body></body>
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/signup.css') }}"
+    />
+    <script src="{{ url_for('static', filename='signup.js') }}" defer></script> -->
+</head>
+  <body class="text-center" cz-shortcut-listen="true">
+
+    <main class="form-signin">
+      <form>
+
+        <h1 class="h3 mb-3 fw-normal">COMMENTOON<br/>회원가입</h1>
+
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="userid" placeholder="name@example.com">
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating mb-1">
+          <input type="password" class="form-control" id="userpw" placeholder="Password">
+          <label for="floatingPassword">Password</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="userpw2" placeholder="confirm password">
+          <label for="floatingPasswordCF">confirm password</label>
+        </div>
+
+        <div class="form-floating">
+          <input type="text" class="form-control" id="usernick" placeholder="nickname">
+          <label for="floatingNickname">nickname</label>
+        </div>
+
+
+        <button onclick="save_idpw();" class="w-100 btn btn-lg btn-success mt-3" type="submit">Sign-up</button>
+<!--        Verif();-->
+
+
+        <p class="mt-5 mb-3 text-muted">© 2022 team, XD</p>
+      </form>
+    </main>
+    </body>
   </html>
 </html>

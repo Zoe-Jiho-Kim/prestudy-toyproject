@@ -1,14 +1,29 @@
 * {
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 400;
+  margin: 0;
+  padding: 0;
 }
 
+.blind {
+  position: absolute;
+  overflow: hidden;
+  visibility: hidden;
+  margin: -1px;
+  width: 0px;
+  height: 0px;
+  top: -9999px;
+  font-size: 0;
+}
+
+/* header */
 .header__logo {
   font-size: 30px;
   letter-spacing: -1px;
   font-weight: 700;
 }
 
+/* banner */
 .banner {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
     url(https://image.zdnet.co.kr/2020/03/06/hjan_EWKpagLviyCwJNQ.jpg);
@@ -22,6 +37,43 @@
   color: #fff;
 }
 
-.button__wrapper {
+.button__wrap {
   margin: 30px 0 !important;
+}
+
+/* main */
+/* thumnail */
+.thumnail {
+  border: none;
+  background-color: transparent;
+  text-align: left;
+  transition: all 0.2s ease-in-out;
+}
+.thumnail:hover {
+  transform: scale(1.05);
+}
+.thumnail:active,
+.thumnail:focus {
+  outline: none;
+}
+/* btn more */
+.btn__more {
+  display: flex;
+  padding-top: 40px;
+  justify-content: center;
+}
+/* modal */
+.user-name {
+  text-align: center;
+}
+
+/* footer */
+.footer__wrap {
+  background: #009246;
+  color: #fafafa;
+  box-shadow: 0 -3px 10px #ccc;
+}
+
+.footer__wrap p {
+  margin: 0;
 }
