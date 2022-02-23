@@ -100,7 +100,6 @@ button:focus {
 .thumnail:hover {
   transform: scale(1.05);
 }
-
 /* btn more */
 .btn__more {
   display: flex;

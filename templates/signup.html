@@ -19,6 +19,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <title>COMMENTOON</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
@@ -27,41 +28,43 @@
     <link rel="stylesheet" href="../static/css/signup.css" />
     <script defer src="../static/js/signup.js"></script>
     <!-- flask로 구동시 아래 코드를 사용해야 동작합니다 -->
-    <!-- 
+    <!--
       <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/signup.css') }}"
     />
     <script src="{{ url_for('static', filename='signup.js') }}" defer></script> -->
-  </head>
+</head>
   <body class="text-center" cz-shortcut-listen="true">
 
     <main class="form-signin">
       <form>
-        
+
         <h1 class="h3 mb-3 fw-normal">COMMENTOON<br/>회원가입</h1>
-    
+
         <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <input type="email" class="form-control" id="userid" placeholder="name@example.com">
           <label for="floatingInput">Email address</label>
         </div>
         <div class="form-floating mb-1">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <input type="password" class="form-control" id="userpw" placeholder="Password">
           <label for="floatingPassword">Password</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="password" class="form-control" id="floatingPasswordCF" placeholder="confirm password">
+          <input type="password" class="form-control" id="userpw2" placeholder="confirm password">
           <label for="floatingPasswordCF">confirm password</label>
         </div>
-        
+
         <div class="form-floating">
-          <input type="text" class="form-control" id="floatingNickname" placeholder="nickname">
+          <input type="text" class="form-control" id="usernick" placeholder="nickname">
           <label for="floatingNickname">nickname</label>
         </div>
-    
 
-        <button class="w-100 btn btn-lg btn-success mt-3" type="submit">Sign-up</button>
-        
+
+        <button onclick="save_idpw();" class="w-100 btn btn-lg btn-success mt-3" type="submit">Sign-up</button>
+<!--        Verif();-->
+
+
         <p class="mt-5 mb-3 text-muted">© 2022 team, XD</p>
       </form>
     </main>

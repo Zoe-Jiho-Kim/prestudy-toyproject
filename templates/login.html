@@ -19,6 +19,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <title>COMMENTOON</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
@@ -26,30 +27,30 @@
     />
     <link rel="stylesheet" href="../static/css/login.css" />
     <script defer src="../static/js/login.js"></script>
-    <!-- flask로 구동시 아래 코드를 사용해야 동작합니다 -->
-    <!-- 
-      <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/login.css') }}"
-    />
-    <script src="{{ url_for('static', filename='login.js') }}" defer></script> -->
-  </head>
-  <body class="text-center" cz-shortcut-listen="true">
+<!-- flask로 구동시 아래 코드를 사용해야 동작합니다 -->
+<!--
+  <link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/login.css') }}"
+/>
+<script src="{{ url_for('static', filename='login.js') }}" defer></script> -->
+    </head>
+<  <body class="text-center" cz-shortcut-listen="true">
 
     <main class="form-signin">
       <form>
-        
+
         <h1 class="h3 mb-3 fw-normal">COMMENTOON 로그인</h1>
-    
+
         <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <input type="email" class="form-control" id="userid" placeholder="name@example.com">
           <label for="floatingInput">Email address</label>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <input type="password" class="form-control" id="userpw" placeholder="Password">
           <label for="floatingPassword">Password</label>
         </div>
-    
+
         <div class="checkbox mb-3">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
@@ -58,11 +59,11 @@
         <div class="container">
           <div class="row">
             <div class="col">
-              <button class="w-100 btn btn-lg btn-success" type="submit">Login</button>
+              <button onclick="login()" class="w-100 btn btn-lg btn-success" type="submit">Login</button>
 
             </div>
             <div class="col">
-              <button class="w-100 btn btn-lg btn-success" type="button" onclick="location.href='signup.html'">Sign-up</button>
+              <button class="w-100 btn btn-lg btn-success" type="button" onclick="location.href='signup'">Sign-up</button>
 
             </div>
           </div>
