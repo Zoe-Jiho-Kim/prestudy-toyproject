@@ -5,6 +5,11 @@ $(function () {
     $('.genre__content').slideToggle('2000');
   });
 });
+$(function () {
+  $('.popular__btn').click(function () {
+    $('.genre__content').slideUp('2000');
+  });
+});
 
 // 모달 창이 열리면 input에 autofocus
 // const myModal = document.getElementById('myModal');
