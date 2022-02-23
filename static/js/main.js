@@ -1,4 +1,11 @@
 'use strict';
+// genre btn toggle function
+$(function () {
+  $('.genre__btn').click(function () {
+    $('.genre__content').slideToggle('2000');
+  });
+});
+
 // 모달 창이 열리면 input에 autofocus
 // const myModal = document.getElementById('myModal');
 // const myInput = document.getElementById('myInput');
@@ -19,7 +26,7 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
   //
   // Update the modal's content.
   const modalTitle = exampleModal.querySelector('.modal-title');
-  const modalBodyInput = exampleModal.querySelector('.modal-body input');
+  // const modalBodyInput = exampleModal.querySelector('.modal-body input');
 
   modalTitle.textContent = recipient;
   //modalBodyInput.value = recipient;
