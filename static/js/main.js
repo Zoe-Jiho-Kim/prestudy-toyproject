@@ -36,3 +36,46 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
   modalTitle.textContent = recipient;
   //modalBodyInput.value = recipient;
 });
+
+//댓글ajax영역
+$(document).ready(function () {
+  show_comment();
+  $('#commentBtn').on('click', save_comment);
+});
+
+function save_comment() {
+  let name = $('#recipient-name').val();
+  let comment = $('#message-text').val();
+
+  $.ajax({
+    type: 'POST',
+    url: '/toon',
+    data: { name_give: name, comment_give: comment },
+    success: function (response) {
+      alert(response['msg']);
+      window.location.reload();
+    },
+  });
+}
+
+function show_comment() {
+  $.ajax({
+    type: 'GET',
+    url: '/toon',
+    data: {},
+    success: function (response) {
+      let rows = response['comment'];
+      for (let i = 0; i < rows.length; i++) {
+        let name = rows[i]['name'];
+        let comment = rows[i]['comment'];
+
+        let temp_html = `<div class="row">
+                          <div class="col user-name">${name}</div>
+                          <div class="col-9">${comment}</div>
+                        </div>`;
+
+        $('#comment_box').prepend(temp_html);
+      }
+    },
+  });
+}

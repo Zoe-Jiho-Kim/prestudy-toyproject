@@ -1,15 +1,20 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
-app = Flask(__name__)
-
 from jwt import encode, ExpiredSignatureError, decode, exceptions
-
-from pymongo import MongoClient
-client = MongoClient('mongodb+srv://test:sparta@cluster0.ugwpp.mongodb.net/Cluster0?retryWrites=true&w=majority')
-db = client.dbsparta
-
 import hashlib
 import datetime
 import jwt
+from pymongo import MongoClient
+app = Flask(__name__)
+
+#########################################################
+#
+# 기원님
+#
+#########################################################
+
+client = MongoClient('mongodb+srv://test:sparta@cluster0.ugwpp.mongodb.net/Cluster0?retryWrites=true&w=majority')
+db = client.dbsparta
+
 
 application = Flask(import_name = __name__)
 
@@ -82,5 +87,46 @@ def api_register():
 
 
 
+
+    
+    
+
+#########################################################
+#
+# 유림님 
+#
+#########################################################
+
+clienty = MongoClient('mongodb+srv://test:sparta@cluster0.7fswg.mongodb.net/?retryWrites=true&w=majority')
+dby = clienty.dbsparta
+
+
+@app.route("/toon", methods=["POST"])
+def toon_post():
+    name_receive = request.form['name_give']
+    comment_receive = request.form['comment_give']
+
+
+    doc = {
+        'name': name_receive,
+        'comment': comment_receive
+    }
+
+    dby.toon.insert_one(doc)
+    return jsonify({'msg': '댓글 남기기!'})
+
+@app.route("/toon", methods=["GET"])
+def toon_get():
+    comment_list = list(dby.toon.find({}, {'_id': False}))
+    return jsonify({'comment':comment_list})
+
+
+
+#########################################################
+# 실행 코드 (맨 아래에 위치해야합니다)
+#########################################################
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
+
+
