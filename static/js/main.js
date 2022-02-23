@@ -7,7 +7,7 @@
 //   myInput.focus();
 // });
 
-// 모달창에 받는 사람의 이름이 뜬다
+// 모달창에 웹툰 제목이 뜬다
 const exampleModal = document.getElementById('exampleModal');
 exampleModal.addEventListener('show.bs.modal', function (event) {
   // Button that triggered the modal
