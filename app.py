@@ -17,10 +17,6 @@ SECRET_KEY = 'SPARTA'
 
 @app.route('/')
 def home():
-    return render_template('index.html')
-
-@app.route('/')
-def home():
     token_receive = request.cookies.get('mytoken')
     print(token_receive)
     try:
