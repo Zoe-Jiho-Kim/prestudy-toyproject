@@ -1,14 +1,39 @@
 * {
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 400;
+  margin: 0;
+  padding: 0;
 }
 
+button {
+  border: none;
+  background-color: transparent;
+}
+
+button:active,
+button:focus {
+  outline: none;
+}
+
+.blind {
+  position: absolute;
+  overflow: hidden;
+  visibility: hidden;
+  margin: -1px;
+  width: 0px;
+  height: 0px;
+  top: -9999px;
+  font-size: 0;
+}
+
+/* header */
 .header__logo {
   font-size: 30px;
   letter-spacing: -1px;
   font-weight: 700;
 }
 
+/* banner */
 .banner {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
     url(https://image.zdnet.co.kr/2020/03/06/hjan_EWKpagLviyCwJNQ.jpg);
@@ -22,6 +47,78 @@
   color: #fff;
 }
 
-.button__wrapper {
+.banner__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search__bar {
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search__bar > button {
+  min-width: 60px;
+}
+
+.button__wrap {
   margin: 30px 0 !important;
+}
+
+.genre__content {
+  display: none;
+}
+
+.genre__content > div {
+  padding-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.genre__content--btn {
+  color: #ddd;
+}
+
+.genre__content--btn:active,
+.genre__content--btn:focus {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* main */
+/* thumnail */
+.thumnail {
+  text-align: left;
+  transition: all 0.2s ease-in-out;
+}
+.thumnail:hover {
+  transform: scale(1.05);
+}
+
+/* btn more */
+.btn__more {
+  display: flex;
+  padding-top: 40px;
+  justify-content: center;
+}
+/* modal */
+.user-name {
+  text-align: center;
+}
+
+/* footer */
+.footer__wrap {
+  background: #009246;
+  color: #fafafa;
+  box-shadow: 0 -3px 10px #ccc;
+}
+
+.footer__wrap p {
+  margin: 0;
 }
