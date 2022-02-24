@@ -8,10 +8,12 @@ function login() {
       if (response['result'] == 'success') {
         $.cookie('mytoken', response['token']);
         alert('로그인 완료!');
-        window.location.href = '/';
+        window.location.href = '/api/Verif';
+      //  /이걸로 변경함
       } else {
         alert(response['msg']);
       }
     },
   });
 }
+

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko-KR">
   <head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
@@ -33,6 +34,9 @@
       href="{{ url_for('static', filename='css/style.css') }}"
     />
     <script src="{{ url_for('static', filename='main.js') }}" defer></script> -->
+      <script>{% if msg %}
+          alert("{{ msg }}")
+      {% endif %}</script>
   </head>
   <body>
     <!-- Header -->
@@ -517,5 +521,9 @@
       </footer>
     </div>
     <!-- // footer -->
+
+
+
+
   </body>
 </html>
