@@ -1,7 +1,7 @@
 import re
 import pandas as pd
 import mechanicalsoup
-import jwt
+
 import datetime
 import hashlib
 
@@ -17,7 +17,8 @@ app = Flask(__name__)
 #
 #########################################################
 
-client = MongoClient('mongodb+srv://test:sparta@cluster0.ugwpp.mongodb.net/Cluster0?retryWrites=true&w=majority')
+client = MongoClient(
+    'mongodb+srv://test:sparta@cluster0.ugwpp.mongodb.net/Cluster0?retryWrites=true&w=majority')
 db = client.dbsparta
 
 
@@ -89,14 +90,13 @@ def api_register():
     return jsonify({'result': 'success', 'msg': '회원가입 완료'})
 
 
-
 #########################################################
 #
-# 유림님 
+# 유림님
 #
 #########################################################
-
-clienty = MongoClient('mongodb+srv://test:sparta@cluster0.7fswg.mongodb.net/?retryWrites=true&w=majority')
+clienty = MongoClient(
+    'mongodb+srv://test:sparta@cluster0.7fswg.mongodb.net/?retryWrites=true&w=majority')
 dby = clienty.dbsparta
 
 
@@ -104,7 +104,6 @@ dby = clienty.dbsparta
 def toon_post():
     name_receive = request.form['name_give']
     comment_receive = request.form['comment_give']
-
 
     doc = {
         'name': name_receive,
@@ -114,10 +113,11 @@ def toon_post():
     dby.toon.insert_one(doc)
     return jsonify({'msg': '댓글 남기기!'})
 
+
 @app.route("/toon", methods=["GET"])
 def toon_get():
     comment_list = list(dby.toon.find({}, {'_id': False}))
-    return jsonify({'comment':comment_list})
+    return jsonify({'comment': comment_list})
 
 
 #########################################################
@@ -126,7 +126,6 @@ def toon_get():
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
-
 
 
 ########################################################
@@ -139,36 +138,11 @@ clientc = MongoClient(
     'mongodb+srv://test:sparta@cluster0.rtpl1.mongodb.net/Cluster0?retryWrites=true&w=majority')
 dbc = clientc.dbsparta
 
-list = ['episode', 'omnibus', 'story', 'daily', 'comic', 'fantasy',
-        'action', 'drama', 'pure', 'sensibility', 'thrill', 'historical', 'sports']
-for genre in list:
-    list_url = 'https://comic.naver.com/webtoon/genre.nhn?genre=' + str(genre)
-    browser = mechanicalsoup.StatefulBrowser()
-    soup = browser.open(list_url).soup
 
-    for tag in soup.select('div.list_area li'):
-    
-        url = str("http://comic.naver.com") + tag.find('a')['href']
-        title = tag.find('a')['title']
-        img = tag.find('img')['src']
-        writer = tag.select('dd.desc')[0].text
-        writer_1 = re.sub('\n', ' ', writer)
-        star = tag.select('div.rating_type > strong')[0].text
-        url_soup = browser.open(url).soup
-        body = url_soup.select('div.detail p')[0].text
-        body_1 = re.sub(r'^\s+', '', body)
-        body_2 = re.sub('\n', ' ', body_1)
-        body_3 = " ".join(body_2.split())
+@app.route("/webtoons", methods=["GET"])
+def webtoon_get():
+    webtoon_list = list(db.webtoons.find({}, {'_id': False}))
+    return jsonify({'webtoons':webtoon_list})
 
-        doc = {
-            'genre': genre,
-            'img': img,
-            'title': title,
-            'writer': writer_1,
-            'url': url,
-            'star': star,
-            'body': body_3
-        }
-
-        dbc.webtoons.insert_one(doc)
-
+if __name__ == '__main__':
+    app.run('0.0.0.0', port=5000, debug=True)
