@@ -123,6 +123,23 @@ def toon_get():
 
 
 
+########################################################
+#
+# 춘님 
+#
+#########################################################
+
+clientc = MongoClient(
+    'mongodb+srv://test:sparta@cluster0.rtpl1.mongodb.net/Cluster0?retryWrites=true&w=majority')
+dbc = clientc.dbsparta
+
+
+@app.route("/webtoons", methods=["GET"])
+def webtoon_get():
+    webtoon_list = list(dbc.webtoons.find({}, {'_id': False}))
+    return jsonify({'webtoons':webtoon_list})
+
+
 
     
 #########################################################
