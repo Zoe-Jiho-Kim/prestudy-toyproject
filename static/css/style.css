@@ -35,7 +35,7 @@ button:focus {
 
 /* banner */
 .banner {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),
     url(https://image.zdnet.co.kr/2020/03/06/hjan_EWKpagLviyCwJNQ.jpg);
   background-position: center;
   background-size: cover;
@@ -68,6 +68,11 @@ button:focus {
   margin: 30px 0 !important;
 }
 
+.genre__btn,
+.popular__btn {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
 .genre__content {
   display: none;
 }
@@ -92,12 +97,12 @@ button:focus {
 }
 
 /* main */
-/* thumnail */
-.thumnail {
+/* thumbnail */
+.thumbnail {
   text-align: left;
   transition: all 0.2s ease-in-out;
 }
-.thumnail:hover {
+.thumbnail:hover {
   transform: scale(1.05);
 }
 /* btn more */
