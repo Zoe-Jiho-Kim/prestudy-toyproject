@@ -193,9 +193,9 @@ topBtn.addEventListener('click', function () {
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 });
 
-/////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////
+/*************************
+ * Leave a comment function
+ **************************/
 
 //댓글ajax영역
 $(document).ready(function () {
@@ -213,7 +213,8 @@ function save_comment() {
     data: { name_give: name, comment_give: comment },
     success: function (response) {
       alert(response['msg']);
-      window.location.reload();
+      //window.location.reload();
+      $('#comment.box').load('/toon #comment.box');
     },
   });
 }
