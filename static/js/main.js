@@ -79,7 +79,7 @@ function listing() {
                             data-writer="${writer}"
                             data-body="${body}"
                             data-url="${url}"
-                            data-star="${star}"
+                            data-star="⭐${star}"
                             data-genre="${genre}"
                             data-img="${img}"
                           >
@@ -92,8 +92,8 @@ function listing() {
                                   title="${title}"
                                   alt="${title}"
                                 />
-                                <div class="card-body">
-                                  <p class="card-text">${title}</p>
+                                <div class="card-body"">
+                                  <p class="thunmbnail__title card-text">${title}</p>
                                 </div>
                               </div>
                             </div>
@@ -123,7 +123,6 @@ function morebtn() {
 
       (function clickCounter() {
         btnCount += 1;
-        console.log(btnCount);
       })();
 
       for (let i = btnCount * 30; i < 30 + btnCount * 30; i++) {
@@ -144,7 +143,7 @@ function morebtn() {
                             data-writer="${writer}"
                             data-body="${body}"
                             data-url="${url}"
-                            data-star="${star}"
+                            data-star="⭐${star}"
                             data-genre="${genre}"
                             data-img="${img}"
                           >
@@ -158,7 +157,7 @@ function morebtn() {
                                   alt="${title}"
                                 />
                                 <div class="card-body">
-                                  <p class="card-text">${title}</p>
+                                  <p class="thunmbnail__title card-text">${title}</p>
                                 </div>
                               </div>
                             </div>
