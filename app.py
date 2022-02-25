@@ -144,29 +144,7 @@ def check_dup():
 # 유림님
 #
 #########################################################
-clienty = MongoClient(
-    'mongodb+srv://test:sparta@cluster0.7fswg.mongodb.net/?retryWrites=true&w=majority')
-dby = clienty.dbsparta
 
-
-@app.route("/toon", methods=["POST"])
-def toon_post():
-    name_receive = request.form['name_give']
-    comment_receive = request.form['comment_give']
-
-    doc = {
-        'name': name_receive,
-        'comment': comment_receive
-    }
-
-    dby.toon.insert_one(doc)
-    return jsonify({'msg': '댓글 남기기!'})
-
-
-@app.route("/toon", methods=["GET"])
-def toon_get():
-    comment_list = list(dby.toon.find({}, {'_id': False}))
-    return jsonify({'comment': comment_list})
 
 
 
@@ -194,7 +172,29 @@ def webtoon_get():
 # 주환
 #
 #########################################################
+clientj = MongoClient(
+    'mongodb+srv://test:sparta@cluster0.oqwac.mongodb.net/myCluster0?retryWrites=true&w=majority')
+dbj = clientj.dbsparta
 
+
+@app.route("/toon", methods=["POST"])
+def toon_post():
+    name_receive = request.form['name_give']
+    comment_receive = request.form['comment_give']
+
+    doc = {
+        'name': name_receive,
+        'comment': comment_receive
+    }
+
+    dbj.toon.insert_one(doc)
+    return jsonify({'msg': '댓글 남기기!'})
+
+
+@app.route("/toon", methods=["GET"])
+def toon_get():
+    comment_list = list(dbj.toon.find({}, {'_id': False}))
+    return jsonify({'comment': comment_list})
 
 
 
