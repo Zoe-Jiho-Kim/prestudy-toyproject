@@ -26,14 +26,33 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
   const button = event.relatedTarget;
   // Extract info from data-bs-* attributes
   const recipient = button.getAttribute('data-bs-whatever');
+  const thumbImg = button.getAttribute('data-img');
+  const thumbBody = button.getAttribute('data-body');
+  const thumbStar = button.getAttribute('data-star');
+  const thumbWriter = button.getAttribute('data-writer');
+  const thumbGenre = button.getAttribute('data-genre');
+  const thumbUrl = button.getAttribute('data-url');
+
   // If necessary, you could initiate an AJAX request here
   // and then do the updating in a callback.
-  //
+
   // Update the modal's content.
   const modalTitle = exampleModal.querySelector('.modal-title');
+  const modalImg = document.getElementById('modal-img');
+  const modalBody = exampleModal.querySelector('.modal-desc');
+  const modalStar = exampleModal.querySelector('.modal-star');
+  const modalWriter = exampleModal.querySelector('.modal-writer');
+  const modalGenre = exampleModal.querySelector('.modal-genre');
+  const modalUrl = exampleModal.querySelector('.modal-url');
   // const modalBodyInput = exampleModal.querySelector('.modal-body input');
 
   modalTitle.textContent = recipient;
+  modalImg.src = thumbImg;
+  modalBody.textContent = thumbBody;
+  modalStar.textContent = thumbStar;
+  modalWriter.textContent = thumbWriter;
+  modalGenre.textContent = thumbGenre;
+  modalUrl.href = thumbUrl;
   //modalBodyInput.value = recipient;
 });
 
@@ -54,7 +73,7 @@ function listing() {
       let rows = response['webtoons'];
       for (let i = 0; i < rows.length; i++) {
         let title = rows[i]['title'];
-        let body = rows[i]['body'];
+        let body = rows[i]['body'].replace(/\"/gi, "'"); // Change double quotes to single quotes
         let img = rows[i]['img'];
         let writer = rows[i]['writer'];
         let url = rows[i]['url'];
@@ -67,6 +86,12 @@ function listing() {
                             data-bs-toggle="modal"
                             data-bs-target="#exampleModal"
                             data-bs-whatever="${title}"
+                            data-writer="${writer}"
+                            data-body="${body}"
+                            data-url="${url}"
+                            data-star="${star}"
+                            data-genre="${genre}"
+                            data-img="${img}"
                           >
                             <div class="col">
                               <div class="card shadow-sm">
