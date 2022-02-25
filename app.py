@@ -82,9 +82,13 @@ def information():
 @app.route('/main')
 def main():
     token_receive = request.cookies.get('mytoken')
-    token_receive = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-    user_info = toonUser.find_one({"id": token_receive['id']})
-    print(user_info)
+    try:
+        token_receive = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = toonUser.find_one({"id": token_receive['id']})
+        print(user_info)
+        token = True
+    except:
+        token = False
     return render_template('index.html', email=user_info["id"], nickname=user_info["nick"])
 
 
