@@ -61,7 +61,6 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
 
 $(document).ready(function () {
   listing();
-  //listing();
 });
 
 function listing() {
@@ -71,7 +70,71 @@ function listing() {
     data: {},
     success: function (response) {
       let rows = response['webtoons'];
-      for (let i = 0; i < rows.length; i++) {
+      for (let i = 0; i < 30; i++) {
+        let title = rows[i]['title'];
+        let body = rows[i]['body'].replace(/\"/gi, "'"); // Change double quotes to single quotes
+        let img = rows[i]['img'];
+        let writer = rows[i]['writer'];
+        let url = rows[i]['url'];
+        let star = rows[i]['star'];
+        let genre = rows[i]['genre'];
+
+        let temp_html = `<button
+                            type="button"
+                            class="thumbnail"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                            data-bs-whatever="${title}"
+                            data-writer="${writer}"
+                            data-body="${body}"
+                            data-url="${url}"
+                            data-star="${star}"
+                            data-genre="${genre}"
+                            data-img="${img}"
+                          >
+                            <div class="col">
+                              <div class="card shadow-sm">
+                                <img
+                                  src="${img}"
+                                  width="100%"
+                                  height="100%"
+                                  title="${title}"
+                                  alt="${title}"
+                                />
+                                <div class="card-body">
+                                  <p class="card-text">${title}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </button>`;
+        $('#thumbnail-box').append(temp_html);
+      }
+    },
+  });
+}
+
+//////////////////////////////////////////////////////////
+// morebtn 기능 구현
+
+const moreBtn = document.querySelector('#morebtn');
+let btnCount = 1;
+
+moreBtn.addEventListener('click', morebtn);
+
+function morebtn() {
+  $.ajax({
+    type: 'GET',
+    url: '/webtoons',
+    data: {},
+    success: function (response) {
+      let rows = response['webtoons'];
+
+      (function clickCounter() {
+        btnCount += 1;
+        console.log(btnCount);
+      })();
+
+      for (let i = btnCount * 30; i < 30 + btnCount * 30; i++) {
         let title = rows[i]['title'];
         let body = rows[i]['body'].replace(/\"/gi, "'"); // Change double quotes to single quotes
         let img = rows[i]['img'];
