@@ -213,7 +213,8 @@ function save_comment() {
     data: { name_give: name, comment_give: comment },
     success: function (response) {
       alert(response['msg']);
-      window.location.reload();
+      //window.location.reload();
+      $('#comment.box').load('/toon #comment.box');
     },
   });
 }

@@ -5,6 +5,9 @@ $(document).ready(function () {
 });
 
 
+
+
+
 // #############################
 // ##    정보검증 후 회원가입    ##
 // #############################
@@ -157,6 +160,12 @@ function check_pw() {
             document.getElementById('help-nickname').style.color = 'blue';
     }
 }
+
+
+
+
+
+
     // if (password == "") {
     //     $("#help-password").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
     //     $("#input-password").focus()

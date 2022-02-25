@@ -23,6 +23,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <title>COMMENTOON</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
@@ -37,13 +38,16 @@
       href="{{ url_for('static', filename='css/style.css') }}"
     />
     <script src="{{ url_for('static', filename='main.js') }}" defer></script> -->
-    <script>
-      {% if msg %}
-                alert("{{ msg }}")
-            {% endif %}
-    </script>
+
   </head>
   <body>
+
+    <li><a>나의 닉네임은 : {{ nickname }}</a></li>
+	<li><a href="/information">회원정보 수정</a></li>
+    <li><div class="col-md-1" id="logout"><a class="nav_a">LOG OUT</a></div>
+				<div class="col-md-1"></div>
+
+
     <!-- Header -->
     <div class="container">
       <header

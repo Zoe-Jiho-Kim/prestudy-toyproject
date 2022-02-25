@@ -31,6 +31,65 @@ application = Flask(import_name=__name__)
 
 SECRET_KEY = 'SPARTA'
 
+#################################
+##  정보수정을 위한 API           ##
+#################################
+
+@app.route('/api/information', methods=['post'])
+def api_information():
+    token_receive = request.cookies.get('mytoken')
+    idload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    user_info = toonUser.find_one({"id": idload['id']})
+
+    id_receive = user_info["id"]
+    pw_receive = request.form['pw_give']
+
+    pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
+
+    result = toonUser.find_one({'id': id_receive, 'pw': pw_hash})
+
+    if result is not None:
+        payload = {
+            'id': id_receive,
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=24 * 60 * 60)
+        }
+        token = encode(payload, SECRET_KEY, algorithm='HS256')
+
+        return jsonify({'result': 'success', 'token': token})
+    # 회원정보 확인후 암호화/토큰발행
+    toonUser.update_one({'id': id_receive}, {'$set': {'pw': pw_hash}})
+    # pymongo에 pw변경
+    return jsonify({'result': 'success','msg': '정보변경 완료!'})
+
+
+
+
+
+
+@app.route('/information')
+def information():
+        token_receive = request.cookies.get('mytoken')
+        try:
+            payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+            user_info = toonUser.find_one({"id": payload['id']})
+
+            return render_template('information.html', email=user_info["id"], nickname=user_info["nick"])
+        except jwt.ExpiredSignatureError:
+            return redirect(url_for("main", msg="로그인 시간이 만료되었습니다."))
+        except jwt.exceptions.DecodeError:
+            return redirect(url_for("main", msg="로그인 정보가 존재하지 않습니다."))
+
+@app.route('/main')
+def main():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        token_receive = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = toonUser.find_one({"id": token_receive['id']})
+        print(user_info)
+
+        return render_template('index.html', email=user_info["id"], nickname=user_info["nick"])
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return render_template('index.html')
 
 
 
@@ -39,11 +98,15 @@ def home():
     token_receive = request.cookies.get('mytoken')
     try:
         token_receive = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = toonUser.find_one({"id": token_receive['id']})
+        print(user_info)
         token = True
     except:
         token = False
-    # return render_template('index.html')
-    return render_template('index.html', isloggedin=token)
+        # return render_template('index.html')
+    return redirect(url_for("main"))
+
+# 닉네임 가져와야함!
 
 
 ############################################
@@ -59,14 +122,14 @@ def verif():
         # print(payload)
         user_info = toonUser.find_one({"id": payload['id']})
         print(user_info)
-        return redirect(url_for("home"))
+        return redirect(url_for("main"))
     # , nickname = user_info['nick']
 
     except jwt.ExpiredSignatureError:
-        return redirect(url_for("home", msg="로그인 시간이 만료되었습니다."))
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
         #유효 시간이 만료 에러문구
     except jwt.exceptions.DecodeError:
-        return redirect(url_for("home", msg="로그인 정보가 존재하지 않습니다."))
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
         # jwt 토큰이 유효하지 않다는 에러문구
 
 @app.route('/signup')
@@ -96,7 +159,7 @@ def api_login():
     if result is not None:
         payload = {
             'id': id_receive,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=60)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=24*60*60)
         }
         token = encode(payload, SECRET_KEY, algorithm='HS256')
 
@@ -122,7 +185,7 @@ def api_signup():
 
     doc = {'id': id_receive, 'pw': pw_hash, 'nick': nickname_receive}
     toonUser.insert_one(doc)
-    toonLikes.insert_one({'id': id_receive, 'pensionId': []})
+    toonLikes.insert_one({'id': id_receive, 'toonId': []})
 
     return jsonify({'result': 'success','msg': '회원가입을 축하드립니다!'})
 
@@ -138,6 +201,14 @@ def check_dup():
     exists = bool(toonUser.find_one({"id": username_receive}))
 
     return jsonify({'result': 'success', 'exists': exists})
+
+#################################
+##        로그아웃 API           ##
+#################################
+
+@app.route('/logout')
+def logout():
+    return redirect(url_for("login"))
 
 #########################################################
 #
