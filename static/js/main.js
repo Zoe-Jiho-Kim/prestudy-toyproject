@@ -1,5 +1,7 @@
 'use strict';
-// genre btn toggle function
+/*************************
+ * genre btn toggle function
+ **************************/
 $(function () {
   $('.genre__btn').click(function () {
     $('.genre__content').slideToggle('2000');
@@ -11,15 +13,9 @@ $(function () {
   });
 });
 
-// 모달 창이 열리면 input에 autofocus
-// const myModal = document.getElementById('myModal');
-// const myInput = document.getElementById('myInput');
-
-// myModal.addEventListener('shown.bs.modal', function () {
-//   myInput.focus();
-// });
-
-// 모달창에 웹툰 제목이 뜬다
+/*************************
+ * Put information received from db in modal window
+ **************************/
 const exampleModal = document.getElementById('exampleModal');
 exampleModal.addEventListener('show.bs.modal', function (event) {
   // Button that triggered the modal
@@ -33,9 +29,6 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
   const thumbGenre = button.getAttribute('data-genre');
   const thumbUrl = button.getAttribute('data-url');
 
-  // If necessary, you could initiate an AJAX request here
-  // and then do the updating in a callback.
-
   // Update the modal's content.
   const modalTitle = exampleModal.querySelector('.modal-title');
   const modalImg = document.getElementById('modal-img');
@@ -44,7 +37,6 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
   const modalWriter = exampleModal.querySelector('.modal-writer');
   const modalGenre = exampleModal.querySelector('.modal-genre');
   const modalUrl = exampleModal.querySelector('.modal-url');
-  // const modalBodyInput = exampleModal.querySelector('.modal-body input');
 
   modalTitle.textContent = recipient;
   modalImg.src = thumbImg;
@@ -53,12 +45,11 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
   modalWriter.textContent = thumbWriter;
   modalGenre.textContent = thumbGenre;
   modalUrl.href = thumbUrl;
-  //modalBodyInput.value = recipient;
 });
 
-//////////////////////////////////////////////////////
-// 춘님 db에서 크롤링해온 데이터 받아오기
-
+/*************************
+ * 춘님 db에서 크롤링해온 데이터 받아오기
+ **************************/
 $(document).ready(function () {
   listing();
 });
@@ -113,8 +104,9 @@ function listing() {
   });
 }
 
-//////////////////////////////////////////////////////////
-// morebtn 기능 구현
+/*************************
+ * moreBtn function
+ **************************/
 
 const moreBtn = document.querySelector('#morebtn');
 let btnCount = 1;
@@ -176,10 +168,13 @@ function morebtn() {
     },
   });
 }
+/*************************
+ * topBtn function
+ **************************/
 
 /////////////////////////////////////////////////////////////////////////////
-//
-//
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 
 //댓글ajax영역
 $(document).ready(function () {
