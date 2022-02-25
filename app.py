@@ -93,9 +93,6 @@ def main():
 
 
 
-
-
-
 @app.route('/')
 def home():
     token_receive = request.cookies.get('mytoken')
@@ -109,7 +106,7 @@ def home():
         # return render_template('index.html')
     return redirect(url_for("main"))
 
-# 닉네임 가져와야함
+# 닉네임 가져와야함!
 
 
 ############################################
