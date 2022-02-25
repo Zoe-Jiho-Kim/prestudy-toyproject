@@ -22,7 +22,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <title>COMMENTOON</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Poppins&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../static/css/login.css" />
@@ -35,40 +35,40 @@
 />
 <script src="{{ url_for('static', filename='login.js') }}" defer></script> -->
     </head>
-<  <body class="text-center" cz-shortcut-listen="true">
+ <body class="text-center" cz-shortcut-listen="true">
 
     <main class="form-signin">
-      <form>
+      <form id="form_inner">
 
-        <h1 class="h3 mb-3 fw-normal">COMMENTOON 로그인</h1>
+        <h1 id="logo" class="h3 mb-3 fw-normal">COMMENTOON</h1>
 
         <div class="form-floating">
           <input type="email" class="form-control" id="userid" placeholder="name@example.com">
-          <label for="floatingInput">Email address</label>
+          <label id="email_label" for="floatingInput">Email address</label>
         </div>
         <div class="form-floating">
           <input type="password" class="form-control" id="userpw" placeholder="Password">
-          <label for="floatingPassword">Password</label>
+          <label id="pass_label" for="floatingPassword">Password</label>
         </div>
 
         <div class="checkbox mb-3">
-          <label>
+          <label id="remember">
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
         <div class="container">
           <div class="row">
             <div class="col">
-              <button onclick="login()" class="w-100 btn btn-lg btn-success" type="button">Login</button>
+              <button id="loginBtn" onclick="login()" class="w-100 btn btn-lg btn-success" type="button">Login</button>
 
             </div>
             <div class="col">
-              <button class="w-100 btn btn-lg btn-success" type="button" onclick="location.href='signup'">Sign-up</button>
+              <button id="signBtn" class="w-100 btn btn-lg btn-success" type="button" onclick="location.href='signup'">Sign-up</button>
 
             </div>
           </div>
         </div>
-        <p class="mt-5 mb-3 text-muted">© 2022 team, XD</p>
+        <p id="teamXD"class="mt-5 mb-3 text-muted">© 2022 team, XD</p>
       </form>
     </main>
     </body>
