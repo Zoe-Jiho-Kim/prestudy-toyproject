@@ -86,11 +86,12 @@ def main():
         token_receive = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = toonUser.find_one({"id": token_receive['id']})
         print(user_info)
-        token = True
-    except:
-        token = False
-        # return render_template('index.html')
-    return render_template('index.html', isloggedin=token, email=user_info["id"], nickname=user_info["nick"])
+        return render_template('index.html', email=user_info["id"], nickname=user_info["nick"])
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+
 
 @app.route('/')
 def home():
