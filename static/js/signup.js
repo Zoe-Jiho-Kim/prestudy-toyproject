@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('#logout').text("")
     $('#mypage').text("")
 });
-
+ㅇ
 
 // #############################
 // ##    정보검증 후 회원가입    ##
