@@ -79,9 +79,18 @@ def information():
         except jwt.exceptions.DecodeError:
             return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
-
-
-
+@app.route('/main')
+def main():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        token_receive = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = toonUser.find_one({"id": token_receive['id']})
+        print(user_info)
+        token = True
+    except:
+        token = False
+        # return render_template('index.html')
+    return render_template('index.html', isloggedin=token, email=user_info["id"], nickname=user_info["nick"])
 
 @app.route('/')
 def home():
@@ -93,8 +102,9 @@ def home():
         token = True
     except:
         token = False
-    # return render_template('index.html')
-    return render_template('index.html', isloggedin=token, email=user_info["id"], nickname=user_info["nick"])
+        # return render_template('index.html')
+    return redirect(url_for("main"))
+
 # 닉네임 가져와야함
 
 
@@ -111,14 +121,14 @@ def verif():
         # print(payload)
         user_info = toonUser.find_one({"id": payload['id']})
         print(user_info)
-        return redirect(url_for("home"))
+        return redirect(url_for("main"))
     # , nickname = user_info['nick']
 
     except jwt.ExpiredSignatureError:
-        return redirect(url_for("home", msg="로그인 시간이 만료되었습니다."))
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
         #유효 시간이 만료 에러문구
     except jwt.exceptions.DecodeError:
-        return redirect(url_for("home", msg="로그인 정보가 존재하지 않습니다."))
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
         # jwt 토큰이 유효하지 않다는 에러문구
 
 @app.route('/signup')
