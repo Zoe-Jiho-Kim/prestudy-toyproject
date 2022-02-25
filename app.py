@@ -45,8 +45,7 @@ def home():
     # return render_template('index.html')
     return render_template('index.html', isloggedin=token)
 
-# [유저 정보 확인 API]
-# 로그인된 유저만 call 할 수 있는 API입니다.
+
 ############################################
 ##  유저 정보 확인 api (로그인된 유저만 call)  ##
 ############################################
