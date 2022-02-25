@@ -1,4 +1,20 @@
 'use strict';
+
+
+// {% if msg %}
+// alert("{{msg}}")
+// {% endif %}
+// 주환님 이게 index에있을땐 오류가안나는데 여기서는 오류가나내요..
+
+$(document).ready(function () {
+    $('#logout').click(function () {
+        $.removeCookie('mytoken');
+
+        alert('로그아웃!')
+
+        window.location.href = '/main';
+    })
+});
 // genre btn toggle function
 $(function () {
   $('.genre__btn').click(function () {
@@ -135,3 +151,5 @@ function show_comment() {
     },
   });
 }
+
+

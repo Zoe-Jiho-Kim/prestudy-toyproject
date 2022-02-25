@@ -86,10 +86,13 @@ def main():
         token_receive = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = toonUser.find_one({"id": token_receive['id']})
         print(user_info)
-        token = True
-    except:
-        token = False
-    return render_template('index.html', email=user_info["id"], nickname=user_info["nick"])
+
+        return render_template('index.html', email=user_info["id"], nickname=user_info["nick"])
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return render_template('index.html')
+
+
+
 
 
 
@@ -201,6 +204,14 @@ def check_dup():
     exists = bool(toonUser.find_one({"id": username_receive}))
 
     return jsonify({'result': 'success', 'exists': exists})
+
+#################################
+##        로그아웃 API           ##
+#################################
+
+@app.route('/logout')
+def logout():
+    return redirect(url_for("login"))
 
 #########################################################
 #
