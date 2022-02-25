@@ -2,6 +2,9 @@ html,
 body {
   height: 100%;
 }
+*{
+  font-family: Poppins;
+}
 body {
   display: flex;
   align-items: center;
@@ -30,11 +33,14 @@ h1#logo{
 }
 #userpw{
   border-radius: 20px;
+  margin-bottom: 30px;
 }
+#remember{
+  margin-bottom: 20px;
+  }
 .form-signin .form-floating:focus-within {
   z-index: 2;
 }
-
 .form-signin input[type='email'] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
@@ -57,14 +63,11 @@ h1#logo{
 #loginBtn{
   background: rgba(255, 74, 99, 0.8);
   border: 1px solid rgba(255, 74, 99, 0.8);
-  font-family: Poppins;
 }
 #loginBtn:hover{
  background: rgba(216, 24, 51, 0.8);
 }
-#email_label,#pass_label,#remember,#teamXD{
-  font-family: Poppins;
-}
+
 /*****************media*******************/
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
