@@ -171,6 +171,28 @@ function morebtn() {
 /*************************
  * topBtn function
  **************************/
+const dm = document.documentElement;
+const topBtn = document.querySelector('.top__btn');
+
+const documentHeight = dm.scrollHeight;
+
+window.addEventListener('scroll', function () {
+  let scrollToTop = dm.scrollTop;
+
+  if (documentHeight != 0) {
+    const actionHeight = documentHeight / 4;
+
+    if (scrollToTop > actionHeight) {
+      topBtn.classList.remove('blind');
+    } else {
+      topBtn.classList.add('blind');
+    }
+  }
+});
+
+topBtn.addEventListener('click', function () {
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+});
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
