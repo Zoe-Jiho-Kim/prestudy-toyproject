@@ -50,16 +50,17 @@
         </div>
         <div class="form-floating mb-1">
           <input onchange="check_pw()" type="password" class="form-control" id="userpw" placeholder="Password">
-          <label for="floatingPassword">Password</label><span id="check"></span></td>
+          <label for="floatingPassword">Password</label>
+            <p id="help-password" class="help"></p>
         </div>
         <div class="form-floating mb-3">
           <input onchange="check_pw()" type="password" class="form-control" id="userpw2" placeholder="confirm_password">
-          <label for="floatingPasswordCF">confirm password</label><span id="check2"></span></td>
-          <p id="help-password" class="help"></p>
+          <label for="floatingPasswordCF">confirm password</label>
+          <p id="help-password2" class="help"></p>
         </div>
 
           <div class="form-floating">
-              <input id="usernick" type="text" class="form-control" placeholder="nickname">
+              <input onchange="check_pw()" type="text" class="form-control" id="usernick" placeholder="nickname">
                   <label for="floatingNickname">nickname</label>
                   <p id="help-nickname" class="help"></p>
           </div>
