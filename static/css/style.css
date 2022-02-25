@@ -112,6 +112,12 @@ button:focus {
   justify-content: center;
 }
 /* modal */
+.modal {
+  padding: 0 !important;
+}
+.modal-open {
+  padding: 0 !important;
+}
 .user-name {
   text-align: center;
 }

@@ -37,6 +37,62 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
   //modalBodyInput.value = recipient;
 });
 
+//////////////////////////////////////////////////////
+// 춘님 db에서 크롤링해온 데이터 받아오기
+
+$(document).ready(function () {
+  listing();
+  //listing();
+});
+
+function listing() {
+  $.ajax({
+    type: 'GET',
+    url: '/webtoons',
+    data: {},
+    success: function (response) {
+      let rows = response['webtoons'];
+      for (let i = 0; i < rows.length; i++) {
+        let title = rows[i]['title'];
+        let body = rows[i]['body'];
+        let img = rows[i]['img'];
+        let writer = rows[i]['writer'];
+        let url = rows[i]['url'];
+        let star = rows[i]['star'];
+        let genre = rows[i]['genre'];
+
+        let temp_html = `<button
+                            type="button"
+                            class="thumbnail"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                            data-bs-whatever="${title}"
+                          >
+                            <div class="col">
+                              <div class="card shadow-sm">
+                                <img
+                                  src="${img}"
+                                  width="100%"
+                                  height="100%"
+                                  title="${title}"
+                                  alt="${title}"
+                                />
+                                <div class="card-body">
+                                  <p class="card-text">${title}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </button>`;
+        $('#thumbnail-box').append(temp_html);
+      }
+    },
+  });
+}
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//
+
 //댓글ajax영역
 $(document).ready(function () {
   show_comment();
@@ -79,4 +135,3 @@ function show_comment() {
     },
   });
 }
-
