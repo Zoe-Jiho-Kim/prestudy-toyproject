@@ -184,10 +184,10 @@ clientc = MongoClient(
 dbc = clientc.dbsparta
 
 
-# @app.route("/webtoons", methods=["GET"])
-# def webtoon_get():
-#     webtoon_list = list(dbc.webtoons.find({}, {'_id': False}))
-#     return jsonify({'webtoons':webtoon_list})
+@app.route("/webtoons", methods=["GET"])
+def webtoon_get():
+  webtoon_list = list(dbc.webtoons.find({}, {'_id': False}))
+  return jsonify({'webtoons':webtoon_list})
 
 
 ########################################################
@@ -196,10 +196,7 @@ dbc = clientc.dbsparta
 #
 #########################################################
 
-@app.route("/webtoons", methods=["GET"])
-def connect_get():
-  webtoon_list = list(dbc.webtoons.find({}, {'_id': False}))
-  return jsonify({'webtoons':webtoon_list})
+
 
 
     
