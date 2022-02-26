@@ -100,6 +100,8 @@ function listing() {
                           </button>`;
         $('#thumbnail-box').append(temp_html);
       }
+      readTitle();
+      viewComments();
     },
   });
 }
@@ -164,6 +166,8 @@ function morebtn() {
                           </button>`;
         $('#thumbnail-box').append(temp_html);
       }
+      readTitle();
+      viewComments();
     },
   });
 }
@@ -193,49 +197,113 @@ topBtn.addEventListener('click', function () {
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 });
 
-/////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////
+/*************************
+ * Leave a comment function
+ **************************/
+// readTitle() 값을 저장해줄 변수 선언
+let titleBucket = '';
+// 댓글 갯수 저장을 위한 변수 선언
+let commentCount = 0;
 
-//댓글ajax영역
-$(document).ready(function () {
-  show_comment();
-  $('#commentBtn').on('click', save_comment);
-});
+// thunmbnail의 title을 읽어오는 함수 입니다.
+function readTitle() {
+  // title 저장을 위한 변수 선언
+  const thumbnails = document.querySelectorAll('.thumbnail');
 
+  thumbnails.forEach(function (thumbnail) {
+    thumbnail.addEventListener('click', clickThumb);
+  });
+
+  function clickThumb(e) {
+    let title = e.currentTarget.getAttribute('data-bs-whatever');
+    // titleBucket에 title값을 넣어줍니다
+    titleBucket = title;
+  }
+}
+
+// input, textarea를 비워주기 위한 함수
+function clearValue() {
+  let name = document.getElementById('recipient-name');
+  let comment = document.getElementById('message-text');
+
+  name.value = null;
+  comment.value = null;
+}
+//
+$('#commentBtn').on('click', save_comment);
+// comment 저장 함수
 function save_comment() {
   let name = $('#recipient-name').val();
   let comment = $('#message-text').val();
+  let title = titleBucket;
 
   $.ajax({
     type: 'POST',
     url: '/toon',
-    data: { name_give: name, comment_give: comment },
+    data: { name_give: name, comment_give: comment, title_give: title },
     success: function (response) {
       alert(response['msg']);
-      window.location.reload();
+      // 댓글을 등록 후에 읽어온다
+      $.ajax({
+        type: 'POST',
+        url: '/toon/comment',
+        // title이 뭔지 data를 보내줘야합니다.
+        data: { title_give: title },
+        success: function (response) {
+          // 댓글을 등록할때는 1개 등록
+          let name = response['comment'][commentCount]['name'];
+          let comment = response['comment'][commentCount]['comment'];
+
+          let temp_html = `<div class="row comments">
+                              <div class="col user-name">${name}</div>
+                              <div class="col-9">${comment}</div>
+                            </div>`;
+          $('#comment_box').prepend(temp_html);
+          // 댓글이 하나 늘었습니다.
+          commentCount += 1;
+          clearValue();
+        },
+      });
     },
   });
 }
 
-function show_comment() {
-  $.ajax({
-    type: 'GET',
-    url: '/toon',
-    data: {},
-    success: function (response) {
-      let rows = response['comment'];
-      for (let i = 0; i < rows.length; i++) {
-        let name = rows[i]['name'];
-        let comment = rows[i]['comment'];
+// comment 보는 함수
+function viewComments() {
+  // 모든 썸네일 버튼 클릭이벤트 생성
+  const thumbs = document.querySelectorAll('.thumbnail');
 
-        let temp_html = `<div class="row">
-                          <div class="col user-name">${name}</div>
-                          <div class="col-9">${comment}</div>
-                        </div>`;
-
-        $('#comment_box').prepend(temp_html);
-      }
-    },
+  thumbs.forEach(function (thumbnail) {
+    thumbnail.addEventListener('click', show_comment);
   });
+  // 댓글을 보여주는 함수
+  function show_comment() {
+    let title = titleBucket;
+    // 이미 생성된 댓글을 깨끗하게 지워줍니다.
+    $('.comments').remove();
+    // 댓글 갯수를 초기화해줍니다.
+    commentCount = 0;
+
+    $.ajax({
+      type: 'POST',
+      url: '/toon/comment',
+      data: { title_give: title },
+      success: function (response) {
+        let rows = response['comment'];
+        for (let i = commentCount; i < rows.length; i++) {
+          let name = rows[i]['name'];
+          let comment = rows[i]['comment'];
+
+          let temp_html = `<div class="row comments">
+                            <div class="col user-name">${name}</div>
+                            <div class="col-9">${comment}</div>
+                          </div>`;
+
+          $('#comment_box').prepend(temp_html);
+        }
+        // show_comment 선언 후 commentCount에 댓글 갯수저장
+        commentCount = rows.length;
+      },
+    });
+  }
 }
