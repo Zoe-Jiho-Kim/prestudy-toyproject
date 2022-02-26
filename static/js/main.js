@@ -254,7 +254,7 @@ function save_comment() {
           let name = response['comment'][commentCount]['name'];
           let comment = response['comment'][commentCount]['comment'];
 
-          let temp_html = `<div class="row">
+          let temp_html = `<div class="row comments">
                               <div class="col user-name">${name}</div>
                               <div class="col-9">${comment}</div>
                             </div>`;
