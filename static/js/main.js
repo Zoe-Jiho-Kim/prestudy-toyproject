@@ -71,7 +71,6 @@ function listing() {
         let url = rows[i]['url'];
         let star = rows[i]['star'];
         let genre = rows[i]['genre'];
-
         let temp_html = `<button
                             type="button"
                             class="thumbnail"
