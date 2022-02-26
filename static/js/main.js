@@ -257,12 +257,14 @@ function save_comment() {
           let comment = response['comment'][commentCount]['comment'];
 
           let temp_html = `<div class="row comments">
-                              <div class="col-3 user-name">${name}</div>
-                              <div class="col-8">${comment}</div>
-                              <div class="col-1 commet-time">time</div>
-                              <button>삭제</button>
-                              <button>수정</button>
-                            </div>`;
+                            <div class="col-3 user-name">${name}</div>
+                            <div class="col-9">${comment}</div>
+                            <div class="comment__btn">
+                              <div class="comment-time">22.02.26 19:22</div>
+                              <button class="comment__btn--edit">수정</button>
+                              <button class="comment__btn--delete">삭제</button>
+                            </div>
+                          </div>`;
           $('#comment_box').prepend(temp_html);
           // 댓글이 하나 늘었습니다.
           commentCount += 1;
