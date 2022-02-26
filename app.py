@@ -266,12 +266,14 @@ def toon_post():
     return jsonify({'msg': '댓글 남기기!'})
 
 
-@app.route("/toon", methods=["GET"])
+
+@app.route("/toon/comment", methods=["POST"])
 def toon_get():
-    # title_test = request.form['title_give']
-    comment_list = list(dbj.toon.find({}, {'_id': False}))
-    # title_comment_list = list(dbj.toon.find({'title':title_test}, {'_id': False}))
-    return jsonify({'comment': comment_list})
+    title_name = request.form['title_give']
+    
+    title_comment_list = list(dbj.toon.find({'title': title_name}, {'_id': False}))
+    
+    return jsonify({'comment': title_comment_list})
 
 
 

@@ -101,6 +101,7 @@ function listing() {
         $('#thumbnail-box').append(temp_html);
       }
       readTitle();
+      viewComments();
     },
   });
 }
@@ -166,6 +167,7 @@ function morebtn() {
         $('#thumbnail-box').append(temp_html);
       }
       readTitle();
+      viewComments();
     },
   });
 }
@@ -196,8 +198,13 @@ topBtn.addEventListener('click', function () {
 });
 
 /*************************
- * Practice
+ * Leave a comment function
  **************************/
+// readTitle() 값을 저장해줄 변수 선언
+let titleBucket = '';
+// 댓글 갯수 저장을 위한 변수 선언
+let commentCount = 0;
+
 // thunmbnail의 title을 읽어오는 함수 입니다.
 function readTitle() {
   // title 저장을 위한 변수 선언
@@ -211,28 +218,24 @@ function readTitle() {
     let title = e.currentTarget.getAttribute('data-bs-whatever');
     // titleBucket에 title값을 넣어줍니다
     titleBucket = title;
-    console.log(title);
   }
 }
-// readTitle() 값을 저장해줄 변수 선언
-let titleBucket = '';
-// console.log(titleBucket);
-/*************************
- * Leave a comment function
- **************************/
 
-$(document).ready(function () {
-  show_comment();
-});
+// input, textarea를 비워주기 위한 함수
+function clearValue() {
+  let name = document.getElementById('recipient-name');
+  let comment = document.getElementById('message-text');
+
+  name.value = null;
+  comment.value = null;
+}
+//
 $('#commentBtn').on('click', save_comment);
-// 댓글 갯수 저장을 위한 변수 선언
-let commentCount = 0;
-
+// comment 저장 함수
 function save_comment() {
   let name = $('#recipient-name').val();
   let comment = $('#message-text').val();
   let title = titleBucket;
-  // console.log(title);
 
   $.ajax({
     type: 'POST',
@@ -242,11 +245,10 @@ function save_comment() {
       alert(response['msg']);
       // 댓글을 등록 후에 읽어온다
       $.ajax({
-        type: 'GET',
-        url: '/toon',
+        type: 'POST',
+        url: '/toon/comment',
         // title이 뭔지 data를 보내줘야합니다.
-        // title_give: title
-        data: {},
+        data: { title_give: title },
         success: function (response) {
           // 댓글을 등록할때는 1개 등록
           let name = response['comment'][commentCount]['name'];
@@ -264,38 +266,44 @@ function save_comment() {
       });
     },
   });
-  // 값 초기화
 }
-function show_comment() {
-  $.ajax({
-    type: 'GET',
-    url: '/toon',
-    data: {},
-    success: function (response) {
-      let rows = response['comment'];
-      for (let i = commentCount; i < rows.length; i++) {
-        let name = rows[i]['name'];
-        let comment = rows[i]['comment'];
-        let title = rows[i]['title'];
-        // div에 title 정보 추가
-        let temp_html = `<div db-title="${title}" class="row">
-                          <div class="col user-name">${name}</div>
-                          <div class="col-9">${comment}</div>
-                        </div>`;
 
-        $('#comment_box').prepend(temp_html);
-      }
-      // show_comment 선언 후 commentCount에 댓글 갯수저장
-      commentCount = rows.length;
-    },
+// comment 보는 함수
+function viewComments() {
+  // 모든 썸네일 버튼 클릭이벤트 생성
+  const thumbs = document.querySelectorAll('.thumbnail');
+
+  thumbs.forEach(function (thumbnail) {
+    thumbnail.addEventListener('click', show_comment);
   });
-}
+  // 댓글을 보여주는 함수
+  function show_comment() {
+    let title = titleBucket;
+    // 이미 생성된 댓글을 깨끗하게 지워줍니다.
+    $('.comments').remove();
+    // 댓글 갯수를 초기화해줍니다.
+    commentCount = 0;
 
-// input, textarea를 비워주기 위한 함수
-function clearValue() {
-  let name = document.getElementById('recipient-name');
-  let comment = document.getElementById('message-text');
+    $.ajax({
+      type: 'POST',
+      url: '/toon/comment',
+      data: { title_give: title },
+      success: function (response) {
+        let rows = response['comment'];
+        for (let i = commentCount; i < rows.length; i++) {
+          let name = rows[i]['name'];
+          let comment = rows[i]['comment'];
 
-  name.value = null;
-  comment.value = null;
+          let temp_html = `<div class="row comments">
+                            <div class="col user-name">${name}</div>
+                            <div class="col-9">${comment}</div>
+                          </div>`;
+
+          $('#comment_box').prepend(temp_html);
+        }
+        // show_comment 선언 후 commentCount에 댓글 갯수저장
+        commentCount = rows.length;
+      },
+    });
+  }
 }
