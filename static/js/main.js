@@ -306,7 +306,7 @@ function viewComments() {
         for (let i = commentCount; i < rows.length; i++) {
           let name = rows[i]['name'];
           let comment = rows[i]['comment'];
-          let timeNow = response['comment'][commentCount]['time'];
+          let timeNow = rows[i]['time'];
 
           let temp_html = `<div class="row comments">
                             <div class="col-3 user-name">${name}</div>
