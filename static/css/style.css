@@ -3,8 +3,11 @@
   font-weight: 400;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-
+.clearFix,.clearFix::after,.clearFix::before{
+    display: block; content: ""; clear: both;
+}
 button {
   border: none;
   background-color: transparent;
@@ -25,23 +28,24 @@ button:focus {
   top: -9999px;
   font-size: 0;
 }
-
 /***********************
 * header
 ************************/
 #header{
   position: relative; float: left;
-  width: 100%; background: yellow;
+  width: 100%; height: 130px;
 }
 #header_inner{
-  position: relative; float: left;
-  width: 1600px; margin: 0 auto;
+  position: relative;
+  width: 1400px; margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 h1#logo{
-  font:bold 30px "Poppins";
+  font:bold 1.875rem "Poppins";
   width: 20%;
-  background: red;
-  padding: 25px;
+  margin-top: 30px;
   position: relative;
   float: left;
 }
@@ -49,19 +53,71 @@ h1#logo{
   letter-spacing: -1px;
   font-weight: 700;
 }
+#logDiv{
+  width:20%;
+  position: relative;
+  margin-top: 25px;
+  font-size: 1.000rem;
+}
 #logBtn{
-  width: 200px;
+  width: 100%;
   display: flex;
-  position: absolute; left:76%; top:30px;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px; /*display: none;*/
+}
+#logBtn>button{
+  font-family: Poppins;
+}
+button#loginBt{
+  margin-left: 70px;
+}
+ul#memberinfo{
+  width: 100%;
+  text-align: right; margin-right: 5px; /*display: none;*/
+}
+ul#memberinfo li a{
+  text-decoration: none;
+  font-size:  0.875rem;
+  display: inline-block; width: 100%;
+}
+a.fontsizeL{
+  font-size:  0.750rem;
+}
+#memberBox{
+  display: flex; flex-direction: row;
+  justify-content: space-around;
+  padding-top: 10px;
+}
+#memberBox p a{
+   vertical-align: middle;
+}
+p#logout{
+  width: 60px;background: #aaaaaa;
+  height: 30px; border-radius: 8px;
+  text-align: center; margin-left: 50px;
+}
+p#logout a{
+  width: 100%;
+   color:#fff;
+}
+p#logout:hover{
+  background: #4b4949;
+}
+p#logout:hover a{
+  text-decoration: underline;
 }
 /* banner */
-.banner {
+#slideBanner {
+  width: 100%;
+  float: left;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),
     url(https://image.zdnet.co.kr/2020/03/06/hjan_EWKpagLviyCwJNQ.jpg);
   background-position: center;
   background-size: cover;
   margin: 0 !important;
 }
+
 
 .banner h1,
 .banner p {
@@ -224,8 +280,22 @@ h1#logo{
 }
 
 /**********미디어 스크린*************/
-@media screen and(max-width:1600px){
+@media screen and (max-width:1400px){
     #header_inner{
       width: 100%;
     }
+}
+@media screen and (max-width:980px){
+  button#loginBt{
+    margin-left: 0;
+  }
+}
+@media screen and (max-width:768px){
+    html,body{
+      font-size: 10px;
+    }
+  #header{
+    height: 100px;
+  }
+
 }

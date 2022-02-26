@@ -57,32 +57,37 @@
                       <span class="header__logo">COMMENTOON</span>
                   </a>
               </h1> {#end logo#}
-              <div class="col-md-3 text-end" id="logBtn">
-                  <button
-                          type="button"
-                          class="btn btn-outline-success me-2"
-                          onclick="location.href='login'"
-                  >
-                      Login
-                  </button>
-                  <button
-                          type="button"
-                          class="btn btn-success"
-                          onclick="location.href='signup'"
-                  >
-                      Sign-up
-                  </button>
-              </div> {#end 로그인 회원가입 버튼#}
-              <ul id="memberinfo">
-                  <li><a>나의 닉네임은 : <span>{{ nickname }}</span></a></li>
-                  <li><a href="/information">회원정보 수정</a></li>
-                  <div class="col-md-1" id="logout"><a class="nav_a">LOG OUT</a></div>
-              </ul>
+              <div id="logDiv">
+                  <div id="logBtn">
+                      <button id="loginBt"
+                              type="button"
+                              class="btn btn-outline-success me-2"
+                              onclick="location.href='login'"
+                      >
+                          Login
+                      </button>
+                      <button
+                              type="button"
+                              class="btn btn-success"
+                              onclick="location.href='signup'"
+                      >
+                          Sign-up
+                      </button>
+                  </div>
+                  <ul id="memberinfo">
+                      <li><a><span>{{ nickname }}</span>님 환영합니다.</a></li>
+                      <li id="memberBox">
+                          <p><a href="/information" class="fontsizeL">회원정보 수정</a></p>
+                          <p id="logout"><a class="nav_a fontsizeL">로그아웃</a></p>
+                      </li>
+                  </ul>
+              </div>
+              {#end 로그인 회원가입 버튼#}
           </header>
-      </div> {# end header container #}
+      </div> {# end header container#}
       <!-- // header -->
       <!-- Banner -->
-      <div class="banner px-4 py-5 my-5 text-center border-bottom">
+      <div id="slideBanner" class="banner px-4 py-5 my-5 text-center border-bottom">
         <h1 class="display-6 fw-bold">간략소개</h1>
         <div class="col-lg-6 mx-auto banner__content">
           <p class="lead mb-4">
@@ -185,7 +190,7 @@
                 </div>
               </div>
               <form>
-                <div class="container">
+                <div class="container clearFix">
                   <div class="row">
                     <div class="col my-3">
                       <label for="recipient-name" class="blind bicol-form-label"
@@ -211,7 +216,7 @@
                   </div>
                 </div>
               </form>
-              <div class="container" id="comment_box"></div>
+              <div class="container clearFix" id="comment_box"></div>
             </div>
             <div class="modal-footer">
               <button
@@ -234,7 +239,7 @@
 
       <main class="bg-light">
         <div class="album py-5">
-          <div class="container">
+          <div class="container clearFix">
             <div
               id="thumbnail-box"
               class="row row-cols-3 row-cols-sm-3 row-cols-md-5 row-cols-lg-6 g-3"
