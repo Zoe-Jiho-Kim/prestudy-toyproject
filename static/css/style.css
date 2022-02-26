@@ -5,8 +5,12 @@
   padding: 0;
   box-sizing: border-box;
 }
-.clearFix,.clearFix::after,.clearFix::before{
-    display: block; content: ""; clear: both;
+.clearFix,
+.clearFix::after,
+.clearFix::before {
+  display: block;
+  content: '';
+  clear: both;
 }
 button {
   border: none;
@@ -31,19 +35,22 @@ button:focus {
 /***********************
 * header
 ************************/
-#header{
-  position: relative; float: left;
-  width: 100%; height: 130px;
-}
-#header_inner{
+#header {
   position: relative;
-  width: 1400px; margin: 0 auto;
+  float: left;
+  width: 100%;
+  height: 130px;
+}
+#header_inner {
+  position: relative;
+  width: 1400px;
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-h1#logo{
-  font:bold 1.875rem "Poppins";
+h1#logo {
+  font: bold 1.875rem 'Poppins';
   width: 20%;
   margin-top: 30px;
   position: relative;
@@ -53,58 +60,64 @@ h1#logo{
   letter-spacing: -1px;
   font-weight: 700;
 }
-#logDiv{
-  width:20%;
+#logDiv {
+  width: 20%;
   position: relative;
   margin-top: 25px;
-  font-size: 1.000rem;
+  font-size: 1rem;
 }
-#logBtn{
+#logBtn {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-top: 20px; /*display: none;*/
 }
-#logBtn>button{
+#logBtn > button {
   font-family: Poppins;
 }
-button#loginBt{
+button#loginBt {
   margin-left: 70px;
 }
-ul#memberinfo{
+ul#memberinfo {
   width: 100%;
-  text-align: right; margin-right: 5px; /*display: none;*/
+  text-align: right;
+  margin-right: 5px; /*display: none;*/
 }
-ul#memberinfo li a{
+ul#memberinfo li a {
   text-decoration: none;
-  font-size:  0.875rem;
-  display: inline-block; width: 100%;
+  font-size: 0.875rem;
+  display: inline-block;
+  width: 100%;
 }
-a.fontsizeL{
-  font-size:  0.750rem;
+a.fontsizeL {
+  font-size: 0.75rem;
 }
-#memberBox{
-  display: flex; flex-direction: row;
+#memberBox {
+  display: flex;
+  flex-direction: row;
   justify-content: space-around;
   padding-top: 10px;
 }
-#memberBox p a{
-   vertical-align: middle;
+#memberBox p a {
+  vertical-align: middle;
 }
-p#logout{
-  width: 60px;background: #aaaaaa;
-  height: 30px; border-radius: 8px;
-  text-align: center; margin-left: 50px;
+p#logout {
+  width: 60px;
+  background: #aaaaaa;
+  height: 30px;
+  border-radius: 8px;
+  text-align: center;
+  margin-left: 50px;
 }
-p#logout a{
+p#logout a {
   width: 100%;
-   color:#fff;
+  color: #fff;
 }
-p#logout:hover{
+p#logout:hover {
   background: #4b4949;
 }
-p#logout:hover a{
+p#logout:hover a {
   text-decoration: underline;
 }
 /* banner */
@@ -117,7 +130,6 @@ p#logout:hover a{
   background-size: cover;
   margin: 0 !important;
 }
-
 
 .banner h1,
 .banner p {
@@ -210,9 +222,17 @@ p#logout:hover a{
   font-size: 20px;
   margin-bottom: 10px;
 }
-
+.clearFix {
+  position: relative;
+}
 .user-name {
   text-align: center;
+}
+.comment__count {
+  position: absolute;
+  font-size: 7px;
+  bottom: 3px;
+  color: #999;
 }
 .comments {
   border-top: 1px solid #ccc;
@@ -280,22 +300,22 @@ p#logout:hover a{
 }
 
 /**********미디어 스크린*************/
-@media screen and (max-width:1400px){
-    #header_inner{
-      width: 100%;
-    }
+@media screen and (max-width: 1400px) {
+  #header_inner {
+    width: 100%;
+  }
 }
-@media screen and (max-width:980px){
-  button#loginBt{
+@media screen and (max-width: 980px) {
+  button#loginBt {
     margin-left: 0;
   }
 }
-@media screen and (max-width:768px){
-    html,body{
-      font-size: 10px;
-    }
-  #header{
+@media screen and (max-width: 768px) {
+  html,
+  body {
+    font-size: 10px;
+  }
+  #header {
     height: 100px;
   }
-
 }

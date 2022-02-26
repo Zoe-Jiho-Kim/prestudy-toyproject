@@ -274,6 +274,7 @@ function save_comment() {
           // 댓글이 하나 늘었습니다.
           commentCount += 1;
           clearValue();
+          commentsNumberView();
         },
       });
     },
@@ -321,6 +322,7 @@ function viewComments() {
         }
         // show_comment 선언 후 commentCount에 댓글 갯수저장
         commentCount = rows.length;
+        commentsNumberView();
       },
     });
   }
@@ -387,3 +389,12 @@ function length_check() {
 }
 modalCommentBox.addEventListener('keyup', length_check);
 modalNickname.addEventListener('keyup', length_check);
+
+/*************************
+ * Show the number of comments
+ **************************/
+const commentsNumber = document.querySelector('.comment__count');
+
+function commentsNumberView() {
+  commentsNumber.textContent = `댓글 수: ${commentCount}개 👍`;
+}
