@@ -252,10 +252,14 @@ dbj = clientj.dbsparta
 def toon_post():
     name_receive = request.form['name_give']
     comment_receive = request.form['comment_give']
+    title_receive = request.form['title_give']
 
     doc = {
         'name': name_receive,
-        'comment': comment_receive
+        'comment': comment_receive,
+        # 타이틀을 받아줍니다.
+        'title': title_receive
+        # 'num': 0
     }
 
     dbj.toon.insert_one(doc)
@@ -264,7 +268,9 @@ def toon_post():
 
 @app.route("/toon", methods=["GET"])
 def toon_get():
+    # title_test = request.form['title_give']
     comment_list = list(dbj.toon.find({}, {'_id': False}))
+    # title_comment_list = list(dbj.toon.find({'title':title_test}, {'_id': False}))
     return jsonify({'comment': comment_list})
 
 

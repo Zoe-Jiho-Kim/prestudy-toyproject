@@ -100,6 +100,7 @@ function listing() {
                           </button>`;
         $('#thumbnail-box').append(temp_html);
       }
+      readTitle();
     },
   });
 }
@@ -164,6 +165,7 @@ function morebtn() {
                           </button>`;
         $('#thumbnail-box').append(temp_html);
       }
+      readTitle();
     },
   });
 }
@@ -194,10 +196,31 @@ topBtn.addEventListener('click', function () {
 });
 
 /*************************
+ * Practice
+ **************************/
+// thunmbnail의 title을 읽어오는 함수 입니다.
+function readTitle() {
+  // title 저장을 위한 변수 선언
+  const thumbnails = document.querySelectorAll('.thumbnail');
+
+  thumbnails.forEach(function (thumbnail) {
+    thumbnail.addEventListener('click', clickThumb);
+  });
+
+  function clickThumb(e) {
+    let title = e.currentTarget.getAttribute('data-bs-whatever');
+    // titleBucket에 title값을 넣어줍니다
+    titleBucket = title;
+    console.log(title);
+  }
+}
+// readTitle() 값을 저장해줄 변수 선언
+let titleBucket = '';
+// console.log(titleBucket);
+/*************************
  * Leave a comment function
  **************************/
 
-//댓글ajax영역
 $(document).ready(function () {
   show_comment();
 });
@@ -208,17 +231,21 @@ let commentCount = 0;
 function save_comment() {
   let name = $('#recipient-name').val();
   let comment = $('#message-text').val();
+  let title = titleBucket;
+  // console.log(title);
 
   $.ajax({
     type: 'POST',
     url: '/toon',
-    data: { name_give: name, comment_give: comment },
+    data: { name_give: name, comment_give: comment, title_give: title },
     success: function (response) {
       alert(response['msg']);
       // 댓글을 등록 후에 읽어온다
       $.ajax({
         type: 'GET',
         url: '/toon',
+        // title이 뭔지 data를 보내줘야합니다.
+        // title_give: title
         data: {},
         success: function (response) {
           // 댓글을 등록할때는 1개 등록
@@ -232,10 +259,12 @@ function save_comment() {
           $('#comment_box').prepend(temp_html);
           // 댓글이 하나 늘었습니다.
           commentCount += 1;
+          clearValue();
         },
       });
     },
   });
+  // 값 초기화
 }
 function show_comment() {
   $.ajax({
@@ -247,8 +276,9 @@ function show_comment() {
       for (let i = commentCount; i < rows.length; i++) {
         let name = rows[i]['name'];
         let comment = rows[i]['comment'];
-
-        let temp_html = `<div class="row">
+        let title = rows[i]['title'];
+        // div에 title 정보 추가
+        let temp_html = `<div db-title="${title}" class="row">
                           <div class="col user-name">${name}</div>
                           <div class="col-9">${comment}</div>
                         </div>`;
@@ -257,7 +287,15 @@ function show_comment() {
       }
       // show_comment 선언 후 commentCount에 댓글 갯수저장
       commentCount = rows.length;
-      console.log(commentCount, '2.현재 댓글 갯수 저장');
     },
   });
+}
+
+// input, textarea를 비워주기 위한 함수
+function clearValue() {
+  let name = document.getElementById('recipient-name');
+  let comment = document.getElementById('message-text');
+
+  name.value = null;
+  comment.value = null;
 }
