@@ -200,8 +200,10 @@ topBtn.addEventListener('click', function () {
 //댓글ajax영역
 $(document).ready(function () {
   show_comment();
-  $('#commentBtn').on('click', save_comment);
 });
+$('#commentBtn').on('click', save_comment);
+// 댓글 갯수 저장을 위한 변수 선언
+let commentCount = 0;
 
 function save_comment() {
   let name = $('#recipient-name').val();
@@ -213,12 +215,28 @@ function save_comment() {
     data: { name_give: name, comment_give: comment },
     success: function (response) {
       alert(response['msg']);
-      //window.location.reload();
-      $('#comment.box').load('/toon #comment.box');
+      // 댓글을 등록 후에 읽어온다
+      $.ajax({
+        type: 'GET',
+        url: '/toon',
+        data: {},
+        success: function (response) {
+          // 댓글을 등록할때는 1개 등록
+          let name = response['comment'][commentCount]['name'];
+          let comment = response['comment'][commentCount]['comment'];
+
+          let temp_html = `<div class="row">
+                              <div class="col user-name">${name}</div>
+                              <div class="col-9">${comment}</div>
+                            </div>`;
+          $('#comment_box').prepend(temp_html);
+          // 댓글이 하나 늘었습니다.
+          commentCount += 1;
+        },
+      });
     },
   });
 }
-
 function show_comment() {
   $.ajax({
     type: 'GET',
@@ -226,7 +244,7 @@ function show_comment() {
     data: {},
     success: function (response) {
       let rows = response['comment'];
-      for (let i = 0; i < rows.length; i++) {
+      for (let i = commentCount; i < rows.length; i++) {
         let name = rows[i]['name'];
         let comment = rows[i]['comment'];
 
@@ -237,6 +255,9 @@ function show_comment() {
 
         $('#comment_box').prepend(temp_html);
       }
+      // show_comment 선언 후 commentCount에 댓글 갯수저장
+      commentCount = rows.length;
+      console.log(commentCount, '2.현재 댓글 갯수 저장');
     },
   });
 }
