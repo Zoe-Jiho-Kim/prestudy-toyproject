@@ -259,7 +259,6 @@ def toon_post():
         'comment': comment_receive,
         # 타이틀을 받아줍니다.
         'title': title_receive
-        # 'num': 0
     }
 
     dbj.toon.insert_one(doc)

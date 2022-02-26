@@ -18,6 +18,8 @@ $(function () {
  **************************/
 const exampleModal = document.getElementById('exampleModal');
 exampleModal.addEventListener('show.bs.modal', function (event) {
+  // Clean input
+  clearValue();
   // Button that triggered the modal
   const button = event.relatedTarget;
   // Extract info from data-bs-* attributes
@@ -255,8 +257,11 @@ function save_comment() {
           let comment = response['comment'][commentCount]['comment'];
 
           let temp_html = `<div class="row comments">
-                              <div class="col user-name">${name}</div>
-                              <div class="col-9">${comment}</div>
+                              <div class="col-3 user-name">${name}</div>
+                              <div class="col-8">${comment}</div>
+                              <div class="col-1 commet-time">time</div>
+                              <button>삭제</button>
+                              <button>수정</button>
                             </div>`;
           $('#comment_box').prepend(temp_html);
           // 댓글이 하나 늘었습니다.
@@ -295,8 +300,13 @@ function viewComments() {
           let comment = rows[i]['comment'];
 
           let temp_html = `<div class="row comments">
-                            <div class="col user-name">${name}</div>
+                            <div class="col-3 user-name">${name}</div>
                             <div class="col-9">${comment}</div>
+                            <div class="comment__btn">
+                              <div class="comment-time">22.02.26 19:22</div>
+                              <button class="comment__btn--edit">수정</button>
+                              <button class="comment__btn--delete">삭제</button>
+                            </div>
                           </div>`;
 
           $('#comment_box').prepend(temp_html);
@@ -307,3 +317,49 @@ function viewComments() {
     });
   }
 }
+
+/*************************
+ * Comment box validation
+ **************************/
+const modalNickname = document.querySelector('#recipient-name');
+const modalCommentBox = document.querySelector('#message-text');
+const modalCommentBtn = document.querySelector('#commentBtn');
+
+modalCommentBtn.disabled = true;
+modalNickname.addEventListener('change', noFunction);
+modalCommentBox.addEventListener('change', noFunction);
+
+function noFunction() {
+  if (modalNickname.value === '' || modalCommentBox.value === '') {
+    modalCommentBtn.disabled = true;
+  } else {
+    modalCommentBtn.disabled = false;
+  }
+}
+// textarea 엔터키 적용
+modalCommentBox.addEventListener('keydown', function (e) {
+  if (e.keyCode == 13) {
+    e.preventDefault();
+    modalCommentBtn.click();
+  }
+});
+// comment창에 키가 입력 될때마다 noFunction을 동작 시킵니다
+modalNickname.addEventListener('keyup', noFunction);
+modalCommentBox.addEventListener('keyup', noFunction);
+
+/*************************
+ * Display comment registration time
+ **************************/
+// function commentTime() {}
+// const time = new Date();
+
+// const year = String(time.getFullYear()).slice(-2);
+// const month = ('0' + (time.getMonth() + 1)).slice(-2);
+// const day = ('0' + time.getDate()).slice(-2);
+
+// var hours = ('0' + time.getHours()).slice(-2);
+// var minutes = ('0' + time.getMinutes()).slice(-2);
+
+// var timeString = year + '.' + month + '.' + day + ' ' + hours + ':' + minutes;
+
+// console.log(timeString);
