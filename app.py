@@ -253,12 +253,14 @@ def toon_post():
     name_receive = request.form['name_give']
     comment_receive = request.form['comment_give']
     title_receive = request.form['title_give']
+    time_receive = request.form['time_give']
 
     doc = {
         'name': name_receive,
         'comment': comment_receive,
         # 타이틀을 받아줍니다.
-        'title': title_receive
+        'title': title_receive,
+        'time' : time_receive
     }
 
     dbj.toon.insert_one(doc)

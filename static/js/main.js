@@ -242,7 +242,12 @@ function save_comment() {
   $.ajax({
     type: 'POST',
     url: '/toon',
-    data: { name_give: name, comment_give: comment, title_give: title },
+    data: {
+      name_give: name,
+      comment_give: comment,
+      title_give: title,
+      time_give: timeString,
+    },
     success: function (response) {
       alert(response['msg']);
       // 댓글을 등록 후에 읽어온다
@@ -255,12 +260,13 @@ function save_comment() {
           // 댓글을 등록할때는 1개 등록
           let name = response['comment'][commentCount]['name'];
           let comment = response['comment'][commentCount]['comment'];
+          let timeNow = response['comment'][commentCount]['time'];
 
           let temp_html = `<div class="row comments">
                             <div class="col-3 user-name">${name}</div>
                             <div class="col-9">${comment}</div>
                             <div class="comment__btn">
-                              <div class="comment-time">22.02.26 19:22</div>
+                              <div class="comment-time">${timeNow}</div>
                               <button class="comment__btn--edit">수정</button>
                               <button class="comment__btn--delete">삭제</button>
                             </div>
@@ -300,12 +306,13 @@ function viewComments() {
         for (let i = commentCount; i < rows.length; i++) {
           let name = rows[i]['name'];
           let comment = rows[i]['comment'];
+          let timeNow = response['comment'][commentCount]['time'];
 
           let temp_html = `<div class="row comments">
                             <div class="col-3 user-name">${name}</div>
                             <div class="col-9">${comment}</div>
                             <div class="comment__btn">
-                              <div class="comment-time">22.02.26 19:22</div>
+                              <div class="comment-time">${timeNow}</div>
                               <button class="comment__btn--edit">수정</button>
                               <button class="comment__btn--delete">삭제</button>
                             </div>
@@ -352,16 +359,13 @@ modalCommentBox.addEventListener('keyup', noFunction);
 /*************************
  * Display comment registration time
  **************************/
-// function commentTime() {}
-// const time = new Date();
+const commentToday = new Date();
 
-// const year = String(time.getFullYear()).slice(-2);
-// const month = ('0' + (time.getMonth() + 1)).slice(-2);
-// const day = ('0' + time.getDate()).slice(-2);
+const year = String(commentToday.getFullYear()).slice(-2);
+const month = ('0' + (commentToday.getMonth() + 1)).slice(-2);
+const day = ('0' + commentToday.getDate()).slice(-2);
 
-// var hours = ('0' + time.getHours()).slice(-2);
-// var minutes = ('0' + time.getMinutes()).slice(-2);
+const hours = ('0' + commentToday.getHours()).slice(-2);
+const minutes = ('0' + commentToday.getMinutes()).slice(-2);
 
-// var timeString = year + '.' + month + '.' + day + ' ' + hours + ':' + minutes;
-
-// console.log(timeString);
+const timeString = year + '.' + month + '.' + day + ' ' + hours + ':' + minutes;
