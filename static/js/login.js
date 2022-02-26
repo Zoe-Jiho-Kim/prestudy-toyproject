@@ -8,7 +8,7 @@ function login() {
       if (response['result'] == 'success') {
         $.cookie('mytoken', response['token']);
         alert('로그인 완료!');
-        window.location.href = '/api/Verif';
+        window.location.href = '/main';
       //  /이걸로 변경함
       } else {
         alert(response['msg']);

@@ -31,6 +31,38 @@ application = Flask(import_name=__name__)
 
 SECRET_KEY = 'SPARTA'
 
+
+
+@app.route('/update_like', methods=['POST'])
+def update_like():
+    # 누가 좋아요를 눌렀는지알아야함
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        # 좋아요 수 변경
+        user_info = toonUser.find_one({"id": payload["id"]})
+        # 난 id가맞음
+        post_id_receive = request.form["post_id_give"]
+        type_receive = request.form["type_give"]
+        action_receive = request.form["action_give"]
+        doc = {
+            "post_id": post_id_receive,
+            "username": user_info["username"],
+            "type": type_receive
+        }
+        if action_receive == "like":
+            toonLikes.insert_one(doc)
+        else:
+            toonLikes.delete_one(doc)
+        count = toonLikes.count_documents({"post_id": post_id_receive, "type": type_receive})
+        return jsonify({"result": "success", 'msg': 'updated', "count": count})
+
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("home"))
+
+
+
+
 #################################
 ##  정보수정을 위한 API           ##
 #################################
@@ -79,58 +111,36 @@ def information():
         except jwt.exceptions.DecodeError:
             return redirect(url_for("main", msg="로그인 정보가 존재하지 않습니다."))
 
+############################################
+##  유저 정보 확인 api (로그인된 유저만 call)  ##
+############################################
+
+
 @app.route('/main')
 def main():
     token_receive = request.cookies.get('mytoken')
     try:
-        token_receive = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = toonUser.find_one({"id": token_receive['id']})
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = toonUser.find_one({"id": payload['id']})
         print(user_info)
 
         return render_template('index.html', email=user_info["id"], nickname=user_info["nick"])
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return render_template('index.html')
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("main", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("main", msg="로그인 정보가 존재하지 않습니다."))
 
 
 
 @app.route('/')
 def home():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        token_receive = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = toonUser.find_one({"id": token_receive['id']})
-        print(user_info)
-        token = True
-    except:
-        token = False
-        # return render_template('index.html')
-    return redirect(url_for("main"))
+    return render_template('index.html')
 
 # 닉네임 가져와야함!
 
 
-############################################
-##  유저 정보 확인 api (로그인된 유저만 call)  ##
-############################################
 
-@app.route('/api/Verif', methods=['GET'])
-def verif():
-    token_receive = request.cookies.get('mytoken')
 
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        # print(payload)
-        user_info = toonUser.find_one({"id": payload['id']})
-        print(user_info)
-        return redirect(url_for("main"))
-    # , nickname = user_info['nick']
-
-    except jwt.ExpiredSignatureError:
-        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
-        #유효 시간이 만료 에러문구
-    except jwt.exceptions.DecodeError:
-        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
-        # jwt 토큰이 유효하지 않다는 에러문구
 
 @app.route('/signup')
 def register():
