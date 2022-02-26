@@ -393,8 +393,14 @@ modalNickname.addEventListener('keyup', length_check);
 /*************************
  * Show the number of comments
  **************************/
-const commentsNumber = document.querySelector('.comment__count');
 
 function commentsNumberView() {
-  commentsNumber.textContent = `댓글 수: ${commentCount}개 👍`;
+  const commentsNumber = document.querySelector('.comment__count');
+
+  if (commentCount == 0) {
+    commentsNumber.innerHTML =
+      '웹툰에 대한' + '<br />' + '의견을 남겨주세요 😍';
+  } else {
+    commentsNumber.innerHTML = `댓글 수: ${commentCount}개 👍`;
+  }
 }

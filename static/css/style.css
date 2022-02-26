@@ -233,6 +233,7 @@ p#logout:hover a {
   font-size: 7px;
   bottom: 3px;
   color: #999;
+  line-height: 1.6em;
 }
 .comments {
   border-top: 1px solid #ccc;
