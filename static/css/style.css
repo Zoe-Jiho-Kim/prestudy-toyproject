@@ -29,12 +29,31 @@ button:focus {
 /***********************
 * header
 ************************/
+#header{
+  position: relative; float: left;
+  width: 100%; background: yellow;
+}
+#header_inner{
+  position: relative; float: left;
+  width: 1600px; margin: 0 auto;
+}
+h1#logo{
+  font:bold 30px "Poppins";
+  width: 20%;
+  background: red;
+  padding: 25px;
+  position: relative;
+  float: left;
+}
 .header__logo {
-  font-size: 30px;
   letter-spacing: -1px;
   font-weight: 700;
 }
-
+#logBtn{
+  width: 200px;
+  display: flex;
+  position: absolute; left:76%; top:30px;
+}
 /* banner */
 .banner {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),
@@ -202,4 +221,11 @@ button:focus {
 
 .footer__wrap p {
   margin: 0;
+}
+
+/**********미디어 스크린*************/
+@media screen and(max-width:1600px){
+    #header_inner{
+      width: 100%;
+    }
 }

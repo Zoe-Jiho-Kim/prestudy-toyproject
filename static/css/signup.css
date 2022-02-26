@@ -8,7 +8,7 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5;
+  background: rgba(28, 98, 255, 0.6);
 }
 
 @media (min-width: 768px) {
@@ -38,4 +38,35 @@ body {
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
+}
+/******************추가 css**********************/
+h1#commentoon{
+  font: bold 45px/40px "Poppins";
+  color:#fff;
+}
+h1#commentoon span{
+  font: normal 24px "Noto Sans KR";
+}
+#overlap{
+  position: absolute;
+  top:10px; right: 10px;
+  background: rgba(8, 38, 255, 0.8);
+}
+#overlap:hover{
+  background: rgba(11, 24, 107, 0.8);
+}
+#usernick,#userpw2,#userpw,#userid{
+  border-radius: 20px;
+}
+#signbtn{
+  background: rgba(255, 74, 99, 0.8);
+  border: 1px solid rgba(255, 74, 99, 0.8);
+  font-family: Poppins;
+  border-radius: 20px;
+}
+#signbtn:hover{
+  background: rgba(216, 24, 51, 0.8);
+}
+#nick_label,#confirm_label,#pw_label,#email_label,#teamXD{
+  font-family: Poppins;
 }
