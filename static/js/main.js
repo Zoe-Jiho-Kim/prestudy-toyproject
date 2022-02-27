@@ -274,6 +274,7 @@ function save_comment() {
           // 댓글이 하나 늘었습니다.
           commentCount += 1;
           clearValue();
+          commentsNumberView();
         },
       });
     },
@@ -321,6 +322,7 @@ function viewComments() {
         }
         // show_comment 선언 후 commentCount에 댓글 갯수저장
         commentCount = rows.length;
+        commentsNumberView();
       },
     });
   }
@@ -368,3 +370,37 @@ const hours = ('0' + commentToday.getHours()).slice(-2);
 const minutes = ('0' + commentToday.getMinutes()).slice(-2);
 
 const timeString = year + '.' + month + '.' + day + ' ' + hours + ':' + minutes;
+
+/*************************
+ * Limit the number of comments
+ **************************/
+
+function length_check() {
+  const desc = $('#message-text').val();
+  const nick = $('#recipient-name').val();
+  if (desc.length > 100) {
+    alert('댓글은 100자를 초과할 수 없습니다.');
+    $('#message-text').val(desc.substring(0, 100));
+  }
+  if (nick.length > 8) {
+    alert('닉네임는 8자를 초과할 수 없습니다.');
+    $('#recipient-name').val(nick.substring(0, 8));
+  }
+}
+modalCommentBox.addEventListener('keyup', length_check);
+modalNickname.addEventListener('keyup', length_check);
+
+/*************************
+ * Show the number of comments
+ **************************/
+
+function commentsNumberView() {
+  const commentsNumber = document.querySelector('.comment__count');
+
+  if (commentCount == 0) {
+    commentsNumber.innerHTML =
+      '웹툰에 대한' + '<br />' + '의견을 남겨주세요 😍';
+  } else {
+    commentsNumber.innerHTML = `댓글 수: ${commentCount}개 👍`;
+  }
+}
