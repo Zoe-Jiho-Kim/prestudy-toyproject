@@ -28,6 +28,7 @@
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script> {#gsap 라이브러리#}
     <title>COMMENTOON</title>
     <link rel="shortcut icon" href="../static/img/favicon.png"> {#파비콘 사진은 바꾸셔도 됩니다. ^^#}
     <link
@@ -36,6 +37,7 @@
     />
     <link rel="stylesheet" href="../static/css/style.css" />
     <script defer src="../static/js/main.js"></script>
+    <script defer src="../static/js/common.js"></script>
     <!-- flask로 구동시 아래 코드를 사용해야 동작합니다 -->
     <!--
       <link
@@ -52,7 +54,7 @@
               <h1 id="logo">
                   <a
                           href="/"
-                          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
+                          class="align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
                   >
                       <span class="header__logo">COMMENTOON</span>
                   </a>
@@ -75,10 +77,12 @@
                       </button>
                   </div>
                   <ul id="memberinfo">
-                      <li><a><span>{{ nickname }}</span>님 환영합니다.</a></li>
-                      <li id="memberBox">
-                          <p><a href="/information" class="fontsizeL">회원정보 수정</a></p>
-                          <p id="logout"><a class="nav_a fontsizeL">로그아웃</a></p>
+                      <li>
+                          <a><span id="nickinfo">{{ nickname }}</span>님 환영합니다.</a> {#마우스 오버시 아래 서브메뉴 나옴#}
+                          <ul id="memberBox" class="submenu">
+                              <li id="changeBtn"><a href="/information">회원정보 수정</a></li>
+                              <li id="logout"><a class="nav_a fontsizeL">로그아웃</a></li>
+                          </ul>
                       </li>
                   </ul>
               </div>

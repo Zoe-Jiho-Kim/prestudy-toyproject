@@ -64,7 +64,7 @@ h1#logo{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 20px; /*display: none;*/
+  margin-top: 20px;/*display: none;*/
 }
 #logBtn>button{
   font-family: Poppins;
@@ -73,39 +73,30 @@ button#loginBt{
   margin-left: 70px;
 }
 ul#memberinfo{
-  width: 100%;
+  width: 100%; margin-top: 15px; position: relative;
   text-align: right; margin-right: 5px; /*display: none;*/
+}
+ul#memberinfo li{
+  position: relative;
 }
 ul#memberinfo li a{
   text-decoration: none;
-  font-size:  0.875rem;
-  display: inline-block; width: 100%;
-}
-a.fontsizeL{
-  font-size:  0.750rem;
+  font-size:  1rem;
+  display: block;
+  width: 100%;
 }
 #memberBox{
-  display: flex; flex-direction: row;
-  justify-content: space-around;
-  padding-top: 10px;
+  width: 200px; position: absolute;
+  right: 0; display: none;
 }
-#memberBox p a{
-   vertical-align: middle;
+#memberBox li a{
+  background: #aaa;
+  font-size:  0.875rem;
+  text-align: center;
+  color: #333;
 }
-p#logout{
-  width: 60px;background: #aaaaaa;
-  height: 30px; border-radius: 8px;
-  text-align: center; margin-left: 50px;
-}
-p#logout a{
-  width: 100%;
-   color:#fff;
-}
-p#logout:hover{
-  background: #4b4949;
-}
-p#logout:hover a{
-  text-decoration: underline;
+#memberBox li:hover a{
+text-decoration: underline;
 }
 /* banner */
 #slideBanner {
@@ -294,8 +285,24 @@ p#logout:hover a{
     html,body{
       font-size: 10px;
     }
-  #header{
-    height: 100px;
+  #header_inner{
+    display:inline-block;
+  }
+  h1#logo{
+    width: 100%; text-align: center;
+  }
+  #logDiv{
+    width: 300px; height: 100px;
+    position: absolute; left:50%; margin-left: -150px; top:30px;
+  }
+  div#logBtn{
+    padding:0 40px;
+  }
+  ul#memberinfo{
+    text-align: center;
+  }
+  #memberBox{
+    position: relative;
   }
 
 }
