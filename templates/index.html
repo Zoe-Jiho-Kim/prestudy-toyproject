@@ -24,6 +24,7 @@
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="../static/js/search.js"></script>
     <title>COMMENTOON</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
@@ -93,13 +94,8 @@
           five centuries
         </p>
         <form class="col-8 col-lg-auto mb-3 mb-lg-0 search__bar">
-          <input
-            type="search"
-            class="form-control"
-            placeholder="Search..."
-            aria-label="Search"
-          />
-          <button type="button" class="btn btn-success">검색</button>
+          <input id="input_kw" type="search" class="form-control" placeholder="Search..." aria-label="Search"/>
+          <button type="button" class="btn btn-success" onclick="search()">검색</button>
         </form>
         <div
           class="button__wrap d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"
