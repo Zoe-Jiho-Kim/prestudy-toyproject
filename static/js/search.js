@@ -10,17 +10,22 @@ function search() {
         alert("검색은 특수문자를 포함할 수 없습니다.")
     }
 
-    // $.ajax({
-    //     type: 'POST',
-    //     url: '/search',
-    //     data: {},
-    //     success: function (response) {
-    //         console.log(response)
-    //         // alert(response['msg']);
-    //         // window.location.replace("/results")
-    //     },
+    $.ajax({
+        type: 'POST',
+        url: '/search',
+        data: {
+            'give_keyword': keyword
+        },
+        success: function (response) {
+            console.log(response)
+            if(response['result'] == 'success'){
+                window.location.reload();
+            }            
+            // alert(response['msg']);
+            // window.location.replace("/results")
+        },
 
-    // });
+    });
 }
 
 
