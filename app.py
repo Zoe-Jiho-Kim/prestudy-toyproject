@@ -32,33 +32,26 @@ application = Flask(import_name=__name__)
 SECRET_KEY = 'SPARTA'
 
 
+@app.route("/favorites", methods=["POST"])
+def favorites_post():
+    name_receive = request.form['name_give']
+    comment_receive = request.form['comment_give']
+    title_receive = request.form['title_give']
+    time_receive = request.form['time_give']
 
-@app.route('/update_like', methods=['POST'])
-def update_like():
-    # 누가 좋아요를 눌렀는지알아야함
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        # 좋아요 수 변경
-        user_info = toonUser.find_one({"id": payload["id"]})
-        # 난 id가맞음
-        post_id_receive = request.form["post_id_give"]
-        type_receive = request.form["type_give"]
-        action_receive = request.form["action_give"]
-        doc = {
-            "post_id": post_id_receive,
-            "username": user_info["username"],
-            "type": type_receive
-        }
-        if action_receive == "like":
-            toonLikes.insert_one(doc)
-        else:
-            toonLikes.delete_one(doc)
-        count = toonLikes.count_documents({"post_id": post_id_receive, "type": type_receive})
-        return jsonify({"result": "success", 'msg': 'updated', "count": count})
+    doc = {
+        'name': name_receive,
+        'comment': comment_receive,
+        # 타이틀을 받아줍니다.
+        'title': title_receive,
+        'time' : time_receive
+    }
 
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
+    toonLikes.insert_one(doc)
+    return jsonify({'msg': '댓글 남기기!'})
+
+
+
 
 
 
@@ -273,7 +266,7 @@ def toon_post():
         'time' : time_receive
     }
 
-    dbj.toon.insert_one(doc)
+    toonLikes.insert_one(doc)
     return jsonify({'msg': '댓글 남기기!'})
 
 

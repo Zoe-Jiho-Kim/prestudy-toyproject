@@ -1,4 +1,30 @@
 'use strict';
+
+
+
+
+//작업중
+$('#favorites').on('click', save_favorites);
+// comment 저장 함수
+function save_favorites() {
+  let name = $('#{{recipient-name}}').val();
+  let comment = $('#message-text').val();
+  let title = titleBucket;
+
+  $.ajax({
+    type: 'POST',
+    url: '/favorites',
+    data: {
+      name_give: name,
+      comment_give: comment,
+      title_give: title,
+      time_give: timeString,
+    },
+  });
+}
+
+
+
 /*************************
  * genre btn toggle function
  **************************/
@@ -409,3 +435,15 @@ function commentsNumberView() {
     commentsNumber.innerHTML = `댓글 수: ${commentCount}개 👍`;
   }
 }
+/*************************
+ * 로그아웃
+ **************************/
+$(document).ready(function() {
+    $('#logout').click(function() {
+        $.removeCookie('mytoken');
+
+        alert('로그아웃!')
+
+        window.location.href = '/';
+    })
+});
