@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="../static/css/style.css" />
     <script defer src="../static/js/main.js"></script>
     <script defer src="../static/js/common.js"></script>
+    <script defer src="../static/js/favorite.js"></script>
     <!-- flask로 구동시 아래 코드를 사용해야 동작합니다 -->
     <!--
       <link
@@ -78,6 +79,7 @@
                   </div>
                   <ul id="memberinfo">
                       <li>
+                          <span id="useremail" class="blind">{{email}}</span>
                           <a><span id="nickinfo">{{ nickname }}</span>님 환영합니다.</a> {#마우스 오버시 아래 서브메뉴 나옴#}
                           <ul id="memberBox" class="submenu">
                               <li id="changeBtn"><a href="/information">회원정보 수정</a></li>

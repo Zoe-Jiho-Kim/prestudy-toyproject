@@ -35,20 +35,15 @@ SECRET_KEY = 'SPARTA'
 @app.route("/favorites", methods=["POST"])
 def favorites_post():
     name_receive = request.form['name_give']
-    comment_receive = request.form['comment_give']
     title_receive = request.form['title_give']
-    time_receive = request.form['time_give']
 
     doc = {
         'name': name_receive,
-        'comment': comment_receive,
-        # 타이틀을 받아줍니다.
         'title': title_receive,
-        'time' : time_receive
     }
 
-    toonLikes.insert_one(doc)
-    return jsonify({'msg': '댓글 남기기!'})
+    dbj.testkiwon.insert_one(doc)
+    return jsonify({'msg': '즐겨찾기 정보 저장!'})
 
 
 
