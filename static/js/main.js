@@ -297,8 +297,6 @@ function save_comment() {
                             <div class="col-9">${comment}</div>
                             <div class="comment__btn">
                               <div class="comment-time">${timeNow}</div>
-                              <!-- <button class="comment__btn--edit">수정</button>
-                              <button class="comment__btn--delete">삭제</button>-->
                             </div>
                           </div>`;
           $('#comment_box').prepend(temp_html);
@@ -344,8 +342,6 @@ function viewComments() {
                             <div class="col-9">${comment}</div>
                             <div class="comment__btn">
                               <div class="comment-time">${timeNow}</div>
-                              <!-- <button class="comment__btn--edit">수정</button>
-                              <button class="comment__btn--delete">삭제</button>-->
                             </div>
                           </div>`;
 
