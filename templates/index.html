@@ -39,6 +39,7 @@
     <script defer src="../static/js/main.js"></script>
     <script defer src="../static/js/common.js"></script>
     <script defer src="../static/js/favorite.js"></script>
+    <script defer src="../static/js/genre-btn.js"></script>
     <!-- flask로 구동시 아래 코드를 사용해야 동작합니다 -->
     <!--
       <link
@@ -131,19 +132,19 @@
         </div>
         <div class="genre__content">
           <div>
-            <button type="button" class="genre__content--btn">에피소드</button>
-            <button type="button" class="genre__content--btn">옴니버스</button>
-            <button type="button" class="genre__content--btn">스토리</button>
-            <button type="button" class="genre__content--btn">일상</button>
-            <button type="button" class="genre__content--btn">개그</button>
-            <button type="button" class="genre__content--btn">판타지</button>
-            <button type="button" class="genre__content--btn">액션</button>
-            <button type="button" class="genre__content--btn">드라마</button>
-            <button type="button" class="genre__content--btn">순정</button>
-            <button type="button" class="genre__content--btn">감정</button>
-            <button type="button" class="genre__content--btn">스릴러</button>
-            <button type="button" class="genre__content--btn">무협/사극</button>
-            <button type="button" class="genre__content--btn">스포츠</button>
+            <button type="button" data-genre="episode" class="genre__content--btn">에피소드</button>
+            <button type="button" data-genre="omnibus" class="genre__content--btn">옴니버스</button>
+            <button type="button" data-genre="story" class="genre__content--btn">스토리</button>
+            <button type="button" data-genre="daily" class="genre__content--btn">일상</button>
+            <button type="button" data-genre="comic" class="genre__content--btn">개그</button>
+            <button type="button" data-genre="fantasy" class="genre__content--btn">판타지</button>
+            <button type="button" data-genre="action" class="genre__content--btn">액션</button>
+            <button type="button" data-genre="drama" class="genre__content--btn">드라마</button>
+            <button type="button" data-genre="pure" class="genre__content--btn">순정</button>
+            <button type="button" data-genre="sensibility" class="genre__content--btn">감정</button>
+            <button type="button" data-genre="thrill" class="genre__content--btn">스릴러</button>
+            <button type="button" data-genre="historical" class="genre__content--btn">무협/사극</button>
+            <button type="button" data-genre="sports" class="genre__content--btn">스포츠</button>
           </div>
         </div>
       </div>

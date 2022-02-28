@@ -235,6 +235,13 @@ def webtoon_get():
   webtoon_list = list(dbc.webtoons.find({}, {'_id': False}))
   return jsonify({'webtoons':webtoon_list})
 
+@app.route("/webtoons/genre", methods=["POST"])
+def genre_post():
+  genre_name = request.form['genre_give']
+  
+  webtoon_list = list(dbc.webtoons.find({'genre': genre_name}, {'_id': False}))
+  return jsonify({'webtoons':webtoon_list})
+
 
 ########################################################
 #
