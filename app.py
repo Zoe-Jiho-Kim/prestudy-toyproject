@@ -266,7 +266,7 @@ def toon_post():
         'time' : time_receive
     }
 
-    toonLikes.insert_one(doc)
+    dbj.toon.insert_one(doc)
     return jsonify({'msg': '댓글 남기기!'})
 
 
