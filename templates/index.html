@@ -2,9 +2,15 @@
 <html lang="ko-KR">
   <head>
     <!-- Bulma CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
+    />
     <!-- Font Awesome CSS -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link
+      href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
@@ -28,9 +34,11 @@
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script> {#gsap 라이브러리#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+    {#gsap 라이브러리#}
     <title>COMMENTOON</title>
-    <link rel="shortcut icon" href="../static/img/favicon.png"> {#파비콘 사진은 바꾸셔도 됩니다. ^^#}
+    <link rel="shortcut icon" href="../static/img/favicon.png" />
+    {#파비콘 사진은 바꾸셔도 됩니다. ^^#}
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Poppins&display=swap"
       rel="stylesheet"
@@ -49,235 +57,290 @@
     <script src="{{ url_for('static', filename='main.js') }}" defer></script> -->
   </head>
   <body>
-      <!-- Header -->
-      <div id="header">
-          <header id="header_inner"
+    <!-- Header -->
+    <div id="header">
+      <header id="header_inner">
+        <h1 id="logo">
+          <a
+            href="{% if nickname %}/main{% else %}/{% endif %}"
+            class="align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
           >
-              <h1 id="logo">
-                  <a
-                          href="{% if nickname %}/main{% else %}/{% endif %}"
-                          class="align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
-                  >
-                      <span class="header__logo">COMMENTOON</span>
-                  </a>
-              </h1> {#end logo#}
-              <div id="logDiv">
-                  <div id="logBtn">
-                      <button id="loginBt"
-                              type="button"
-                              class="btn btn-outline-success me-2"
-                              onclick="location.href='login'"
-                      >
-                          Login
-                      </button>
-                      <button
-                              type="button"
-                              class="btn btn-success"
-                              onclick="location.href='signup'"
-                      >
-                          Sign-up
-                      </button>
+            <span class="header__logo">COMMENTOON</span>
+          </a>
+        </h1>
+        {#end logo#}
+        <div id="logDiv">
+          {% if nickname %}
+          <ul id="memberinfo">
+            <li>
+              <span id="useremail" class="blind">{{email}}</span>
+              <a><span id="nickinfo">{{ nickname }}</span>님 환영합니다.</a>
+              {#마우스 오버시 아래 서브메뉴 나옴#}
+              <ul id="memberBox" class="submenu">
+                <li id="changeBtn"><a href="/information">회원정보 수정</a></li>
+                <li id="logout"><a class="nav_a fontsizeL">로그아웃</a></li>
+              </ul>
+            </li>
+          </ul>
+          {% else %}
+          <div id="logBtn">
+            <button
+              id="loginBt"
+              type="button"
+              class="btn btn-outline-success me-2"
+              onclick="location.href='login'"
+            >
+              Login
+            </button>
+            <button
+              type="button"
+              class="btn btn-success"
+              onclick="location.href='signup'"
+            >
+              Sign-up
+            </button>
+          </div>
+
+          {% endif %}
+        </div>
+        {#end 로그인 회원가입 버튼#}
+      </header>
+    </div>
+    {# end header container#}
+    <!-- // header -->
+    <!-- Banner -->
+    <div
+      id="slideBanner"
+      class="banner px-4 py-5 my-5 text-center border-bottom"
+    >
+      <h1 class="display-6 fw-bold">간략소개</h1>
+      <div class="col-lg-6 mx-auto banner__content">
+        <p class="lead mb-4">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries
+        </p>
+        <form class="col-8 col-lg-auto mb-3 mb-lg-0 search__bar">
+          <input
+            type="search"
+            class="form-control"
+            placeholder="Search..."
+            aria-label="Search"
+          />
+          <button type="button" class="btn btn-success">검색</button>
+        </form>
+        <div
+          class="button__wrap d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"
+        >
+          <button
+            type="button"
+            class="genre__btn btn btn-lg px-4 me-sm-3 btn-outline-success"
+          >
+            장르별 보기
+          </button>
+          <button
+            type="button"
+            class="popular__btn btn btn-lg px-4 btn-outline-success"
+          >
+            인기순 보기
+          </button>
+        </div>
+      </div>
+      <div class="genre__content">
+        <div>
+          <button
+            type="button"
+            data-genre="episode"
+            class="genre__content--btn"
+          >
+            에피소드
+          </button>
+          <button
+            type="button"
+            data-genre="omnibus"
+            class="genre__content--btn"
+          >
+            옴니버스
+          </button>
+          <button type="button" data-genre="story" class="genre__content--btn">
+            스토리
+          </button>
+          <button type="button" data-genre="daily" class="genre__content--btn">
+            일상
+          </button>
+          <button type="button" data-genre="comic" class="genre__content--btn">
+            개그
+          </button>
+          <button
+            type="button"
+            data-genre="fantasy"
+            class="genre__content--btn"
+          >
+            판타지
+          </button>
+          <button type="button" data-genre="action" class="genre__content--btn">
+            액션
+          </button>
+          <button type="button" data-genre="drama" class="genre__content--btn">
+            드라마
+          </button>
+          <button type="button" data-genre="pure" class="genre__content--btn">
+            순정
+          </button>
+          <button
+            type="button"
+            data-genre="sensibility"
+            class="genre__content--btn"
+          >
+            감정
+          </button>
+          <button type="button" data-genre="thrill" class="genre__content--btn">
+            스릴러
+          </button>
+          <button
+            type="button"
+            data-genre="historical"
+            class="genre__content--btn"
+          >
+            무협/사극
+          </button>
+          <button type="button" data-genre="sports" class="genre__content--btn">
+            스포츠
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- // Banner -->
+
+    <!-- Modal -->
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      db=""
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-t" id="exampleModalLabel">
+              작품에 대한 의견을 남겨주세요 💚<button id="favorites">
+                ⭐즐겨찾기⭐
+              </button>
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="col">
+              <div class="card shadow-sm">
+                <img
+                  src=""
+                  width="100%"
+                  height="100%"
+                  title=""
+                  alt=""
+                  id="modal-img"
+                />
+                <div class="modal-wrap card-body">
+                  <div class="modal-wrap-header">
+                    <p class="modal-title"></p>
+                    <p class="modal-star"></p>
                   </div>
-                  <ul id="memberinfo">
-                      <li>
-                          <span id="useremail" class="blind">{{email}}</span>
-                          <a><span id="nickinfo">{{ nickname }}</span>님 환영합니다.</a> {#마우스 오버시 아래 서브메뉴 나옴#}
-                          <ul id="memberBox" class="submenu">
-                              <li id="changeBtn"><a href="/information">회원정보 수정</a></li>
-                              <li id="logout"><a class="nav_a fontsizeL">로그아웃</a></li>
-                          </ul>
-                      </li>
-                  </ul>
+                  <p class="modal-writer"></p>
+                  <p class="modal-genre"></p>
+                  <a class="modal-url" href="" target="_blank">보러가기</a>
+                  <p class="modal-desc"></p>
+                </div>
               </div>
-              {#end 로그인 회원가입 버튼#}
-          </header>
-      </div> {# end header container#}
-      <!-- // header -->
-      <!-- Banner -->
-      <div id="slideBanner" class="banner px-4 py-5 my-5 text-center border-bottom">
-        <h1 class="display-6 fw-bold">간략소개</h1>
-        <div class="col-lg-6 mx-auto banner__content">
-          <p class="lead mb-4">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries
-          </p>
-          <form class="col-8 col-lg-auto mb-3 mb-lg-0 search__bar">
-            <input
-              type="search"
-              class="form-control"
-              placeholder="Search..."
-              aria-label="Search"
-            />
-            <button type="button" class="btn btn-success">검색</button>
-          </form>
+            </div>
+            <form>
+              <div class="container clearFix">
+                <div class="row">
+                  <div class="col-3 my-3">
+                    <label for="recipient-name" class="blind bicol-form-label"
+                      >Recipient:</label
+                    >
+                    <input
+                      placeholder="닉네임"
+                      type="text"
+                      class="{% if nickname %}blind {% endif%}form-control"
+                      id="recipient-name"
+                      value="{{ nickname }}"
+                    />
+                    <div>{{nickname}}</div>
+                  </div>
+                  <div class="comment__count">댓글 수: 몰라요</div>
+                  <div class="col-9 my-3">
+                    <label for="message-text" class="blind col-form-label"
+                      >Message:</label
+                    >
+                    <textarea
+                      placeholder="댓글을 입력해주세요 😄"
+                      class="form-control"
+                      id="message-text"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="container clearFix" id="comment_box"></div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-success" id="commentBtn">
+              댓글 등록
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // Modal -->
+
+    <!-- Thumbnail -->
+
+    <main class="bg-light">
+      <div class="album py-5">
+        <div class="container clearFix">
           <div
-            class="button__wrap d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"
-          >
-            <button
-              type="button"
-              class="genre__btn btn btn-lg px-4 me-sm-3 btn-outline-success"
-            >
-              장르별 보기
-            </button>
-            <button
-              type="button"
-              class="popular__btn btn btn-lg px-4 btn-outline-success"
-            >
-              인기순 보기
-            </button>
-          </div>
+            id="thumbnail-box"
+            class="row row-cols-3 row-cols-sm-3 row-cols-md-5 row-cols-lg-6 g-3"
+          ></div>
         </div>
-        <div class="genre__content">
-          <div>
-            <button type="button" data-genre="episode" class="genre__content--btn">에피소드</button>
-            <button type="button" data-genre="omnibus" class="genre__content--btn">옴니버스</button>
-            <button type="button" data-genre="story" class="genre__content--btn">스토리</button>
-            <button type="button" data-genre="daily" class="genre__content--btn">일상</button>
-            <button type="button" data-genre="comic" class="genre__content--btn">개그</button>
-            <button type="button" data-genre="fantasy" class="genre__content--btn">판타지</button>
-            <button type="button" data-genre="action" class="genre__content--btn">액션</button>
-            <button type="button" data-genre="drama" class="genre__content--btn">드라마</button>
-            <button type="button" data-genre="pure" class="genre__content--btn">순정</button>
-            <button type="button" data-genre="sensibility" class="genre__content--btn">감정</button>
-            <button type="button" data-genre="thrill" class="genre__content--btn">스릴러</button>
-            <button type="button" data-genre="historical" class="genre__content--btn">무협/사극</button>
-            <button type="button" data-genre="sports" class="genre__content--btn">스포츠</button>
-          </div>
+        <!-- // Thumbnail -->
+
+        <!-- read more btn -->
+        <div class="btn__more">
+          <button type="button" id="morebtn" class="btn btn-success">
+            READ MORE
+          </button>
         </div>
+        <!-- // read more btn -->
       </div>
-      <!-- // Banner -->
-
-      <!-- Modal -->
-
-      <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        db=""
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-t" id="exampleModalLabel">
-                    작품에 대한 의견을 남겨주세요 💚<button id="favorites">⭐즐겨찾기⭐</button>
-                </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img
-                    src=""
-                    width="100%"
-                    height="100%"
-                    title=""
-                    alt=""
-                    id="modal-img"
-                  />
-                  <div class="modal-wrap card-body">
-                    <div class="modal-wrap-header">
-                      <p class="modal-title"></p>
-                      <p class="modal-star"></p>
-                    </div>
-                    <p class="modal-writer"></p>
-                    <p class="modal-genre"></p>
-                    <a class="modal-url" href="" target="_blank">보러가기</a>
-                    <p class="modal-desc"></p>
-                  </div>
-                </div>
-              </div>
-              <form>
-                <div class="container clearFix">
-                  <div class="row">
-                    <div class="col-3 my-3">
-                      
-                      <label for="recipient-name" class="blind bicol-form-label"
-                        >Recipient:</label
-                      >
-                      <input
-                        placeholder="닉네임"
-                        type="text"
-                        class="{% if nickname %}blind {% endif%}form-control"
-                        id="recipient-name"
-                        value="{{ nickname }}"
-                      />
-                      <div>{{nickname}}</div>
-
-                    </div>
-                    <div class="comment__count" >댓글 수: 몰라요</div>
-                    <div class="col-9 my-3">
-                      <label for="message-text" class="blind col-form-label"
-                        >Message:</label
-                      >
-                      <textarea
-                        placeholder="댓글을 입력해주세요 😄"
-                        class="form-control"
-                        id="message-text"
-                      ></textarea>
-                    </div>
-                  </div>
-                </div>
-              </form>
-              <div class="container clearFix" id="comment_box"></div>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-success" id="commentBtn">
-                댓글 등록
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- // Modal -->
-
-      <!-- Thumbnail -->
-
-      <main class="bg-light">
-        <div class="album py-5">
-          <div class="container clearFix">
-            <div
-              id="thumbnail-box"
-              class="row row-cols-3 row-cols-sm-3 row-cols-md-5 row-cols-lg-6 g-3"
-            ></div>
-          </div>
-          <!-- // Thumbnail -->
-
-          <!-- read more btn -->
-          <div class="btn__more">
-            <button type="button" id="morebtn" class="btn btn-success">
-              READ MORE
-            </button>
-          </div>
-          <!-- // read more btn -->
-        </div>
-      </main>
-      <!-- topBtn -->
-      <button class="top__btn blind">TOP</button>
-      <!-- // topBtn -->
-      <!-- footer -->
-      <div class="footer__wrap">
-        <footer class="py-4">
-          <p class="text-center">© 2022 TEAM, XD</p>
-        </footer>
-      </div>
-      <!-- // footer -->
-    </li>
+    </main>
+    <!-- topBtn -->
+    <button class="top__btn blind">TOP</button>
+    <!-- // topBtn -->
+    <!-- footer -->
+    <div class="footer__wrap">
+      <footer class="py-4">
+        <p class="text-center">© 2022 TEAM, XD</p>
+      </footer>
+    </div>
+    <!-- // footer -->
   </body>
 </html>
