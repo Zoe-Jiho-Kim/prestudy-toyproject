@@ -196,16 +196,20 @@
               <form>
                 <div class="container clearFix">
                   <div class="row">
-                    <div class="col my-3">
+                    <div class="col-3 my-3">
+                      
                       <label for="recipient-name" class="blind bicol-form-label"
                         >Recipient:</label
                       >
                       <input
                         placeholder="닉네임"
                         type="text"
-                        class="form-control"
+                        class="{% if nickname %}blind {% endif%}form-control"
                         id="recipient-name"
+                        value="{{ nickname }}"
                       />
+                      <div>{{nickname}}</div>
+
                     </div>
                     <div class="comment__count" >댓글 수: 몰라요</div>
                     <div class="col-9 my-3">

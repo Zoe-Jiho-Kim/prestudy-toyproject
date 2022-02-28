@@ -232,11 +232,12 @@ ul#memberinfo li a {
 .comment-time {
   text-align: right;
   position: absolute;
-  right: 55px;
   width: 100px;
   color: #ccc;
   font-size: 7px;
   padding: 0;
+  right: 0px;
+  bottom: 2px;
 }
 .comment__btn {
   position: absolute;
