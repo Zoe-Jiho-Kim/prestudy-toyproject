@@ -31,6 +31,33 @@ application = Flask(import_name=__name__)
 
 SECRET_KEY = 'SPARTA'
 
+def main():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = toonUser.find_one({"id": payload['id']})
+        print(user_info)
+
+        return render_template('index.html', email=user_info["id"], nickname=user_info["nick"])
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("main", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("main", msg="로그인 정보가 존재하지 않습니다."))
+
+@app.route("/favoritelist", methods=["GET"])
+def favorite_get():
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    # db에서 타이틀찾기
+
+    favoritetitle = list(toonLikes.find({'name': payload['id']}, {'_id':False}))
+    print(favoritetitle)
+    # 토큰분해후 나온 id와 toonLikes에 있는 id가 동일했을때 값을가져옴
+
+    toon_list = list(dbc.webtoons.find({}, {'_id': False}))
+    print(toon_list)
+    # favorite_list = list(dbc.webtoons.find({}, {'_id': False}))
+    # print(favorite_list)
 
 @app.route("/favorites", methods=["POST"])
 def favorites_post():
@@ -42,7 +69,7 @@ def favorites_post():
         'title': title_receive,
     }
 
-    dbj.testkiwon.insert_one(doc)
+    toonLikes.insert_one(doc)
     return jsonify({'msg': '즐겨찾기 정보 저장!'})
 
 
@@ -126,7 +153,9 @@ def home():
 
 # 닉네임 가져와야함!
 
-
+@app.route('/favorite')
+def favorite():
+    return render_template('favorite.html')
 
 
 
@@ -183,7 +212,7 @@ def api_signup():
 
     doc = {'id': id_receive, 'pw': pw_hash, 'nick': nickname_receive}
     toonUser.insert_one(doc)
-    toonLikes.insert_one({'id': id_receive, 'toonId': []})
+    # toonLikes.insert_one({'id': id_receive, 'toonId': []})
 
     return jsonify({'result': 'success','msg': '회원가입을 축하드립니다!'})
 

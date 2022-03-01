@@ -19,3 +19,17 @@ function save_favorites() {
     },
   });
 }
+
+
+//////////////////////////////////////////////////
+$(document).ready(function () {
+  list();
+});
+
+function list() {
+  $.ajax({
+    type: 'GET',
+    url: '/favoritelist',
+    data: {},
+  });
+}
