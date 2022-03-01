@@ -94,6 +94,7 @@ ul#memberinfo li a {
   font-size: 1rem;
   display: block;
   width: 100%;
+  cursor: default;
 }
 #memberBox {
   width: 200px;
@@ -109,6 +110,7 @@ ul#memberinfo li a {
 }
 #memberBox li:hover a {
   text-decoration: underline;
+  cursor: pointer;
 }
 /* banner */
 #slideBanner {

@@ -3,15 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function naviEffect() {
-  const mainMenu = document.querySelector('#memberinfo>li>a');
+  const mainMenu = document.querySelector('#memberinfo>li');
   const memberBox = document.querySelector('#memberBox');
-  const header_inner = document.querySelector('#header_inner');
 
   initEvent();
 
   function initEvent() {
     mainMenu.addEventListener('mouseenter', mainMenuOver);
-    header_inner.addEventListener('mouseleave', mainMenuOut);
+    mainMenu.addEventListener('mouseleave', mainMenuOut);
   } //initEvent
 
   function mainMenuOver() {
