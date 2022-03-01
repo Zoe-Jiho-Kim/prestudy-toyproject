@@ -83,13 +83,10 @@ ul#memberinfo {
   width: 100%;
   margin-top: 15px;
   position: relative;
-  text-align: right;
-  margin-right: 5px; /*display: none;*/
+  text-align: right; /*display: none;*/
 }
-ul#memberinfo li {
-  position: relative;
-}
-ul#memberinfo li a {
+
+ul#memberinfo>li>a {
   text-decoration: none;
   font-size: 1rem;
   display: block;
@@ -97,24 +94,29 @@ ul#memberinfo li a {
   cursor: default;
 }
 #memberBox {
-  width: 200px;
+  width: 130px;
   position: absolute;
   right: 0;
   display: none;
 }
-#memberBox li a {
-  background: #aaa;
+#memberBox>li>a {
+  text-decoration: none;
+  background: #083d20;
   font-size: 0.875rem;
   text-align: center;
-  color: #333;
+  color: #fff; display:block;
 }
-#memberBox li:hover a {
+#memberBox>li:hover >a {
   text-decoration: underline;
   cursor: pointer;
 }
 /* banner */
+#slide{
+  width: 100%; position: relative; float:left;
+  height: 400px;
+}
 #slideBanner {
-  width: 100%;
+  width: 100%; position: relative;
   float: left;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),
     url(https://image.zdnet.co.kr/2020/03/06/hjan_EWKpagLviyCwJNQ.jpg);
@@ -122,7 +124,16 @@ ul#memberinfo li a {
   background-size: cover;
   margin: 0 !important;
 }
-
+div#dotBtn{
+  width:980px; height: 10px;
+  position: absolute; left:50%; transform: translatex(-50%);
+}
+div#dotBtn>a{
+  color: rgba(255, 253, 253, 0.56); padding: 5px;
+}
+div#dotBtn a.selected{
+  color: #009246;
+}
 .banner h1,
 .banner p {
   color: #fff;
@@ -140,7 +151,6 @@ ul#memberinfo li a {
   align-items: center;
   gap: 10px;
 }
-
 .search__bar > button {
   min-width: 60px;
 }
@@ -282,6 +292,9 @@ ul#memberinfo li a {
   button#loginBt {
     margin-left: 0;
   }
+  div#slideBtn{
+    width: 100%;
+  }
 }
 @media screen and (max-width: 768px) {
   html,
@@ -305,11 +318,13 @@ ul#memberinfo li a {
   }
   div#logBtn {
     padding: 0 40px;
+    justify-content: center;
+
   }
   ul#memberinfo {
     text-align: center;
   }
   #memberBox {
-    position: relative;
+    left:50%; transform: translateX(-50%);
   }
 }
