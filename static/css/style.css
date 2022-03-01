@@ -3,8 +3,15 @@
   font-weight: 400;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-
+.clearFix,
+.clearFix::after,
+.clearFix::before {
+  display: block;
+  content: '';
+  clear: both;
+}
 button {
   border: none;
   background-color: transparent;
@@ -25,25 +32,108 @@ button:focus {
   top: -9999px;
   font-size: 0;
 }
-
 /***********************
 * header
 ************************/
+#header {
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 130px;
+}
+#header_inner {
+  position: relative;
+  width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+h1#logo {
+  font: bold 1.875rem 'Poppins';
+  width: 20%;
+  margin-top: 30px;
+  position: relative;
+  float: left;
+}
 .header__logo {
-  font-size: 30px;
   letter-spacing: -1px;
   font-weight: 700;
 }
+#logDiv {
+  width: 20%;
+  position: relative;
+  margin-top: 25px;
+  font-size: 1rem;
+}
+#logBtn {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px; /*display: none;*/
+}
+#logBtn > button {
+  font-family: Poppins;
+}
+button#loginBt {
+  margin-left: 70px;
+}
+ul#memberinfo {
+  width: 100%;
+  margin-top: 15px;
+  position: relative;
+  text-align: right; /*display: none;*/
+}
 
+ul#memberinfo>li>a {
+  text-decoration: none;
+  font-size: 1rem;
+  display: block;
+  width: 100%;
+  cursor: default;
+}
+#memberBox {
+  width: 130px;
+  position: absolute;
+  right: 0;
+  display: none;
+}
+#memberBox>li>a {
+  text-decoration: none;
+  background: #083d20;
+  font-size: 0.875rem;
+  text-align: center;
+  color: #fff; display:block;
+}
+#memberBox>li:hover >a {
+  text-decoration: underline;
+  cursor: pointer;
+}
 /* banner */
-.banner {
+#slide{
+  width: 100%; position: relative; float:left;
+  height: 400px;
+}
+#slideBanner {
+  width: 100%; position: relative;
+  float: left;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),
     url(https://image.zdnet.co.kr/2020/03/06/hjan_EWKpagLviyCwJNQ.jpg);
   background-position: center;
   background-size: cover;
   margin: 0 !important;
 }
-
+div#dotBtn{
+  width:980px; height: 10px;
+  position: absolute; left:50%; transform: translatex(-50%);
+}
+div#dotBtn>a{
+  color: rgba(255, 253, 253, 0.56); padding: 5px;
+}
+div#dotBtn a.selected{
+  color: #009246;
+}
 .banner h1,
 .banner p {
   color: #fff;
@@ -61,7 +151,6 @@ button:focus {
   align-items: center;
   gap: 10px;
 }
-
 .search__bar > button {
   min-width: 60px;
 }
@@ -135,11 +224,32 @@ button:focus {
   font-size: 20px;
   margin-bottom: 10px;
 }
-.modal-star {
+.clearFix {
+  position: relative;
 }
-
 .user-name {
   text-align: center;
+}
+.comment__count {
+  position: absolute;
+  font-size: 7px;
+  bottom: 3px;
+  color: #999;
+}
+.comments {
+  border-top: 1px solid #ccc;
+  padding: 2px 0 15px;
+  position: relative;
+}
+.comment-time {
+  text-align: right;
+  position: absolute;
+  width: 100px;
+  color: #ccc;
+  font-size: 7px;
+  padding: 0;
+  right: 0px;
+  bottom: 2px;
 }
 /* topBtn */
 .top__btn {
@@ -174,4 +284,50 @@ button:focus {
 
 #webtoons-not-found-alert-box {
   font-size: var(--text-normal);
+}
+/**********미디어 스크린*************/
+@media screen and (max-width: 1400px) {
+  #header_inner {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 980px) {
+  button#loginBt {
+    margin-left: 0;
+  }
+  div#slideBtn{
+    width: 100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  html,
+  body {
+    font-size: 10px;
+  }
+  #header_inner {
+    display: inline-block;
+  }
+  h1#logo {
+    width: 100%;
+    text-align: center;
+  }
+  #logDiv {
+    width: 300px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    margin-left: -150px;
+    top: 30px;
+  }
+  div#logBtn {
+    padding: 0 40px;
+    justify-content: center;
+
+  }
+  ul#memberinfo {
+    text-align: center;
+  }
+  #memberBox {
+    left:50%; transform: translateX(-50%);
+  }
 }

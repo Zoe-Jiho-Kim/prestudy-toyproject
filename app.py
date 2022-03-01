@@ -31,6 +31,26 @@ application = Flask(import_name=__name__)
 
 SECRET_KEY = 'SPARTA'
 
+
+@app.route("/favorites", methods=["POST"])
+def favorites_post():
+    name_receive = request.form['name_give']
+    title_receive = request.form['title_give']
+
+    doc = {
+        'name': name_receive,
+        'title': title_receive,
+    }
+
+    dbj.testkiwon.insert_one(doc)
+    return jsonify({'msg': '즐겨찾기 정보 저장!'})
+
+
+
+
+
+
+
 #################################
 ##  정보수정을 위한 API         ##
 #################################
@@ -79,58 +99,36 @@ def information():
         except jwt.exceptions.DecodeError:
             return redirect(url_for("main", msg="로그인 정보가 존재하지 않습니다."))
 
+############################################
+##  유저 정보 확인 api (로그인된 유저만 call)  ##
+############################################
+
+
 @app.route('/main')
 def main():
     token_receive = request.cookies.get('mytoken')
     try:
-        token_receive = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = toonUser.find_one({"id": token_receive['id']})
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = toonUser.find_one({"id": payload['id']})
         print(user_info)
 
         return render_template('index.html', email=user_info["id"], nickname=user_info["nick"])
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return render_template('index.html')
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("main", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("main", msg="로그인 정보가 존재하지 않습니다."))
 
 
 
 @app.route('/')
 def home():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        token_receive = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = toonUser.find_one({"id": token_receive['id']})
-        print(user_info)
-        token = True
-    except:
-        token = False
-        # return render_template('index.html')
-    return redirect(url_for("main"))
+    return render_template('index.html')
 
 # 닉네임 가져와야함!
 
 
-############################################
-##  유저 정보 확인 api (로그인된 유저만 call)  ##
-############################################
 
-@app.route('/api/Verif', methods=['GET'])
-def verif():
-    token_receive = request.cookies.get('mytoken')
 
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        # print(payload)
-        user_info = toonUser.find_one({"id": payload['id']})
-        print(user_info)
-        return redirect(url_for("main"))
-    # , nickname = user_info['nick']
-
-    except jwt.ExpiredSignatureError:
-        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
-        #유효 시간이 만료 에러문구
-    except jwt.exceptions.DecodeError:
-        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
-        # jwt 토큰이 유효하지 않다는 에러문구
 
 @app.route('/signup')
 def register():
@@ -215,29 +213,7 @@ def logout():
 # 유림님
 #
 #########################################################
-clienty = MongoClient(
-    'mongodb+srv://test:sparta@cluster0.7fswg.mongodb.net/?retryWrites=true&w=majority')
-dby = clienty.dbsparta
 
-
-@app.route("/toon", methods=["POST"])
-def toon_post():
-    name_receive = request.form['name_give']
-    comment_receive = request.form['comment_give']
-
-    doc = {
-        'name': name_receive,
-        'comment': comment_receive
-    }
-
-    dby.toon.insert_one(doc)
-    return jsonify({'msg': '댓글 남기기!'})
-
-
-@app.route("/toon", methods=["GET"])
-def toon_get():
-    comment_list = list(dby.toon.find({}, {'_id': False}))
-    return jsonify({'comment': comment_list})
 
 
 
@@ -259,13 +235,51 @@ def webtoon_get():
   webtoon_list = list(dbc.webtoons.find({}, {'_id': False}))
   return jsonify({'webtoons':webtoon_list})
 
+@app.route("/webtoons/genre", methods=["POST"])
+def genre_post():
+  genre_name = request.form['genre_give']
+  
+  webtoon_list = list(dbc.webtoons.find({'genre': genre_name}, {'_id': False}))
+  return jsonify({'webtoons':webtoon_list})
+
 
 ########################################################
 #
 # 주환
 #
-########################################################
+#########################################################
+clientj = MongoClient(
+    'mongodb+srv://test:sparta@cluster0.oqwac.mongodb.net/myCluster0?retryWrites=true&w=majority')
+dbj = clientj.dbsparta
 
+
+@app.route("/toon", methods=["POST"])
+def toon_post():
+    name_receive = request.form['name_give']
+    comment_receive = request.form['comment_give']
+    title_receive = request.form['title_give']
+    time_receive = request.form['time_give']
+
+    doc = {
+        'name': name_receive,
+        'comment': comment_receive,
+        # 타이틀을 받아줍니다.
+        'title': title_receive,
+        'time' : time_receive
+    }
+
+    dbj.toon.insert_one(doc)
+    return jsonify({'msg': '댓글 남기기!'})
+
+
+
+@app.route("/toon/comment", methods=["POST"])
+def toon_get():
+    title_name = request.form['title_give']
+    
+    title_comment_list = list(dbj.toon.find({'title': title_name}, {'_id': False}))
+    
+    return jsonify({'comment': title_comment_list})
 
 
 ########################################################
