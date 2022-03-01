@@ -95,7 +95,7 @@
         </p>
         <form class="col-8 col-lg-auto mb-3 mb-lg-0 search__bar">
           <input id="input_kw" type="text" class="form-control" placeholder="Search..." aria-label="Search"/>
-          <button type="submit" class="btn btn-success" onclick="search()">검색</button>
+          <button type="button" class="btn btn-success" onclick="search()">검색</button>
         </form>
         <div
           class="button__wrap d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"
@@ -230,10 +230,7 @@
     <main class="bg-light">
       <div class="album py-5">
         <div class="container">
-          <div
-            id="thumbnail-box"
-            class="row row-cols-3 row-cols-sm-3 row-cols-md-5 row-cols-lg-6 g-3"
-          ></div>
+          <div id="thumbnail-box" class="row row-cols-3 row-cols-sm-3 row-cols-md-5 row-cols-lg-6 g-3"></div>
         </div>
         <!-- // Thumbnail -->
 
@@ -255,6 +252,10 @@
         <p class="text-center">© 2022 TEAM, XD</p>
       </footer>
     </div>
+    <div id="webtoons-not-found-alert-box" style="display: none">
+      <p>"{{ keywords }}"로 검색된 웹툰이 없습니다.</p>
+      <p>다른 검색어로 검색해보시겠어요?</p>
+  </div>
     <!-- // footer -->
   </body>
 </html>

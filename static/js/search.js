@@ -1,6 +1,8 @@
 'use strict';
 function search() {
+    $('#thumbnail-box').empty();
     let keyword = $('#input_kw').val();
+    // console.log(keyword)
 
     if (keyword == "") {
         alert("검색어를 입력하세요.")
@@ -12,20 +14,56 @@ function search() {
 
     $.ajax({
         type: 'POST',
-        url: '/search',
+        url: '/searchToons',
         data: {
-            'give_keyword': keyword
+            'give_keyword': keyword           
         },
-        success: function (response) {
-            console.log(response)
-            if(response['result'] == 'success'){
-                window.location.reload();
-            }            
-            // alert(response['msg']);
-            // window.location.replace("/results")
-        },
-
+        success: function (response) { 
+          // debugger;  
+          console.log(response)
+          let searched_wt = response['searched_webtoons']  
+         
+          $('#thumbnail-box').empty()
+            for(let i=0; i < searched_wt.length; i++){
+              let title = searched_wt[i]['title'];
+              let body = searched_wt[i]['body'].replace(/\"/gi, "'"); // Change double quotes to single quotes
+              let img = searched_wt[i]['img'];
+              let writer = searched_wt[i]['writer'];
+              let url = searched_wt[i]['url'];
+              let star = searched_wt[i]['star'];
+              let genre = searched_wt[i]['genre'];
+                 
+              let temp_html = `<button
+                                  type="button"
+                                  class="thumbnail"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal"
+                                  data-bs-whatever="${title}"
+                                  data-writer="${writer}"
+                                  data-body="${body}"
+                                  data-url="${url}"
+                                  data-star="⭐${star}"
+                                  data-genre="${genre}"
+                                  data-img="${img}"
+                                >
+                                  <div class="col">
+                                    <div class="card shadow-sm">
+                                      <img
+                                        src="${img}"
+                                        width="100%"
+                                        height="100%"
+                                        title="${title}"
+                                        alt="${title}"
+                                      />
+                                      <div class="card-body"">
+                                        <p class="thunmbnail__title card-text">${title}</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </button>`;
+                $('#thumbnail-box').append(temp_html);
+            }
+          
+        }
     });
 }
-
-

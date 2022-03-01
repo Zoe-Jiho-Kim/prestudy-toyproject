@@ -171,3 +171,7 @@ button:focus {
 .footer__wrap p {
   margin: 0;
 }
+
+#webtoons-not-found-alert-box {
+  font-size: var(--text-normal);
+}

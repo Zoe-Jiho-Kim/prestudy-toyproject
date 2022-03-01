@@ -32,7 +32,7 @@ application = Flask(import_name=__name__)
 SECRET_KEY = 'SPARTA'
 
 #################################
-##  정보수정을 위한 API           ##
+##  정보수정을 위한 API         ##
 #################################
 
 @app.route('/api/information', methods=['post'])
@@ -247,7 +247,7 @@ def toon_get():
 #
 # 춘님 
 #
-#########################################################
+########################################################
 
 clientc = MongoClient(
     'mongodb+srv://test:sparta@cluster0.rtpl1.mongodb.net/Cluster0?retryWrites=true&w=majority')
@@ -264,11 +264,29 @@ def webtoon_get():
 #
 # 주환
 #
-#########################################################
+########################################################
 
 
 
+########################################################
+#
+# 지호
+#
+########################################################
+@app.route('/searchToons', methods=['POST'])
+def search():
+    receice_keywords = request.form["give_keyword"]
+    print("##################################")
+    print("receice_keywords : " + receice_keywords)
 
+    # search_condition_list = []
+
+    # search_condition_list.append({'title': {'$regex': '.*' + receice_keywords + '.*'} })
+
+    searched_webtoons = list(dbc.webtoons.find({'title': {'$regex': '.*' + receice_keywords + '.*'}},{'_id': False}))
+    print(searched_webtoons)
+
+    return jsonify({'msg': ' 저장 ','searched_webtoons':searched_webtoons,'receice_keywords':receice_keywords})
     
 #########################################################
 # 실행 코드 (맨 아래에 위치해야합니다)
