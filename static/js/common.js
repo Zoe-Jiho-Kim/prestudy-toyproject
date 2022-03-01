@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   naviEffect();
   slideEffect();
+  starEffect();
 });
 
 //헤더 상단 네비 효과
@@ -128,3 +129,30 @@ function slideEffect() {
   }
 } //slideEffect
 //비쥬얼 슬라이드 효과 끝
+
+//별 눌렀을 때, 활성화 비활성화 효과
+
+function starEffect(){
+   const starBtn=document.querySelector('#favorites');
+   const star=document.querySelector('#favorites>a');
+   let isActivate=false;
+
+   initEvent();
+   function initEvent(){
+       starBtn.addEventListener('click', clickStar);
+   }; //initEvent
+
+   function clickStar(){
+     heartActivate();
+   }; //clickStar
+
+   function heartActivate(){
+     if(isActivate==false){
+       star.classList.add('yellow');
+       isActivate=true;
+     }else{
+       star.classList.remove('yellow');
+       isActivate=false;
+     }
+   }; //heartActivate
+ }; //heartEffect
