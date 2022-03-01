@@ -56,6 +56,9 @@ h1#logo {
   position: relative;
   float: left;
 }
+h1#logo a span{
+  font-family: 'Poppins';
+}
 .header__logo {
   letter-spacing: -1px;
   font-weight: 700;
@@ -111,10 +114,6 @@ ul#memberinfo>li>a {
   cursor: pointer;
 }
 /* banner */
-#slide{
-  width: 100%; position: relative; float:left;
-  height: 400px;
-}
 #slideBanner {
   width: 100%; position: relative;
   float: left;
@@ -138,7 +137,12 @@ div#dotBtn a.selected{
 .banner p {
   color: #fff;
 }
-
+h1.intro{
+  font-size:1.750rem;
+}
+p.justi{
+  width: 410px;
+}
 .banner__content {
   display: flex;
   flex-direction: column;
@@ -186,7 +190,9 @@ div#dotBtn a.selected{
   font-weight: 700;
   color: #fff;
 }
-
+#morebtn,.top__btn,p.footerFont,button.btn-secondary{
+  font-family: Poppins;
+}
 /***********************
 * main
 ************************/
