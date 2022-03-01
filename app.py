@@ -51,13 +51,24 @@ def favorite_get():
     # db에서 타이틀찾기
 
     favoritetitle = list(toonLikes.find({'name': payload['id']}, {'_id':False}))
-    print(favoritetitle)
+    # print(favoritetitle)
     # 토큰분해후 나온 id와 toonLikes에 있는 id가 동일했을때 값을가져옴
 
-    toon_list = list(dbc.webtoons.find({}, {'_id': False}))
-    print(toon_list)
+    # toon_list = list(dbc.webtoons.find({}, {'_id': False}))
+    # print(toon_list)
     # favorite_list = list(dbc.webtoons.find({}, {'_id': False}))
     # print(favorite_list)
+    return jsonify({'favorites': favoritetitle})
+  
+@app.route("/favoritelist", methods=["POST"])
+def favorite_post():
+    title_name = request.form['title_give']
+    
+    webtoon_list = list(dbc.webtoons.find({'title': title_name}, {'_id': False}))
+    
+    return jsonify({'webtoons':webtoon_list})
+  
+  
 
 @app.route("/favorites", methods=["POST"])
 def favorites_post():
