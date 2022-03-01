@@ -257,6 +257,20 @@ p.justi{
   right: 0px;
   bottom: 2px;
 }
+/*즐겨찾기버튼*/
+button#favorites{
+  position: absolute; top:100px;
+  right: 40px; z-index: 88;
+}
+button#favorites a{
+  color:#fff;
+}
+button#favorites a.yellow{
+color:yellow;
+}
+button#favorites a i{
+  transform:scale(1.2, 1.2);
+}
 /* topBtn */
 .top__btn {
   width: 50px;
