@@ -20,7 +20,6 @@ function save_favorites() {
   });
 }
 
-
 //////////////////////////////////////////////////
 $(document).ready(function () {
   list();
@@ -31,5 +30,21 @@ function list() {
     type: 'GET',
     url: '/favoritelist',
     data: {},
+    success: function (response) {
+      let rows = response['favorites'];
+      for (let i = 0; i < rows.length; i++) {
+        let title = rows[i]['title'];
+
+        $.ajax({
+          type: 'POST',
+          url: '/favoritelist',
+          data: { title_give: title },
+          success: function (response) {
+            let rows = response['webtoons'][0];
+            console.log(rows);
+          },
+        });
+      }
+    },
   });
 }
