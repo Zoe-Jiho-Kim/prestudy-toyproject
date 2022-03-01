@@ -143,10 +143,10 @@ function starEffect(){
    }; //initEvent
 
    function clickStar(){
-     heartActivate();
+     starActivate();
    }; //clickStar
 
-   function heartActivate(){
+   function starActivate(){
      if(isActivate==false){
        star.classList.add('yellow');
        isActivate=true;
@@ -154,5 +154,5 @@ function starEffect(){
        star.classList.remove('yellow');
        isActivate=false;
      }
-   }; //heartActivate
- }; //heartEffect
+   }; //starActivate
+ }; //starEffect
