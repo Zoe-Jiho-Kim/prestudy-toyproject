@@ -1,5 +1,6 @@
 #🧚‍♀️ 프로젝트 소개
-![](https://media.vlpt.us/images/ryurim0109/post/70db44ae-c446-4037-852b-dc8dc2fb9910/commentoon.png)
+
+
 ###프로젝트명: COMMENTOON (웹툰 + 댓글)
 ######[prestudy-toyproject]
 
