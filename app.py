@@ -338,7 +338,7 @@ def search():
     # search_condition_list.append({'title': {'$regex': '.*' + receice_keywords + '.*'} })
 
     searched_webtoons = list(dbc.webtoons.find({'title': {'$regex': '.*' + receice_keywords + '.*'}},{'_id': False}))
-    print(searched_webtoons)
+    # print(searched_webtoons)
 
     return jsonify({'msg': ' 저장 ','searched_webtoons':searched_webtoons,'receice_keywords':receice_keywords})
     

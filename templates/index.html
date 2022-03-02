@@ -55,7 +55,7 @@
     <script defer src="../static/js/favorite.js"></script>
     <script defer src="../static/js/genre-btn.js"></script>
     <script defer src="../static/js/popular.js"></script>
-    <script defersrc="../static/js/search.js"></script>
+    <script defer src="../static/js/search.js"></script>
     <!-- flask로 구동시 아래 코드를 사용해야 동작합니다 -->
     <!--
       <link
@@ -131,13 +131,17 @@
           넣어주세요~!<br />
           댓글 남기러 GO GO ✨
         </p>
-        <form class="col-8 col-lg-auto mb-3 mb-lg-0 search__bar">
+        <form
+          class="col-8 col-lg-auto mb-3 mb-lg-0 search__bar"
+          onsubmit="return false"
+        >
           <input
             id="input_kw"
             type="text"
             class="form-control"
             placeholder="Search..."
             aria-label="Search"
+            onkeypress="if( event.keyCode == 13 ){search();}"
           />
           <button type="button" class="btn btn-success" onclick="search()">
             검색
