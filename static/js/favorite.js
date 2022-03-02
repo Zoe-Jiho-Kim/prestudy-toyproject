@@ -1,6 +1,43 @@
 'use strict';
 
-//작업중
+// 이메일, 타이틀 저장
+$('#favorites').on('click', save_favorites);
+// comment 저장 함수
+function save_favorites() {
+  let title = titleBucket;
+  let name = document.querySelector('#useremail').innerHTML;
+
+  $.ajax({
+    type: 'POST',
+    url: '/favorites',
+    data: {
+      name_give: name,
+      title_give: title,
+    },
+    success: function (response) {
+      alert(response['msg']);
+    },
+  });
+}
+// 이메일, 타이틀 삭제
+$('#favorites').off('click', save_delete);
+// comment 저장 함수
+function save_delete() {
+  let title = titleBucket;
+  let name = document.querySelector('#useremail').innerHTML;
+
+  $.ajax({
+    type: 'POST',
+    url: '/favorites/delete',
+    data: {
+      name_give: name,
+      title_give: title,
+    },
+    success: function (response) {
+      alert(response['msg']);
+    },
+  });
+}
 
 //////////////////////////////////////////////////
 $(document).ready(function () {
