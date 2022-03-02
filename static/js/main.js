@@ -94,7 +94,7 @@ function listing() {
                                   title="${title}"
                                   alt="${title}"
                                 />
-                                <div class="card-body"">
+                                <div class="card-body">
                                   <p class="thunmbnail__title card-text">${title}</p>
                                 </div>
                               </div>

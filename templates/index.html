@@ -55,6 +55,7 @@
     <script defer src="../static/js/favorite.js"></script>
     <script defer src="../static/js/genre-btn.js"></script>
     <script defer src="../static/js/popular.js"></script>
+    <script defersrc="../static/js/search.js"></script>
     <!-- flask로 구동시 아래 코드를 사용해야 동작합니다 -->
     <!--
       <link
@@ -132,12 +133,15 @@
         </p>
         <form class="col-8 col-lg-auto mb-3 mb-lg-0 search__bar">
           <input
-            type="search"
+            id="input_kw"
+            type="text"
             class="form-control"
             placeholder="Search..."
             aria-label="Search"
           />
-          <button type="button" class="btn btn-success">검색</button>
+          <button type="button" class="btn btn-success" onclick="search()">
+            검색
+          </button>
         </form>
         <div
           class="button__wrap d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"
@@ -243,7 +247,9 @@
           <div class="modal-header">
             <h5 class="modal-t" id="exampleModalLabel">
               작품에 대한 의견을 남겨주세요 💚
-              <button id="favorites"><a><i class="fa-solid fa-star"></i></a></button>
+              <button id="favorites">
+                <a><i class="fa-solid fa-star"></i></a>
+              </button>
             </h5>
             <button
               type="button"
@@ -353,6 +359,10 @@
       <footer class="py-4">
         <p class="text-center footerFont">© 2022 TEAM, XD</p>
       </footer>
+    </div>
+    <div id="webtoons-not-found-alert-box" style="display: none">
+      <p>"{{ keywords }}"로 검색된 웹툰이 없습니다.</p>
+      <p>다른 검색어로 검색해보시겠어요?</p>
     </div>
     <!-- // footer -->
   </body>
