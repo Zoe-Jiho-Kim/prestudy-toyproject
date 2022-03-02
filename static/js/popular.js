@@ -4,14 +4,11 @@ const popularBtn = document.querySelector('.popular__btn');
 popularBtn.addEventListener('click', popularArray);
 
 function popularArray() {
-  console.log('hi');
-
   $.ajax({
     type: 'GET',
     url: '/popular',
     data: {},
     success: function (response) {
-      console.log(response);
       $('#thumbnail-box').empty();
       let rows = response['comment'];
       for (let i = 0; i < 30; i++) {
