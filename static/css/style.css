@@ -251,8 +251,9 @@ button.btn-secondary {
 .comment__count {
   position: absolute;
   font-size: 7px;
-  bottom: 3px;
+  bottom: 4px;
   color: #999;
+  line-height: 1.4em;
 }
 .comments {
   border-top: 1px solid #ccc;
