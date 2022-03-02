@@ -42,6 +42,7 @@ function list() {
           success: function (response) {
             let rows = response['webtoons'][0];
             console.log(rows);
+
           },
         });
       }

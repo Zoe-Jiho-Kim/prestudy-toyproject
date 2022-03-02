@@ -162,6 +162,7 @@ def main():
 def home():
     return render_template('index.html')
 
+
 # 닉네임 가져와야함!
 
 @app.route('/favorite')
