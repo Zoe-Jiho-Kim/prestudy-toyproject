@@ -34,16 +34,21 @@ function search() {
         //console.log(typeof searched_wt);
         //console.log(searched_wt.findIndex);
         //if (!searched_wt[0]['title'])
-        for (let i = 0; i < searched_wt.length; i++) {
-          let title = searched_wt[i]['title'];
-          let body = searched_wt[i]['body'].replace(/\"/gi, "'"); // Change double quotes to single quotes
-          let img = searched_wt[i]['img'];
-          let writer = searched_wt[i]['writer'];
-          let url = searched_wt[i]['url'];
-          let star = searched_wt[i]['star'];
-          let genre = searched_wt[i]['genre'];
 
-          let temp_html = `<button
+        if (searched_wt=='') {
+          alert("검색 결과가 없습니다.")
+          window.location.reload()
+        } else {
+          for (let i = 0; i < searched_wt.length; i++) {
+            let title = searched_wt[i]['title'];
+            let body = searched_wt[i]['body'].replace(/\"/gi, "'"); // Change double quotes to single quotes
+            let img = searched_wt[i]['img'];
+            let writer = searched_wt[i]['writer'];
+            let url = searched_wt[i]['url'];
+            let star = searched_wt[i]['star'];
+            let genre = searched_wt[i]['genre'];
+
+            let temp_html = `<button
                                     type="button"
                                     class="thumbnail"
                                     data-bs-toggle="modal"
@@ -71,10 +76,11 @@ function search() {
                                       </div>
                                     </div>
                                   </button>`;
-          $('#thumbnail-box').append(temp_html);
+            $('#thumbnail-box').append(temp_html);
+            readTitle();
+            viewComments();
+          }
         }
-        readTitle();
-        viewComments();
       },
     });
   }
