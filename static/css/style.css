@@ -315,7 +315,21 @@ button#favorites a i {
 #webtoons-not-found-alert-box {
   font-size: var(--text-normal);
 }
-
+/**************즐겨찾기 페이지 Css******************/
+div#bookMarkBanner{
+   width: 100%;
+  position: relative;
+  float: left; height: 200px; padding: 90px 0;
+  background:  linear-gradient(0deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.25))
+  ,url('https://i.pinimg.com/564x/60/cf/00/60cf00a54523113de1ffecc285184427.jpg') -70px -800px repeat-x;
+}
+div#bookMarkBanner h1{
+  width: 100%;
+  text-align: center;
+}
+main.minHeight{
+  min-height: 900px;
+}
 /**********미디어 스크린*************/
 @media screen and (max-width: 1400px) {
   #header_inner {
