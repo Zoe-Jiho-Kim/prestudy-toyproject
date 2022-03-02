@@ -54,10 +54,6 @@ def favorite_get():
     # print(favoritetitle)
     # 토큰분해후 나온 id와 toonLikes에 있는 id가 동일했을때 값을가져옴
 
-    # toon_list = list(dbc.webtoons.find({}, {'_id': False}))
-    # print(toon_list)
-    # favorite_list = list(dbc.webtoons.find({}, {'_id': False}))
-    # print(favorite_list)
     return jsonify({'favorites': favoritetitle})
   
 @app.route("/favoritelist", methods=["POST"])
@@ -67,8 +63,23 @@ def favorite_post():
     webtoon_list = list(dbc.webtoons.find({'title': title_name}, {'_id': False}))
     
     return jsonify({'webtoons':webtoon_list})
-  
-  
+
+
+#   이메일, 타이틀 저장
+
+@app.route("/favorites/delete", methods=["POST"])
+def favorites_delete():
+    name_receive = request.form['name_give']
+    title_receive = request.form['title_give']
+
+    doc = {
+        'name': name_receive,
+        'title': title_receive,
+    }
+    toonLikes.delete_one({'name': name_receive},{'title': title_receive})
+    return jsonify({'msg': '즐겨찾기 정보 저장!'})
+
+# 이메일, 타이틀 삭제
 
 @app.route("/favorites", methods=["POST"])
 def favorites_post():
@@ -88,9 +99,8 @@ def favorites_post():
 
 
 
-
 #################################
-##  정보수정을 위한 API         ##
+##      정보수정을 위한 API      ##
 #################################
 
 @app.route('/api/information', methods=['post'])
