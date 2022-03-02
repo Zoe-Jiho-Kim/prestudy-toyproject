@@ -322,6 +322,17 @@ def toon_get():
     
     return jsonify({'comment': title_comment_list})
 
+@app.route("/popular", methods=["GET"])
+def popular_get():
+    webtoon_list = dbc.webtoons.find({}, {'_id': False}).sort("star", -1)
+    
+    webtoon_list_edit = list({editlist['title']: editlist for editlist in webtoon_list}.values())
+
+    
+    
+    #print(test_list)
+    return jsonify({'comment': webtoon_list_edit})
+
 
 ########################################################
 #
@@ -331,17 +342,12 @@ def toon_get():
 @app.route('/searchToons', methods=['POST'])
 def search():
     receice_keywords = request.form["give_keyword"]
-    print("##################################")
-    print("receice_keywords : " + receice_keywords)
 
-    # search_condition_list = []
-
-    # search_condition_list.append({'title': {'$regex': '.*' + receice_keywords + '.*'} })
 
     searched_webtoons = list(dbc.webtoons.find({'title': {'$regex': '.*' + receice_keywords + '.*'}},{'_id': False}))
-    # print(searched_webtoons)
+    searched_webtoons_edit = list({editlist['title']: editlist for editlist in searched_webtoons}.values())
 
-    return jsonify({'msg': ' 저장 ','searched_webtoons':searched_webtoons,'receice_keywords':receice_keywords})
+    return jsonify({'msg': ' 저장 ','searched_webtoons':searched_webtoons_edit,'receice_keywords':receice_keywords})
     
 #########################################################
 # 실행 코드 (맨 아래에 위치해야합니다)
