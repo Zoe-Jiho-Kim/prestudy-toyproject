@@ -5,6 +5,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  overflow: hidden;
+}
 .clearFix,
 .clearFix::after,
 .clearFix::before {
@@ -268,9 +271,10 @@ button.btn-secondary {
 }
 /*즐겨찾기버튼*/
 button#favorites {
-  position: absolute; width:10px;
+  position: absolute;
+  width: 10px;
   top: 20px;
-  right:30px;
+  right: 30px;
 }
 button#favorites a {
   color: #fff;
