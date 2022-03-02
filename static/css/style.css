@@ -268,10 +268,9 @@ button.btn-secondary {
 }
 /*즐겨찾기버튼*/
 button#favorites {
-  position: absolute;
-  top: 100px;
-  right: 40px;
-  z-index: 88;
+  position: absolute; width:10px;
+  top: 20px;
+  right:30px;
 }
 button#favorites a {
   color: #fff;
