@@ -383,3 +383,30 @@ function save_favorites() {
     },
   });
 }
+
+/////////////// 임시
+
+function starEffect() {
+  const starBtn = document.querySelector('#favorites');
+  const star = document.querySelector('#favorites>a');
+  let isActivate = false;
+
+  initEvent();
+  function initEvent() {
+    starBtn.addEventListener('click', clickStar);
+  } //initEvent
+
+  function clickStar() {
+    starActivate();
+  } //clickStar
+
+  function starActivate() {
+    if (isActivate == false) {
+      star.classList.add('yellow');
+      isActivate = true;
+    } else {
+      star.classList.remove('yellow');
+      isActivate = false;
+    }
+  } //starActivate
+} //starEffect
