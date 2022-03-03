@@ -12,6 +12,8 @@ from pymongo import MongoClient
 from jwt import encode, ExpiredSignatureError, decode, exceptions
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 
+
+
 app = Flask(__name__)
 
 #########################################################
@@ -20,83 +22,64 @@ app = Flask(__name__)
 #
 #########################################################
 
-client = MongoClient('mongodb+srv://test:sparta@cluster0.ugwpp.mongodb.net/Cluster0?retryWrites=true&w=majority')
+client = MongoClient('localhost', 27017)
 dbtoon = client.toon
-toonInfo = dbtoon.toonInfo
 toonUser = dbtoon.toonUser
 toonLikes = dbtoon.toonLikes
 
-
 application = Flask(import_name=__name__)
 
+# 토큰 시크릿코드 #
 SECRET_KEY = 'SPARTA'
 
-def main():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = toonUser.find_one({"id": payload['id']})
-        print(user_info)
 
-        return render_template('index.html', email=user_info["id"], nickname=user_info["nick"])
-    except jwt.ExpiredSignatureError:
-        return redirect(url_for("main", msg="로그인 시간이 만료되었습니다."))
-    except jwt.exceptions.DecodeError:
-        return redirect(url_for("main", msg="로그인 정보가 존재하지 않습니다."))
+#################################
+##   즐겨찾기 ID정보저장 API      ##
+#################################
 
 @app.route("/favoritelist", methods=["GET"])
 def favorite_get():
     token_receive = request.cookies.get('mytoken')
     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
     # db에서 타이틀찾기
-
     favoritetitle = list(toonLikes.find({'name': payload['id']}, {'_id':False}))
-    # print(favoritetitle)
     # 토큰분해후 나온 id와 toonLikes에 있는 id가 동일했을때 값을가져옴
-
     return jsonify({'favorites': favoritetitle})
   
 @app.route("/favoritelist", methods=["POST"])
 def favorite_post():
     title_name = request.form['title_give']
-    
     webtoon_list = list(dbc.webtoons.find({'title': title_name}, {'_id': False}))
-    
     return jsonify({'webtoons':webtoon_list})
 
 
-#   이메일, 타이틀 저장
+#################################
+##     즐겨찾기 정보삭제 API      ##
+#################################
 
 @app.route("/favorites/delete", methods=["POST"])
 def favorites_delete():
     name_receive = request.form['name_give']
     title_receive = request.form['title_give']
 
-    # doc = {
-    #     'name': name_receive,
-    #     'title': title_receive,
-    # }
     toonLikes.delete_one({'name': name_receive, 'title': title_receive})
     return jsonify({'msg': '즐겨찾기 정보 삭제!'})
 
-# 이메일, 타이틀 삭제
+
+#################################
+##     즐겨찾기 목록저장 API      ##
+#################################
 
 @app.route("/favorites", methods=["POST"])      
 def favorites_post():
     name_receive = request.form['name_give']
     title_receive = request.form['title_give']
-
     doc = {
         'name': name_receive,
         'title': title_receive,
     }
-
     toonLikes.insert_one(doc)
     return jsonify({'msg': '즐겨찾기 정보 저장!'})
-
-
-
-
 
 
 #################################
@@ -130,9 +113,9 @@ def api_information():
     return jsonify({'result': 'success','msg': '정보변경 완료!'})
 
 
-
-
-
+######################################
+##   information 유저 정보 확인 api   ##
+######################################
 
 @app.route('/information')
 def information():
@@ -147,10 +130,10 @@ def information():
         except jwt.exceptions.DecodeError:
             return redirect(url_for("main", msg="로그인 정보가 존재하지 않습니다."))
 
-############################################
-##  유저 정보 확인 api (로그인된 유저만 call)  ##
-############################################
 
+############################
+## main 유저 정보 확인 api  ##
+############################
 
 @app.route('/main')
 def main():
@@ -167,13 +150,9 @@ def main():
         return redirect(url_for("main", msg="로그인 정보가 존재하지 않습니다."))
 
 
-
-@app.route('/')
-def home():
-    return render_template('index.html')
-
-
-# 닉네임 가져와야함!
+###################################
+##   favorite 유저 정보 확인 api   ##
+###################################
 
 @app.route('/favorite')
 def loginCornfirm():
@@ -188,10 +167,15 @@ def loginCornfirm():
         return redirect(url_for("main", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
         return redirect(url_for("main", msg="로그인 정보가 존재하지 않습니다."))
-def favorite():
-    return render_template('favorite.html')
 
 
+##################
+##  페이지 반환   ##
+##################
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 @app.route('/signup')
 def register():
@@ -216,20 +200,19 @@ def api_login():
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
 
     result = toonUser.find_one({'id': id_receive, 'pw': pw_hash})
-
+    print(result)
     if result is not None:
         payload = {
             'id': id_receive,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=24*60*60)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=60*60*24)
         }
         token = encode(payload, SECRET_KEY, algorithm='HS256')
-
+        print(payload)
         return jsonify({'result': 'success', 'token': token})
 
     else:
 
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
-
 
 
 #################################
@@ -246,7 +229,6 @@ def api_signup():
 
     doc = {'id': id_receive, 'pw': pw_hash, 'nick': nickname_receive}
     toonUser.insert_one(doc)
-    # toonLikes.insert_one({'id': id_receive, 'toonId': []})
 
     return jsonify({'result': 'success','msg': '회원가입을 축하드립니다!'})
 
@@ -262,6 +244,7 @@ def check_dup():
     exists = bool(toonUser.find_one({"id": username_receive}))
 
     return jsonify({'result': 'success', 'exists': exists})
+
 
 #################################
 ##        로그아웃 API           ##
@@ -289,7 +272,7 @@ def logout():
 ########################################################
 
 clientc = MongoClient(
-    'mongodb+srv://test:sparta@cluster0.rtpl1.mongodb.net/Cluster0?retryWrites=true&w=majority')
+    'localhost', 27017)
 dbc = clientc.dbsparta
 
 
@@ -312,7 +295,7 @@ def genre_post():
 #
 #########################################################
 clientj = MongoClient(
-    'mongodb+srv://test:sparta@cluster0.oqwac.mongodb.net/myCluster0?retryWrites=true&w=majority')
+    'localhost', 27017)
 dbj = clientj.dbsparta
 
 
