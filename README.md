@@ -1,5 +1,4 @@
 <h1>🧚‍♀️ 프로젝트 소개</h1>
-<hr/>
 <h3>프로젝트명: COMMENTOON (웹툰 + 댓글)</h3>
 <h6>[prestudy-toyproject]</h6>
 <p> ✅ "COMMENTOON" 은 국내 최대 웹툰 사이트인 ‘NAVER WEBTOON’을 크롤링하여 사용자들의 의견을 교류할 수 있는 사이트입니다. </p>
