@@ -5,26 +5,26 @@
 <p> ✅ "COMMENTOON" 은 국내 최대 웹툰 사이트인 ‘NAVER WEBTOON’을 크롤링하여 사용자들의 의견을 교류할 수 있는 사이트입니다. </p>
 <p> ✅ 웹툰을 읽는 도중,
 혹은 읽은 직후에 자신이 느낀 감정을 다른 이들과 함께 댓글로 교류할 수 있습니다!</p>
-<h2>1. 제작 기간 & XD팀원 소개 👨‍💻</h2>
+<h3>1. 제작 기간 & XD팀원 소개 👨‍💻</h3>
 <h4>(제작 기간: 📆2022.02.21~ 2022.03.03)</h4>
 
 
 <table>
     <tr>
         <td align="center">
-        <a href="#"><img src="https://img.shields.io/badge/권기원-0014A7?style=뱃지모양&logo=로고&logoColor=white"/></a>
+        <a href="#;"><img src="https://img.shields.io/badge/권기원-0014A7?style=뱃지모양&logo=로고&logoColor=white"/></a>
         </td>
         <td align="center">
         <a href="https://velog.io/@ryurim0109"><img src="https://img.shields.io/badge/김유림-FFE812?style=뱃지모양&logo=로고&logoColor=black"/></a>
         </td>
         <td align="center">
-        <a href="#"><img src="https://img.shields.io/badge/김지호-8C58E7?style=뱃지모양&logo=로고&logoColor=white"/></a>
+        <a href="#;"><img src="https://img.shields.io/badge/김지호-8C58E7?style=뱃지모양&logo=로고&logoColor=white"/></a>
         </td>
         <td align="center">
-        <a href="#"><img src="https://img.shields.io/badge/이주환-1C84FF?style=뱃지모양&logo=로고&logoColor=black"/></a> 
+        <a href="#;"><img src="https://img.shields.io/badge/이주환-1C84FF?style=뱃지모양&logo=로고&logoColor=black"/></a> 
         </td>
         <td align="center">
-        <a href="#"><img src="https://img.shields.io/badge/이춘-7EA973?style=뱃지모양&logo=로고&logoColor=black"/></a> 
+        <a href="#;"><img src="https://img.shields.io/badge/이춘-7EA973?style=뱃지모양&logo=로고&logoColor=black"/></a> 
         </td>
     </tr>
     <tr>
@@ -46,7 +46,7 @@
         </td>
         <td align="center">검색 기능 구현
         </td>
-        <td align="center">레이아웃 구성 + 프론트 엔드 작업 + 댓글기능 구현
+        <td align="center">레이아웃 구성 + 프론트 엔드 작업 + 댓글 / 인기순 / 장르별 / 즐겨찾기 기능 구현
         </td>
         <td align="center">크롤링 기능 구현
         </td>
@@ -77,10 +77,14 @@
 <img src="https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white">
 <img src="https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens">
 <img src="https://img.shields.io/badge/Jinja-7952B3?style=for-the-badge&logo=Jinja&logoColor=white">
+<img src="https://img.shields.io/badge/Gsap-0000ff?style=for-the-badge&logo=Gsap&logoColor=white">
+<img src="https://img.shields.io/badge/Fontawsome-00ffff?style=for-the-badge&logo=Fontawsome&logoColor=white">
+<img src="https://img.shields.io/badge/bulma-e34?style=for-the-badge&logo=bulma&logoColor=white">
 </p>
 
 <h4>-에디터</h4>
 <img src="https://img.shields.io/badge/pycharm-143?style=for-the-badge&logo=pycharm&logoColor=black&color=black&labelColor=brightgreen">
+<img src="https://img.shields.io/badge/VisualStudio-143?style=for-the-badge&logo=VisualStudio&logoColor=blue&color=blue&labelColor=ffffff">
 
 <h4>-협업툴</h4>
 <p float="left">
@@ -93,6 +97,46 @@
 
 <h4>-호스팅<h4>
 <img src="https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white">
+
+<h3>5. 디렉터리 구조 🗂</h3>
+<pre>
+<code>
+/static
+  └──/css
+     ├── /information.css
+     ├── /style.css
+     ├── /login.css
+     ├── /signup.css
+     └── /style.css
+  └──/img
+     ├── /favicon.png
+  └──/js
+     ├── /common.js
+     ├── /favorite.js
+     ├── /genre-btn.js
+     ├── /information.js
+     ├── /login.js
+     ├── /main.js
+     ├── /popular.js
+     ├── /search.js
+     └── /signup.js
+/templates
+  └──/html
+     ├── /crawlling.html
+     ├── /favorite.html
+     ├── /index.html
+     ├── /information.html
+     ├── /login.html
+     ├── /signup.html
+     └── /test.html
+
+├── /README.md
+├── /app.py
+</code>
+</pre>
+
+
+<h3>6. 후기 📝</h3>
 
 
 
