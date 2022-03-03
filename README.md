@@ -81,8 +81,7 @@
 <img src="https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens">
 <img src="https://img.shields.io/badge/Jinja-7952B3?style=for-the-badge&logo=Jinja&logoColor=white">
 <img src="https://img.shields.io/badge/Gsap-0000ff?style=for-the-badge&logo=Gsap&logoColor=white">
-<img src="https://img.shields.io/badge/Fontawsome-00ffff?style=for-the-badge&logo=Fontawsome&logoColor=white">
-<img src="https://img.shields.io/badge/bulma-e34?style=for-the-badge&logo=bulma&logoColor=white">
+<img src="https://img.shields.io/badge/Flask-00ffff?style=for-the-badge&logo=Flask&logoColor=black">
 </p>
 
 <h4>-에디터</h4>
@@ -144,6 +143,10 @@
 <code>권기원</code> 
 <br />
 <code>김유림</code> 
+다들 너무 열심히 해주셔서 많이 배워가는 프젝이었어요. <br />
+처음 맡아서 하려고 했던 댓글 기능 구현을 제대로 마무리 하지 못해서 아쉽네요.ㅠㅠ <br />
+더 공부해서 팀원들에게 도움이 되고 싶다는 생각을 하게 되네요 <br/> 
+다들 고생 많이 하셨어요 :)
 <br />
 <code>김지호</code> 
 <br />
