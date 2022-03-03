@@ -365,21 +365,44 @@ $(document).ready(function () {
  * favorite 저장함수
  **************************/
 
-$('#favorites').on('click', save_favorites);
+const favoriteOff = document.querySelector('#favorites-off');
+// 이메일, 타이틀 저장
+// $('#favorites').on('click', save_favorites);
 // comment 저장 함수
+favoriteOff.addEventListener('click', save_favorites);
+
 function save_favorites() {
   let title = titleBucket;
   let name = document.querySelector('#useremail').innerHTML;
 
   $.ajax({
-    type: 'POST',
-    url: '/favorites',
-    data: {
-      name_give: name,
-      title_give: title,
-    },
+    type: 'GET',
+    url: '/favoritelist',
+    data: {},
     success: function (response) {
-      alert(response['msg']);
+      let rows = response['favorites'];
+      const arrayNew = [{ name: name, title: title }];
+      const newArr = [...rows, ...arrayNew];
+
+      // 중복 확인
+      const newArrSet = [...new Set(newArr.map(JSON.stringify))].map(
+        JSON.parse
+      );
+
+      rows.length === newArrSet.length
+        ? alert('이미 즐겨찾기 되어있습니다!')
+        : $.ajax({
+            type: 'POST',
+            url: '/favorites',
+            data: {
+              name_give: name,
+              title_give: title,
+            },
+            success: function (response) {
+              console.log(response);
+              alert(response['msg']);
+            },
+          });
     },
   });
 }
@@ -403,30 +426,3 @@ function naviEffect() {
     });
   })(); //initEvent
 } //naviEffect
-
-//별 눌렀을 때, 활성화 비활성화 효과
-
-function starEffect() {
-  const starBtn = document.querySelector('#favorites');
-  const star = document.querySelector('#favorites>a');
-  let isActivate = false;
-
-  initEvent();
-  function initEvent() {
-    starBtn.addEventListener('click', clickStar);
-  } //initEvent
-
-  function clickStar() {
-    starActivate();
-  } //clickStar
-
-  function starActivate() {
-    if (isActivate == false) {
-      star.classList.add('yellow');
-      isActivate = true;
-    } else {
-      star.classList.remove('yellow');
-      isActivate = false;
-    }
-  } //starActivate
-} //starEffect

@@ -1,8 +1,12 @@
 'use strict';
 
+const favoriteOn = document.querySelector('#favorites-on');
+
 // 이메일, 타이틀 저장
-$('#favorites').on('click', save_favorites);
+// $('#favorites').on('click', save_favorites);
 // comment 저장 함수
+//favoriteOff.addEventListener('click', save_favorites);
+
 function save_favorites() {
   let title = titleBucket;
   let name = document.querySelector('#useremail').innerHTML;
@@ -20,7 +24,8 @@ function save_favorites() {
   });
 }
 // 이메일, 타이틀 삭제
-$('#favorites').off('click', save_delete);
+
+favoriteOn.addEventListener('click', save_delete);
 // comment 저장 함수
 function save_delete() {
   let title = titleBucket;
@@ -34,6 +39,7 @@ function save_delete() {
       title_give: title,
     },
     success: function (response) {
+      location.reload();
       alert(response['msg']);
     },
   });
@@ -47,6 +53,7 @@ $(document).ready(function () {
 function list() {
   $('#thumbnail-box').empty();
   moreBtn.className = 'blind';
+  favoriteOff.className = 'blind';
   $.ajax({
     type: 'GET',
     url: '/favoritelist',

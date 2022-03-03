@@ -275,17 +275,14 @@ button#favorites {
   position: absolute;
   width: 10px;
   top: 20px;
-  right: 30px;
+  right: 55px;
+  font-size: 30px;
+  user-select: none;
 }
-button#favorites a {
-  color: #fff;
+button#favorites > a {
+  text-shadow: 0px 0px 10px #333, 0px 0px 5px #333;
 }
-button#favorites a.yellow {
-  color: yellow;
-}
-button#favorites a i {
-  transform: scale(1.2, 1.2);
-}
+
 /* topBtn */
 .top__btn {
   width: 50px;
@@ -321,18 +318,21 @@ button#favorites a i {
   font-size: var(--text-normal);
 }
 /**************즐겨찾기 페이지 Css******************/
-div#bookMarkBanner{
-   width: 100%;
+div#bookMarkBanner {
+  width: 100%;
   position: relative;
-  float: left; height: 200px; padding: 90px 0;
-  background:  linear-gradient(0deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.25))
-  ,url('https://i.pinimg.com/564x/60/cf/00/60cf00a54523113de1ffecc285184427.jpg') -70px -800px repeat-x;
+  float: left;
+  height: 200px;
+  padding: 90px 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.25)),
+    url('https://i.pinimg.com/564x/60/cf/00/60cf00a54523113de1ffecc285184427.jpg') -70px -800px
+      repeat-x;
 }
-div#bookMarkBanner h1{
+div#bookMarkBanner h1 {
   width: 100%;
   text-align: center;
 }
-main.minHeight{
+main.minHeight {
   min-height: 900px;
 }
 /**********미디어 스크린*************/

@@ -72,12 +72,12 @@ def favorites_delete():
     name_receive = request.form['name_give']
     title_receive = request.form['title_give']
 
-    doc = {
-        'name': name_receive,
-        'title': title_receive,
-    }
-    toonLikes.delete_one({'name': name_receive},{'title': title_receive})
-    return jsonify({'msg': '즐겨찾기 정보 저장!'})
+    # doc = {
+    #     'name': name_receive,
+    #     'title': title_receive,
+    # }
+    toonLikes.delete_one({'name': name_receive, 'title': title_receive})
+    return jsonify({'msg': '즐겨찾기 정보 삭제!'})
 
 # 이메일, 타이틀 삭제
 
