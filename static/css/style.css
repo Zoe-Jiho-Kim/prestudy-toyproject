@@ -5,6 +5,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  overflow: hidden;
+}
 .clearFix,
 .clearFix::after,
 .clearFix::before {
@@ -248,8 +251,9 @@ button.btn-secondary {
 .comment__count {
   position: absolute;
   font-size: 7px;
-  bottom: 3px;
+  bottom: 4px;
   color: #999;
+  line-height: 1.4em;
 }
 .comments {
   border-top: 1px solid #ccc;
@@ -268,9 +272,10 @@ button.btn-secondary {
 }
 /*즐겨찾기버튼*/
 button#favorites {
-  position: absolute; width:10px;
+  position: absolute;
+  width: 10px;
   top: 20px;
-  right:30px;
+  right: 30px;
 }
 button#favorites a {
   color: #fff;

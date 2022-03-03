@@ -6,24 +6,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //헤더 상단 네비 효과
 function naviEffect() {
-  const mainMenu = document.querySelector('#memberinfo>li>a');
+  const mainMenu = document.querySelector('#memberinfo>li');
   const memberBox = document.querySelector('#memberBox');
-  const header_inner = document.querySelector('#header_inner');
-  const logDiv = document.querySelector('#logDiv');
 
   initEvent();
 
   function initEvent() {
-    logDiv.addEventListener('mouseenter', mainMenuOver);
-    header_inner.addEventListener('mouseleave', mainMenuOut);
+    mainMenu.addEventListener('mouseenter', () => {
+      memberBox.style.display = 'block';
+    });
+    mainMenu.addEventListener('mouseleave', () => {
+      memberBox.style.display = 'none';
+    });
   } //initEvent
-
-  function mainMenuOver() {
-    gsap.set(memberBox, { display: 'block' });
-  }
-  function mainMenuOut() {
-    gsap.set(memberBox, { display: 'none' });
-  }
 } //naviEffect
 
 //헤더 상단 네비 효과 끝
@@ -132,27 +127,27 @@ function slideEffect() {
 
 //별 눌렀을 때, 활성화 비활성화 효과
 
-function starEffect(){
-   const starBtn=document.querySelector('#favorites');
-   const star=document.querySelector('#favorites>a');
-   let isActivate=false;
+function starEffect() {
+  const starBtn = document.querySelector('#favorites');
+  const star = document.querySelector('#favorites>a');
+  let isActivate = false;
 
-   initEvent();
-   function initEvent(){
-       starBtn.addEventListener('click', clickStar);
-   }; //initEvent
+  initEvent();
+  function initEvent() {
+    starBtn.addEventListener('click', clickStar);
+  } //initEvent
 
-   function clickStar(){
-     starActivate();
-   }; //clickStar
+  function clickStar() {
+    starActivate();
+  } //clickStar
 
-   function starActivate(){
-     if(isActivate==false){
-       star.classList.add('yellow');
-       isActivate=true;
-     }else{
-       star.classList.remove('yellow');
-       isActivate=false;
-     }
-   }; //starActivate
- }; //starEffect
+  function starActivate() {
+    if (isActivate == false) {
+      star.classList.add('yellow');
+      isActivate = true;
+    } else {
+      star.classList.remove('yellow');
+      isActivate = false;
+    }
+  } //starActivate
+} //starEffect

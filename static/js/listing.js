@@ -14,7 +14,6 @@ function listing() {
     data: {},
     success: function (response) {
       let rows = response['webtoons'];
-      console.log(rows);
       for (let i = 0; i < 30; i++) {
         let title = rows[i]['title'];
         let body = rows[i]['body'].replace(/\"/gi, "'"); // Change double quotes to single quotes
