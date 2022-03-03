@@ -5,8 +5,14 @@
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  overflow: hidden;
+ul,li{
+  list-style:none;
+}
+a{
+  text-decoration: none;
+}
+body{
+  width: 100%;
 }
 .clearFix,
 .clearFix::after,
@@ -46,7 +52,7 @@ button:focus {
 }
 #header_inner {
   position: relative;
-  width: 1400px;
+  width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -72,19 +78,11 @@ h1#logo a span {
   margin-top: 25px;
   font-size: 1rem;
 }
-#logBtn {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 20px; /*display: none;*/
-}
+
 #logBtn > button {
   font-family: Poppins;
 }
-button#loginBt {
-  margin-left: 70px;
-}
+
 ul#memberinfo {
   width: 100%;
   margin-top: 15px;
@@ -128,17 +126,7 @@ ul#memberinfo > li > a {
   background-size: cover;
   margin: 0 !important;
 }
-div#dotBtn {
-  width: 980px;
-  height: 10px;
-  position: absolute;
-  left: 50%;
-  transform: translatex(-50%);
-}
-div#dotBtn > a {
-  color: rgba(255, 253, 253, 0.56);
-  padding: 5px;
-}
+
 div#dotBtn a.selected {
   color: #009246;
 }
@@ -150,7 +138,7 @@ h1.intro {
   font-size: 1.75rem;
 }
 p.justi {
-  width: 410px;
+  width: 60%;
 }
 .banner__content {
   display: flex;
@@ -333,50 +321,62 @@ div#bookMarkBanner h1 {
   text-align: center;
 }
 main.minHeight {
-  min-height: 900px;
+  min-height: 1200px;
 }
 /**********미디어 스크린*************/
-@media screen and (max-width: 1400px) {
-  #header_inner {
+@media (max-width: 1200px){
+#header_inner {
     width: 100%;
   }
 }
-@media screen and (max-width: 980px) {
-  button#loginBt {
-    margin-left: 0;
-  }
-  div#slideBtn {
-    width: 100%;
+@media (max-width: 992px){
+.logSi_btn{
+  width:40%;
+}
+  .logSi_btn{
+    display: flex;
+    flex-direction: row;
   }
 }
-@media screen and (max-width: 768px) {
+@media (max-width: 768px){
   html,
   body {
     font-size: 10px;
   }
-  #header_inner {
-    display: inline-block;
+   #header_inner {
+     display:inline-block;
+     justify-content: center;
+  }
+  #slideBanner,div#dotBtn{
+    width:100%;
+  }
+  button#loginBt {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+  .logSi_btn{
+    flex-direction:column;
+    width: 100%;
+    padding: 0 20%;
+  }
+  .logSi_btn > button{
+  width: 100px;
   }
   h1#logo {
     width: 100%;
     text-align: center;
   }
-  #logDiv {
-    width: 300px;
-    height: 100px;
+    #logDiv {
+    width: 30%;
     position: absolute;
     left: 50%;
-    margin-left: -150px;
     top: 30px;
-  }
-  div#logBtn {
-    padding: 0 40px;
-    justify-content: center;
+    margin-left: -15%;
   }
   ul#memberinfo {
     text-align: center;
   }
-  #memberBox {
+   #memberBox {
     left: 50%;
     transform: translateX(-50%);
   }
