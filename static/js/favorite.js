@@ -52,8 +52,6 @@ $(document).ready(function () {
 
 function list() {
   $('#thumbnail-box').empty();
-  moreBtn.className = 'blind';
-  favoriteOff.className = 'blind';
   $.ajax({
     type: 'GET',
     url: '/favoritelist',
