@@ -72,16 +72,16 @@ def favorites_delete():
     name_receive = request.form['name_give']
     title_receive = request.form['title_give']
 
-    doc = {
-        'name': name_receive,
-        'title': title_receive,
-    }
-    toonLikes.delete_one({'name': name_receive},{'title': title_receive})
-    return jsonify({'msg': '즐겨찾기 정보 저장!'})
+    # doc = {
+    #     'name': name_receive,
+    #     'title': title_receive,
+    # }
+    toonLikes.delete_one({'name': name_receive, 'title': title_receive})
+    return jsonify({'msg': '즐겨찾기 정보 삭제!'})
 
 # 이메일, 타이틀 삭제
 
-@app.route("/favorites", methods=["POST"])
+@app.route("/favorites", methods=["POST"])      
 def favorites_post():
     name_receive = request.form['name_give']
     title_receive = request.form['title_give']
@@ -176,6 +176,18 @@ def home():
 # 닉네임 가져와야함!
 
 @app.route('/favorite')
+def loginCornfirm():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = toonUser.find_one({"id": payload['id']})
+        print(user_info)
+
+        return render_template('favorite.html', email=user_info["id"], nickname=user_info["nick"])
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("main", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("main", msg="로그인 정보가 존재하지 않습니다."))
 def favorite():
     return render_template('favorite.html')
 
