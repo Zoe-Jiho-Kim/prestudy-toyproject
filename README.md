@@ -84,7 +84,7 @@
 
 <h4>-에디터</h4>
 <img src="https://img.shields.io/badge/pycharm-143?style=for-the-badge&logo=pycharm&logoColor=black&color=black&labelColor=brightgreen">
-<img src="https://img.shields.io/badge/VisualStudio-143?style=for-the-badge&logo=VisualStudio&logoColor=blue&color=blue&labelColor=ffffff">
+<img src="https://img.shields.io/badge/VisualStudio-143?style=for-the-badge&logo=VisualStudio&logoColor=blue&color=blue&labelColor=c4c4c4">
 
 <h4>-협업툴</h4>
 <p float="left">
