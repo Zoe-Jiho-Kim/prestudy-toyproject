@@ -324,6 +324,10 @@ div#bookMarkBanner h1 {
 main.minHeight {
   min-height: 1200px;
 }
+.logSi_btn {
+  display: flex;
+  gap: 10px;
+}
 /**********미디어 스크린*************/
 @media (max-width: 1200px) {
   #header_inner {
@@ -332,11 +336,6 @@ main.minHeight {
 }
 @media (max-width: 992px) {
   .logSi_btn {
-    width: 40%;
-  }
-  .logSi_btn {
-    display: flex;
-    flex-direction: row;
     gap: 10px;
   }
 }
@@ -358,7 +357,6 @@ main.minHeight {
     margin-bottom: 5px;
   }
   .logSi_btn {
-    /* display: flex; */
     flex-direction: column;
     align-items: center;
     width: 100%;
