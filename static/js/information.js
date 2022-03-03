@@ -1,6 +1,12 @@
 'use strict';
+
+
+// ########################
+// ##    비밀번호 검증     ##
+// ########################
+
 function changebtn() {
-    console.log("changebtn")
+    // console.log("changebtn")
     let password = $('#userpw').val();
     let password2 = $('#userpw2').val();
 
@@ -27,9 +33,6 @@ function changebtn() {
             return;
         }
     }
-
-
-
     $.ajax({
         type: 'POST',
         url: '/api/information',
@@ -44,15 +47,16 @@ function changebtn() {
     });
 }
 
+
 // #############################
 // ##    패스워드 체크정규식     ##
 // #############################
-
 
 function is_password(asValue) {
     var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
     return regExp.test(asValue);
 }
+
 
 // #############################
 // ##    onchange  정보검증     ##
