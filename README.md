@@ -1,13 +1,13 @@
-<h1>🧚‍♀️ 프로젝트 소개</h1>
+<h2>🧚‍♀️ 프로젝트 소개 🧚‍</h2>
 <h3>프로젝트명: COMMENTOON (웹툰 + 댓글)</h3>
 <h6>[prestudy-toyproject]</h6>
 <p> ✅ "COMMENTOON" 은 국내 최대 웹툰 사이트인 ‘NAVER WEBTOON’을 크롤링하여 사용자들의 의견을 교류할 수 있는 사이트입니다. </p>
 <p> ✅ 웹툰을 읽는 도중,
 혹은 읽은 직후에 자신이 느낀 감정을 다른 이들과 함께 댓글로 교류할 수 있습니다!</p>
 
-<h1>1. 제작 기간 & XD팀원 소개 👨‍💻</h1>
+<h2>📅 제작 기간 & XD팀원 소개 👨‍💻</h2>
 
-<h4>(제작 기간: 📆2022.02.21~ 2022.03.03)</h4>
+<h4>( 제작 기간: 📆 2022.02.21~ 2022.03.03 )</h4>
 
 
 <table>
@@ -55,16 +55,16 @@
 </table>
 
 
-<h1> 2. 시연 영상 </h1>
+<h2> 📷 시연 영상 📷 </h2>
 
 
 
-<h1>3. 초안</h1>
+<h2>🗒 초안 🗒</h2>
 
 
 ![](https://media.vlpt.us/images/ryurim0109/post/de9725fc-43e1-4dac-b1aa-e3ce314a23cc/123.png)
 
-<h1>4. 사용한 기술</h1>
+<h2>🛠 사용한 기술 🛠</h2>
 
 <h4>- 언어</h4>
 <p float="left">
@@ -101,7 +101,7 @@
 <h4>-호스팅<h4>
 <img src="https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white">
 
-<h1>5. 디렉터리 구조 🗂</h1>
+<h2>🗂 디렉터리 구조 🗂</h2>
 <pre>
 <code>
 /static
@@ -139,7 +139,7 @@
 </pre>
 
 
-<h1>6. 후기 📝</h1>
+<h2>📝 후기 📝</h2>
 
 <code>권기원</code> 
 <br />
