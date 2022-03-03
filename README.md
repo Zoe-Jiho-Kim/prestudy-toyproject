@@ -4,8 +4,8 @@
 <p> ✅ "COMMENTOON" 은 국내 최대 웹툰 사이트인 ‘NAVER WEBTOON’을 크롤링하여 사용자들의 의견을 교류할 수 있는 사이트입니다. </p>
 <p> ✅ 웹툰을 읽는 도중,
 혹은 읽은 직후에 자신이 느낀 감정을 다른 이들과 함께 댓글로 교류할 수 있습니다!</p>
-<hr/>
-<h3>1. 제작 기간 & XD팀원 소개 👨‍💻</h3>
+
+<h1>1. 제작 기간 & XD팀원 소개 👨‍💻</h1>
 
 <h4>(제작 기간: 📆2022.02.21~ 2022.03.03)</h4>
 
@@ -54,17 +54,17 @@
     </tr>
 </table>
 
-<hr/>
-<h3> 2. 시연 영상 </h3>
+
+<h1> 2. 시연 영상 </h1>
 
 
-<hr/>
-<h3>3. 초안</h3>
+
+<h1>3. 초안</h1>
 
 
 ![](https://media.vlpt.us/images/ryurim0109/post/de9725fc-43e1-4dac-b1aa-e3ce314a23cc/123.png)
-<hr/>
-<h3>4. 사용한 기술</h3>
+
+<h1>4. 사용한 기술</h1>
 
 <h4>- 언어</h4>
 <p float="left">
@@ -100,8 +100,8 @@
 
 <h4>-호스팅<h4>
 <img src="https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white">
-<hr/>
-<h3>5. 디렉터리 구조 🗂</h3>
+
+<h1>5. 디렉터리 구조 🗂</h1>
 <pre>
 <code>
 /static
@@ -138,8 +138,8 @@
 </code>
 </pre>
 
-<hr/>
-<h3>6. 후기 📝</h3>
+
+<h1>6. 후기 📝</h1>
 
 <code>권기원</code> 
 <br />
