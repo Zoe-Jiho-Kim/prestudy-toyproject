@@ -1,27 +1,7 @@
+'use strict';
 document.addEventListener('DOMContentLoaded', () => {
-  naviEffect();
   slideEffect();
-  starEffect();
 });
-
-//헤더 상단 네비 효과
-function naviEffect() {
-  const mainMenu = document.querySelector('#memberinfo>li');
-  const memberBox = document.querySelector('#memberBox');
-
-  initEvent();
-
-  function initEvent() {
-    mainMenu.addEventListener('mouseenter', () => {
-      memberBox.style.display = 'block';
-    });
-    mainMenu.addEventListener('mouseleave', () => {
-      memberBox.style.display = 'none';
-    });
-  } //initEvent
-} //naviEffect
-
-//헤더 상단 네비 효과 끝
 
 //비쥬얼 슬라이드 효과 시작
 function slideEffect() {
@@ -124,30 +104,3 @@ function slideEffect() {
   }
 } //slideEffect
 //비쥬얼 슬라이드 효과 끝
-
-//별 눌렀을 때, 활성화 비활성화 효과
-
-function starEffect() {
-  const starBtn = document.querySelector('#favorites');
-  const star = document.querySelector('#favorites>a');
-  let isActivate = false;
-
-  initEvent();
-  function initEvent() {
-    starBtn.addEventListener('click', clickStar);
-  } //initEvent
-
-  function clickStar() {
-    starActivate();
-  } //clickStar
-
-  function starActivate() {
-    if (isActivate == false) {
-      star.classList.add('yellow');
-      isActivate = true;
-    } else {
-      star.classList.remove('yellow');
-      isActivate = false;
-    }
-  } //starActivate
-} //starEffect
