@@ -54,10 +54,6 @@ def favorite_get():
     # print(favoritetitle)
     # 토큰분해후 나온 id와 toonLikes에 있는 id가 동일했을때 값을가져옴
 
-    # toon_list = list(dbc.webtoons.find({}, {'_id': False}))
-    # print(toon_list)
-    # favorite_list = list(dbc.webtoons.find({}, {'_id': False}))
-    # print(favorite_list)
     return jsonify({'favorites': favoritetitle})
   
 @app.route("/favoritelist", methods=["POST"])
@@ -67,8 +63,23 @@ def favorite_post():
     webtoon_list = list(dbc.webtoons.find({'title': title_name}, {'_id': False}))
     
     return jsonify({'webtoons':webtoon_list})
-  
-  
+
+
+#   이메일, 타이틀 저장
+
+@app.route("/favorites/delete", methods=["POST"])
+def favorites_delete():
+    name_receive = request.form['name_give']
+    title_receive = request.form['title_give']
+
+    doc = {
+        'name': name_receive,
+        'title': title_receive,
+    }
+    toonLikes.delete_one({'name': name_receive},{'title': title_receive})
+    return jsonify({'msg': '즐겨찾기 정보 저장!'})
+
+# 이메일, 타이틀 삭제
 
 @app.route("/favorites", methods=["POST"])
 def favorites_post():
@@ -88,9 +99,8 @@ def favorites_post():
 
 
 
-
 #################################
-##  정보수정을 위한 API         ##
+##      정보수정을 위한 API      ##
 #################################
 
 @app.route('/api/information', methods=['post'])
@@ -322,6 +332,17 @@ def toon_get():
     
     return jsonify({'comment': title_comment_list})
 
+@app.route("/popular", methods=["GET"])
+def popular_get():
+    webtoon_list = dbc.webtoons.find({}, {'_id': False}).sort("star", -1)
+    
+    webtoon_list_edit = list({editlist['title']: editlist for editlist in webtoon_list}.values())
+
+    
+    
+    #print(test_list)
+    return jsonify({'comment': webtoon_list_edit})
+
 
 ########################################################
 #
@@ -331,17 +352,12 @@ def toon_get():
 @app.route('/searchToons', methods=['POST'])
 def search():
     receice_keywords = request.form["give_keyword"]
-    print("##################################")
-    print("receice_keywords : " + receice_keywords)
 
-    # search_condition_list = []
-
-    # search_condition_list.append({'title': {'$regex': '.*' + receice_keywords + '.*'} })
 
     searched_webtoons = list(dbc.webtoons.find({'title': {'$regex': '.*' + receice_keywords + '.*'}},{'_id': False}))
-    # print(searched_webtoons)
+    searched_webtoons_edit = list({editlist['title']: editlist for editlist in searched_webtoons}.values())
 
-    return jsonify({'msg': ' 저장 ','searched_webtoons':searched_webtoons,'receice_keywords':receice_keywords})
+    return jsonify({'msg': ' 저장 ','searched_webtoons':searched_webtoons_edit,'receice_keywords':receice_keywords})
     
 #########################################################
 # 실행 코드 (맨 아래에 위치해야합니다)

@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="../static/css/style.css" />
     <script defer src="../static/js/favorite.js"></script>
     <script defer src="../static/js/genre-btn.js"></script>
+    <script defer src="../static/js/main.js"></script>
     <!-- flask로 구동시 아래 코드를 사용해야 동작합니다 -->
     <!--
       <link
@@ -48,6 +49,7 @@
   </head>
   <body>
       <!-- Header -->
+      <span id="useremail" class="blind">{{ email }}</span>
       <div id="header">
           <header id="header_inner"
           >
@@ -71,102 +73,104 @@
       </div>
       <!-- // Banner -->
 
-      <!-- Modal -->
+    <!-- Modal -->
 
-      <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        db=""
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-t" id="exampleModalLabel">
-                    작품에 대한 의견을 남겨주세요 💚<button id="favorites">⭐즐겨찾기⭐</button>
-                </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      db=""
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-t" id="exampleModalLabel">
+              작품에 대한 의견을 남겨주세요 💚
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="col">
+              <div class="card shadow-sm">
+                <img
+                  src=""
+                  width="100%"
+                  height="100%"
+                  title=""
+                  alt=""
+                  id="modal-img"
+                />
+                  <button id="favorites">
+                    <a><i class="fa-solid fa-star"></i></a>
+                  </button>
+                <div class="modal-wrap card-body">
+                  <div class="modal-wrap-header">
+                    <p class="modal-title"></p>
+                    <p class="modal-star"></p>
+                  </div>
+                  <p class="modal-writer"></p>
+                  <p class="modal-genre"></p>
+                  <a class="modal-url" href="" target="_blank">보러가기</a>
+                  <p class="modal-desc"></p>
+                </div>
+              </div>
             </div>
-            <div class="modal-body">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img
-                    src=""
-                    width="100%"
-                    height="100%"
-                    title=""
-                    alt=""
-                    id="modal-img"
-                  />
-                  <div class="modal-wrap card-body">
-                    <div class="modal-wrap-header">
-                      <p class="modal-title"></p>
-                      <p class="modal-star"></p>
-                    </div>
-                    <p class="modal-writer"></p>
-                    <p class="modal-genre"></p>
-                    <a class="modal-url" href="" target="_blank">보러가기</a>
-                    <p class="modal-desc"></p>
+            <form>
+              <div class="container clearFix">
+                <div class="row">
+                  <div class="col-3 my-3">
+                    <label for="recipient-name" class="blind bicol-form-label"
+                      >Recipient:</label
+                    >
+                    <input
+                      placeholder="닉네임"
+                      type="text"
+                      class="{% if nickname %}blind {% endif %}form-control"
+                      id="recipient-name"
+                      value="{{ nickname }}"
+                    />
+                    <div>{{ nickname }}</div>
+                  </div>
+                  <div class="comment__count">댓글 수: 몰라요</div>
+                  <div class="col-9 my-3">
+                    <label for="message-text" class="blind col-form-label"
+                      >Message:</label
+                    >
+                    <textarea
+                      placeholder="댓글을 입력해주세요 😄"
+                      class="form-control"
+                      id="message-text"
+                    ></textarea>
                   </div>
                 </div>
               </div>
-              <form>
-                <div class="container clearFix">
-                  <div class="row">
-                    <div class="col-3 my-3">
-
-                      <label for="recipient-name" class="blind bicol-form-label"
-                        >Recipient:</label
-                      >
-                      <input
-                        placeholder="닉네임"
-                        type="text"
-                        class="{% if nickname %}blind {% endif%}form-control"
-                        id="recipient-name"
-                        value="{{ nickname }}"
-                      />
-                      <div>{{nickname}}</div>
-
-                    </div>
-                    <div class="comment__count" >댓글 수: 몰라요</div>
-                    <div class="col-9 my-3">
-                      <label for="message-text" class="blind col-form-label"
-                        >Message:</label
-                      >
-                      <textarea
-                        placeholder="댓글을 입력해주세요 😄"
-                        class="form-control"
-                        id="message-text"
-                      ></textarea>
-                    </div>
-                  </div>
-                </div>
-              </form>
-              <div class="container clearFix" id="comment_box"></div>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-success" id="commentBtn">
-                댓글 등록
-              </button>
-            </div>
+            </form>
+            <div class="container clearFix" id="comment_box"></div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-success" id="commentBtn">
+              댓글 등록
+            </button>
           </div>
         </div>
       </div>
-      <!-- // Modal -->
+    </div>
+
+    <!-- // Modal -->
 
       <!-- Thumbnail -->
 
@@ -189,6 +193,13 @@
           <!-- // read more btn -->
         </div>
       </main>
+      <!-- read more btn -->
+      <div class="btn__more">
+        <button type="button" id="morebtn" class="btn btn-success">
+          READ MORE
+        </button>
+      </div>
+      <!-- // read more btn -->
       <!-- topBtn -->
       <button class="top__btn blind">TOP</button>
       <!-- // topBtn -->
