@@ -387,7 +387,6 @@ function save_favorites() {
 /////////////// 임시
 document.addEventListener('DOMContentLoaded', () => {
   naviEffect();
-  starEffect();
 });
 
 //헤더 상단 네비 효과
@@ -395,16 +394,14 @@ function naviEffect() {
   const mainMenu = document.querySelector('#memberinfo>li');
   const memberBox = document.querySelector('#memberBox');
 
-  initEvent();
-
-  function initEvent() {
+  (function initEvent() {
     mainMenu.addEventListener('mouseenter', () => {
       memberBox.style.display = 'block';
     });
     mainMenu.addEventListener('mouseleave', () => {
       memberBox.style.display = 'none';
     });
-  } //initEvent
+  })(); //initEvent
 } //naviEffect
 
 //별 눌렀을 때, 활성화 비활성화 효과
