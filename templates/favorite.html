@@ -68,13 +68,8 @@
       </div> {# end header container#}
       <!-- // header -->
       <!-- Banner -->
-      <div id="slideBanner" class="banner px-4 py-5 my-5 text-center border-bottom">
-        <h1 class="display-6 fw-bold">즐겨찾기</h1>
-        <div class="col-lg-6 mx-auto banner__content">
-
-          </div>
-        </div>
-        
+      <div id="bookMarkBanner">
+        <h1 class="display-6 fw-bold intro">🌟즐겨찾기🌟</h1>
       </div>
       <!-- // Banner -->
 
@@ -179,7 +174,7 @@
 
       <!-- Thumbnail -->
 
-      <main class="bg-light">
+      <main class="bg-light minHeight">
         <div class="album py-5">
           <div class="container clearFix">
             <div
@@ -190,21 +185,28 @@
           <!-- // Thumbnail -->
 
           <!-- read more btn -->
-          <div class="btn__more">
+          {#<div class="btn__more">
             <button type="button" id="morebtn" class="btn btn-success">
               READ MORE
             </button>
-          </div>
+          </div>#} {#더보기 버튼 주석처리#}
           <!-- // read more btn -->
         </div>
       </main>
+      <!-- read more btn -->
+      <div class="btn__more">
+        <button type="button" id="morebtn" class="btn btn-success">
+          READ MORE
+        </button>
+      </div>
+      <!-- // read more btn -->
       <!-- topBtn -->
       <button class="top__btn blind">TOP</button>
       <!-- // topBtn -->
       <!-- footer -->
       <div class="footer__wrap">
         <footer class="py-4">
-          <p class="text-center">© 2022 TEAM, XD</p>
+          <p class="text-center footerFont">© 2022 TEAM, XD</p>
         </footer>
       </div>
       <!-- // footer -->
