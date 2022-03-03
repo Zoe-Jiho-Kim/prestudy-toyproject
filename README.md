@@ -1,4 +1,6 @@
 <h2>🧚‍♀️ 프로젝트 소개 🧚‍</h2>
+
+![](https://media.vlpt.us/images/ryurim0109/post/70db44ae-c446-4037-852b-dc8dc2fb9910/commentoon.png)
 <h3>프로젝트명: COMMENTOON (웹툰 + 댓글)</h3>
 <h6>[prestudy-toyproject]</h6>
 <p> ✅ "COMMENTOON" 은 국내 최대 웹툰 사이트인 ‘NAVER WEBTOON’을 크롤링하여 사용자들의 의견을 교류할 수 있는 사이트입니다. </p>
@@ -21,7 +23,7 @@
         <a href="https://velog.io/@leejuhwan"><img src="https://img.shields.io/badge/김지호-8C58E7?style=뱃지모양&logo=로고&logoColor=white"/></a>
         </td>
         <td align="center">
-        <a href="#;"><img src="https://img.shields.io/badge/이주환-1C84FF?style=뱃지모양&logo=로고&logoColor=black"/></a> 
+        <a href="https://velog.io/@leejuhwan"><img src="https://img.shields.io/badge/이주환-1C84FF?style=뱃지모양&logo=로고&logoColor=black"/></a> 
         </td>
         <td align="center">
         <a href="#;"><img src="https://img.shields.io/badge/이춘-7EA973?style=뱃지모양&logo=로고&logoColor=black"/></a> 
