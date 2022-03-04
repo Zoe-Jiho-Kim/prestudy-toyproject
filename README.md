@@ -1,4 +1,7 @@
 <h2>🧚‍♀️ 프로젝트 소개 🧚‍</h2>
+
+![](https://media.vlpt.us/images/ryurim0109/post/70db44ae-c446-4037-852b-dc8dc2fb9910/commentoon.png)
+
 <h3>프로젝트명: COMMENTOON (웹툰 + 댓글)</h3>
 <h6>[prestudy-toyproject]</h6>
 <p> ✅ "COMMENTOON" 은 국내 최대 웹툰 사이트인 ‘NAVER WEBTOON’을 크롤링하여 사용자들의 의견을 교류할 수 있는 사이트입니다. </p>
@@ -9,7 +12,6 @@
 
 <h4>( 제작 기간: 📆 2022.02.21~ 2022.03.03 )</h4>
 
-
 <table>
     <tr>
         <td align="center">
@@ -19,10 +21,10 @@
         <a href="https://velog.io/@ryurim0109"><img src="https://img.shields.io/badge/김유림-FFE812?style=뱃지모양&logo=로고&logoColor=black"/></a>
         </td>
         <td align="center">
-        <a href="#;"><img src="https://img.shields.io/badge/김지호-8C58E7?style=뱃지모양&logo=로고&logoColor=white"/></a>
+        <a href="https://velog.io/@leejuhwan"><img src="https://img.shields.io/badge/김지호-8C58E7?style=뱃지모양&logo=로고&logoColor=white"/></a>
         </td>
         <td align="center">
-        <a href="#;"><img src="https://img.shields.io/badge/이주환-1C84FF?style=뱃지모양&logo=로고&logoColor=black"/></a> 
+        <a href="https://velog.io/@leejuhwan"><img src="https://img.shields.io/badge/이주환-1C84FF?style=뱃지모양&logo=로고&logoColor=black"/></a> 
         </td>
         <td align="center">
         <a href="#;"><img src="https://img.shields.io/badge/이춘-7EA973?style=뱃지모양&logo=로고&logoColor=black"/></a> 
@@ -54,13 +56,9 @@
     </tr>
 </table>
 
-
 <h2> 📷 시연 영상 📷 </h2>
 
-
-
 <h2>🗒 초안 🗒</h2>
-
 
 ![](https://media.vlpt.us/images/ryurim0109/post/de9725fc-43e1-4dac-b1aa-e3ce314a23cc/123.png)
 
@@ -135,17 +133,22 @@
 ├── /README.md
 ├── /app.py
 </code>
-</pre>
 
+</pre>
 
 <h2>📝 후기 📝</h2>
 
-<code>권기원</code> 
+<code>권기원</code>
+생애 최초 진행한 프로젝트였는데 이 첫 프로젝트로 코딩도 열정도 많이 배워가는 시간을 보냈습니다.<br />
+프로젝트 중 나오는 문제를 두려워하지 않고 돌파하려는 팀원분들 모습에 저도 열심히 할 수 있었던 거 같아요!<br />
+앞으로 팀원분들의 성장이 너무너무 기대됩니다!<br />
+아 물론 저도 무럭무럭 성장해서 언제 어디서든 든든한 팀원이 되도록 하겠습니다.😃<br />
+17조 XD 팀원분들너무너무무고생 많으셨습니다!!<br />
 <br />
-<code>김유림</code> 
+<code>김유림</code>
 다들 너무 열심히 해주셔서 많이 배워가는 프젝이었어요. <br />
 처음 맡아서 하려고 했던 댓글 기능 구현을 제대로 마무리 하지 못해서 아쉽네요.ㅠㅠ <br />
-더 공부해서 팀원들에게 도움이 되고 싶다는 생각을 하게 되네요 <br/> 
+더 공부해서 팀원들에게 도움이 되고 싶다는 생각을 하게 되네요 <br/>
 다들 고생 많이 하셨어요 :)
 <br />
 <code>김지호</code>
@@ -154,14 +157,10 @@
 팀원들과의 협업을 통해 구현해냈을 때는 정말 기뻣습니다. <br />
 아직은 미숙한 우리들이지만 앞으로 항해99의 모든 과정이 끝냈을 때 성장해있을 모습을 상상하며<br />
 모두 화이팅!!<br />
-<code>이주환</code> 
+<code>이주환</code>
 처음으로 진행한 토이프로젝트였습니다. 정확히 알고 있다고 생각한 개념들도<br />
 막상 실전에 적용하려 해보니 문제가 생기는 경우가 많았고,<br/>
 이를 해결함을 통해 성취감 및 성장하는 경험을 하였습니다. 열정적이고 좋은 팀원분들을 만나 첫 스타트를 끊었습니다.<br/>
 앞으로 더 성장하고 발전하는 모습을 보이겠습니다.
 <br />
-<code>이춘</code> 
-
-
-
-
+<code>이춘</code>
