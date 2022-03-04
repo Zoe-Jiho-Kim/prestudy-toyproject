@@ -127,9 +127,23 @@ ul#memberinfo > li > a {
   background-size: cover;
   margin: 0 !important;
 }
+div#dotBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+div#dotBtn a {
+  background-color: #ccc;
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+}
 
 div#dotBtn a.selected {
-  color: #009246;
+  background-color: #009246;
 }
 .banner h1,
 .banner p {
