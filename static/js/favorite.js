@@ -2,11 +2,6 @@
 
 const favoriteOn = document.querySelector('#favorites-on');
 
-// 이메일, 타이틀 저장
-// $('#favorites').on('click', save_favorites);
-// comment 저장 함수
-//favoriteOff.addEventListener('click', save_favorites);
-
 function save_favorites() {
   let title = titleBucket;
   let name = document.querySelector('#useremail').innerHTML;
