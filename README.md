@@ -57,7 +57,7 @@
 </table>
 
 <h2> 📷 시연 영상 📷 </h2>
-
+<iframe width="640" height="360" src="https://www.youtube.com/watch?v=GvtbNAqW754" frameborder="0" gesture="media" allowfullscreen=""></iframe>
 <h2>🗒 초안 🗒</h2>
 
 ![](https://media.vlpt.us/images/ryurim0109/post/de9725fc-43e1-4dac-b1aa-e3ce314a23cc/123.png)
