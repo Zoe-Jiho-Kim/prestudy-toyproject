@@ -27,6 +27,7 @@ function search() {
         // debugger;
         console.log(response);
         let searched_wt = response['searched_webtoons'];
+
         // 검색창을 비워줍니다
         searchInput.value = null;
 
