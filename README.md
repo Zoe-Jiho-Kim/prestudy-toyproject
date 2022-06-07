@@ -15,19 +15,19 @@
 <table>
     <tr>
         <td align="center">
-        <a href="#;"><img src="https://img.shields.io/badge/권기원-0014A7?style=뱃지모양&logo=로고&logoColor=white"/></a>
+        <a href="#;">권기원</a>
         </td>
         <td align="center">
-        <a href="https://velog.io/@ryurim0109"><img src="https://img.shields.io/badge/김유림-FFE812?style=뱃지모양&logo=로고&logoColor=black"/></a>
+        <a href="https://velog.io/@ryurim0109">김유림</a>
         </td>
         <td align="center">
-        <a href="https://velog.io/@leejuhwan"><img src="https://img.shields.io/badge/김지호-8C58E7?style=뱃지모양&logo=로고&logoColor=white"/></a>
+        <a href="https://velog.io/@leejuhwan">김지호</a>
         </td>
         <td align="center">
-        <a href="https://velog.io/@leejuhwan"><img src="https://img.shields.io/badge/이주환-1C84FF?style=뱃지모양&logo=로고&logoColor=black"/></a> 
+        <a href="https://velog.io/@leejuhwan">이주환</a> 
         </td>
         <td align="center">
-        <a href="#;"><img src="https://img.shields.io/badge/이춘-7EA973?style=뱃지모양&logo=로고&logoColor=black"/></a> 
+        <a href="#;">이춘</a> 
         </td>
     </tr>
     <tr>
